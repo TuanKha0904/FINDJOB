@@ -13,5 +13,3 @@ app.directive('footerPage', () => {
     }
 });
 
-app.directive('')
-
