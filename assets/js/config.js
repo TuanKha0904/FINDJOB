@@ -12,6 +12,9 @@ app.config(function ($routeProvider) {
     .when("/job_details", {
       templateUrl: "./views/seeker/job_details.html",
     })
+    .when("/history", {
+      templateUrl: "./views/seeker/history.html",
+    })
     .otherwise({
       redirectTo: "/",
     });
