@@ -1,6 +1,7 @@
-var app = angular.module('MyApp', ['ngRoute']);
+var app = angular.module("MyApp", ["ngRoute"]);
 
 app.config(function ($routeProvider) {
+
     $routeProvider
         .when('/', {
             templateUrl: './Views/home.html',
@@ -42,7 +43,20 @@ app.config(function ($routeProvider) {
             templateUrl: './Views/profile_password.html',
             controller: 'HomeController'
         })
+      .when("/", {
+      templateUrl: "./views/home.html",
+      controller: "HomeController",
+    })
+    .when("/seeker", {
+      templateUrl: "./views/seeker/seeker.html",
+    })
+    .when("/job_details", {
+      templateUrl: "./views/seeker/job_details.html",
+    })
+    .when("/history", {
+      templateUrl: "./views/seeker/history.html",
+    })
         .otherwise({
             redirectTo: '/'
         });
-});
+
