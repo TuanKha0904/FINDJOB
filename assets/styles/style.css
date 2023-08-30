@@ -372,10 +372,15 @@ hr {
     font-size: 18px;
     font-weight: 400;
     padding: 9px 55px 9px 32px;
+    border-radius: 10px;
     border: none;
-    border-radius: 0px;
     position: relative;
 }
+
+#select1:focus{
+    outline: none;
+}
+
 .owl-carousel .owl-nav div.owl-next {
     left: auto;
     right: -30px
@@ -404,10 +409,9 @@ hr {
 }
 
 .btn {
-    background: #fb246a;
-    -moz-user-select: none;
     text-transform: capitalize;
-    color: #fff;
+    color: #da2461;
+    border: 1px solid #fb246a;
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
@@ -416,13 +420,12 @@ hr {
     line-height: 0;
     margin-bottom: 0;
     padding: 27px 44px;
-    border-radius: 0px;
+    border-radius: 20px; 
     margin: 10px;
     cursor: pointer;
     transition: color 0.4s linear;
     position: relative;
     z-index: 1;
-    border: 0;
     overflow: hidden;
     margin: 0
 }
@@ -544,8 +547,8 @@ hr {
 }
 
 .border-btn2 {
-    border: 1px solid #8b92dd;
-    color: #8b92dd;
+    border: 1px solid #da2461;
+    color: #da2461;
     font: "Muli", sans-serif;
     background: none;
     -moz-user-select: none;
@@ -580,7 +583,7 @@ hr {
     top: 0;
     width: 101%;
     height: 101%;
-    background: #8b92dd;
+    background: #da2461;
     z-index: -1;
     transition: transform 0.5s;
     transition-timing-function: ease;
@@ -5561,11 +5564,16 @@ del {
     }
 }
 
+.header-area{
+    box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+
+}
+
 .header-area .header-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: center
+    align-items: center;
 }
 
 .header-area .menu-wrapper {
@@ -5592,6 +5600,7 @@ del {
     -moz-transition: .3s;
     -o-transition: .3s;
     transition: .3s
+    
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
@@ -5861,7 +5870,7 @@ form.search-box {
     box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.08);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 form.search-box .input-form {
@@ -5883,8 +5892,8 @@ form.search-box .input-form input {
     font-weight: 400;
     padding: 9px 33px 9px 32px;
     border: none;
-    border-radius: 0px;
-    position: relative
+    position: relative;
+    border-radius: 10px;
 }
 
 @media (max-width: 767px) {
@@ -5901,25 +5910,13 @@ form.search-box .input-form input {
 }
 
 form.search-box .input-form input::placeholder {
-    color: #616875
+    color: #afb5c2
 }
 
 @media (max-width: 767px) {
     form.search-box .input-form input::placeholder {
         font-size: 13px
     }
-}
-
-form.search-box .input-form::before {
-    position: absolute;
-    content: '';
-    width: 1px;
-    height: 51px;
-    background: #e0e4f8;
-    right: 22px;
-    top: 50%;
-    z-index: 1;
-    transform: translateY(-50%)
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -5935,7 +5932,8 @@ form.search-box .input-form::before {
 }
 
 form.search-box .select-form {
-    width: 34%
+    width: 34%;
+
 }
 
 @media (max-width: 767px) {
@@ -5948,12 +5946,13 @@ form.search-box .select-form .nice-select {
     width: 100%;
     height: 70px;
     background: #fff;
-    border-radius: 0px;
+    border-radius: 10px;
     padding: 11px 19px 11px 10px;
     color: #616875;
     line-height: 54px;
-    border: 0
+    border: 0;
 }
+
 
 @media (max-width: 767px) {
     form.search-box .select-form .nice-select {
@@ -5989,7 +5988,7 @@ form.search-box .select-form .nice-select::after {
 }
 
 form.search-box .search-form {
-    width: 21%
+    width: 20%
 }
 
 @media (max-width: 767px) {
@@ -6001,20 +6000,26 @@ form.search-box .search-form {
 form.search-box .search-form a {
     width: 100%;
     height: 70px;
-    background: #fb246a;
+    background: #fff;
     font-size: 20px;
     line-height: 1;
     text-align: center;
-    color: #fff;
+    color: #fb246a;
     display: block;
     padding: 15px;
-    border-radius: 0px;
+    border-radius: 10px;
     text-transform: capitalize;
     font-family: "Muli", sans-serif;
     letter-spacing: 0.1em;
     line-height: 1.2;
     line-height: 38px;
     font-size: 14px
+}
+
+form.search-box .search-form a:hover {
+    color: #fff;
+    background-color: #fb246a;
+    cursor: pointer;
 }
 
 .team-profile {
@@ -6264,6 +6269,7 @@ form.search-box .search-form a {
 .our-services .single-services {
     border: 1px solid #dafcef;
     padding: 44px 0;
+    border-radius: 20px;
     -webkit-transition: .4s;
     -moz-transition: .4s;
     -o-transition: .4s;
@@ -6297,7 +6303,8 @@ form.search-box .search-form a {
 }
 
 .our-services .single-services:hover {
-    box-shadow: 0px 10px 30px 0px rgba(133, 66, 189, 0.1)
+    box-shadow: 0px 10px 30px 0px rgba(133, 66, 189, 0.1);
+    border-color:#da2461;
 }
 
 .our-services .single-services:hover .services-ion span {
@@ -6404,6 +6411,11 @@ form.search-box .search-form a {
 .apply-bg {
     background-size: cover;
     background-repeat: no-repeat
+}
+
+.support-company-area{
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .support-company-area .support-location-img {
@@ -6561,6 +6573,9 @@ form.search-box .search-form a {
     padding: 36px 30px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.05);
+    box-sizing: border-box;
+    border-radius: 10px;
     flex-wrap: wrap;
     -webkit-transition: .4s;
     -moz-transition: .4s;
@@ -6584,7 +6599,7 @@ form.search-box .search-form a {
     overflow: hidden;
     float: left;
     margin-right: 32px;
-    z-index: 999
+    z-index: 999;
 }
 
 @media (max-width: 767px) {
@@ -6650,7 +6665,7 @@ form.search-box .search-form a {
 }
 
 .single-job-items:hover {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.05)
+    border:1px solid #da2461 ;
 }
 
 .single-job-items .job-items {
