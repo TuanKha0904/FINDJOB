@@ -43,18 +43,14 @@ app.config(function ($routeProvider) {
             templateUrl: './Views/profile_password.html',
             controller: 'HomeController'
         })
-        .when("/", {
-            templateUrl: "./views/home.html",
-            controller: "HomeController",
+        .when('/seeker', {
+            templateUrl: './views/seeker/seeker.html',
         })
-        .when("/seeker", {
-            templateUrl: "./views/seeker/seeker.html",
+        .when('/job_details', {
+            templateUrl: './views/seeker/job_details.html',
         })
-        .when("/job_details", {
-            templateUrl: "./views/seeker/job_details.html",
-        })
-        .when("/history", {
-            templateUrl: "./views/seeker/history.html",
+        .when('/history', {
+            templateUrl: './views/seeker/history.html',
         })
         .otherwise({
             redirectTo: '/'
