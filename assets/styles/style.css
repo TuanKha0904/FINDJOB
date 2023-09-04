@@ -2410,20 +2410,20 @@ hr {
 }
 
 .footer-padding {
-    padding-top: 170px;
+    padding-top: 100px;
     padding-bottom: 20px
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .footer-padding {
-        padding-top: 170px;
+        padding-top: 100px;
         padding-bottom: 20px
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .footer-padding {
-        padding-top: 170px;
+        padding-top: 100px;
         padding-bottom: 20px
     }
 }
@@ -7262,6 +7262,12 @@ form.search-box .search-form a:hover {
     font-size: 16px
 }
 
+.job-listing-area .count-job h2 {
+    padding-left: 50px;
+    color: #da2461;
+}
+
+
 @media (max-width: 767px) {
     .job-listing-area .count-job span {
         margin-bottom: 30px
@@ -7273,7 +7279,7 @@ form.search-box .search-form a:hover {
 }
 
 .job-listing-area .count-job .select-job-items .nice-select {
-    width: 100px;
+    width: 200px;
     height: 30px;
     background: #fff;
     padding: 12px 12px;
