@@ -518,6 +518,7 @@ hr {
     margin: 0
 }
 
+
 .border-btn::before {
     border: 1px solid transparent;
     content: "";
@@ -3190,6 +3191,12 @@ hr {
 .blog_right_sidebar .search_widget .input-group button span {
     font-size: 14px;
     color: #999999
+}
+.input-group-text:nth-child(3) input[type="password"] ~ .fa-eye{
+    display: none;
+}
+.input-group-text:nth-child(3) input[type="text"] ~ .fa-eye-slash{
+    display: none;
 }
 
 .blog_right_sidebar .newsletter_widget .form-control {

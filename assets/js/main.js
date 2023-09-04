@@ -232,3 +232,33 @@
 
 
 })(jQuery);
+var x = true;
+		function myfunction(){
+			if(x){
+				document.getElementById('pass').type = 'text';
+				x = false;
+			}else{
+				document.getElementById('pass').type = 'password';
+				x = true;
+			}
+		}
+
+    function myfunction2(){
+			if(x){
+				document.getElementById('pass2').type = 'text';
+				x = false;
+			}else{
+				document.getElementById('pass2').type = 'password';
+				x = true;
+			}
+		}
+
+    function myfunction3(){
+			if(x){
+				document.getElementById('pass3').type = 'text';
+				x = false;
+			}else{
+				document.getElementById('pass3').type = 'password';
+				x = true;
+			}
+		}

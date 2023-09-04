@@ -1,6 +1,6 @@
 <section>
 	<body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
-		<section class="ftco-section">
+		<section class="ftco-section" style="background-color: #eaedff;">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
@@ -10,22 +10,33 @@
 				<div class="row justify-content-center">
 					<div class="col-md-6 col-lg-4">
 						<div class="login-wrap p-0">
-							<h3 class="mb-4 text-center">Have an account?</h3>
+							<h3 class="mb-4 text-center" style="color: #28395a;">Have an account?</h3>
 							<form action="#" class="signin-form">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Email" required>
+								<div class="input-group ">
+									<div class="input-group-prepend">
+										<span class="input-group-text" style="background-color: #ffff;"><i class="fa fa-solid fa-envelope"></i></span>
+									</div>
+									<input type="email" name="email" class="form-control" placeholder="Email" aria-label="email" value="">
 								</div>
-								<div class="form-group">
-									<input id="password-field" type="password" class="form-control" placeholder="Password" required>
-								</div>
-								<div class="form-group">
-									<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
-								</div>
-								<div class="form-group d-md-flex">
-									<div class="w-50 text-md-left">
-										<a href="#" style="color: black;">Forgot Password</a>
+								<br>
+								<div class="input-group ">
+									<div class="input-group-prepend">
+										<span class="input-group-text" style="background-color: #ffff;"><i class="fa fa-solid fa-lock"></i></span>
+									</div>
+									<input type="password" id="pass" class="form-control" placeholder="password" aria-label="password" value="">
+									<div class="input-group-prepend">
+										<span class="input-group-text" style="background-color: #ffff;"><i class="fa fa-solid fa-eye" onclick="myfunction()"></i></span>
 									</div>
 								</div>
+								<br>
+								<div class="header-btn d-none f-right d-lg-block" style="margin-right: 20px; margin-bottom: 100px;">
+									<div>
+										<a href="#" class="btn head-btn1" style="background-color: #ffff; margin-right: 100px;">Login</a>
+									</div>
+									<div style="margin-top: 30px;">
+										<a href="#" style="color: black;">Forgot Password</a>
+									</div>
+								</div>	
 							</form>
 						</div>
 					</div>
