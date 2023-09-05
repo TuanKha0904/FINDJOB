@@ -43,6 +43,20 @@
 .theme-color {
     color: #fb246a
 }
+.n{
+    width: 150px;
+    height: 40px;
+    background-color: #ffff; 
+    color: red;
+    border-radius: 5px 15px 5px 15px ;
+    border-style: solid;
+    border-color: red;
+}
+.n:hover{
+    cursor: pointer;
+    background-color: red;
+    color: #ffff;
+}
 
 .boxed-btn {
     background: #fff;
