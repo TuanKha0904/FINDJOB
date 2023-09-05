@@ -253,5 +253,6 @@ var x = true;
 			}else{
 				document.getElementById('pass3').type = 'password';
 				x = true;
+        
 			}
 		}
