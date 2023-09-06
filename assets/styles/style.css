@@ -6057,6 +6057,66 @@ form.search-box .search-form a:hover {
     background: #f6f9fe
 }
 
+.custom_profile{
+    background-color: #fff; 
+    margin: 50px 0;
+    border-radius: 50px;
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.25);
+    box-sizing: border-box;
+}
+
+.custom_profile_header{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile_output td{
+    padding: 20px 20px;
+}
+
+.custom_button_Profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.information_profile{
+    margin-bottom: 30px ;
+}
+
+.round-button{
+    width: 40px;
+    height: 40px;
+    border:1px solid #da2461;
+    border-radius: 50%;
+    color: #da2461;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.round-button:hover{
+    color: #fff;
+    background-color: #da2461;
+}
+
+.change_profile_custom{
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.change_profile_custom .custom_btn{
+    width: 200px;
+    padding: 20px 20px;
+}
+
 .team-profile .single-profile .single-profile-front {
     position: relative;
     top: 0;
