@@ -234,7 +234,7 @@ var x = true;
 				document.getElementById('pass').type = 'password';
 				x = true;
 			}
-		}
+		};
 
     function myfunction2(){
 			if(x){
@@ -244,7 +244,7 @@ var x = true;
 				document.getElementById('pass2').type = 'password';
 				x = true;
 			}
-		}
+		};
 
     function myfunction3(){
 			if(x){
@@ -255,4 +255,4 @@ var x = true;
 				x = true;
         
 			}
-		}
+		};

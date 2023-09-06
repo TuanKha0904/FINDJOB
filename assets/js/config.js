@@ -37,11 +37,7 @@ app.config(function ($routeProvider) {
         })
         .when('/profile', {
             templateUrl: './Views/profile.html',
-            controller: 'HomeController'
-        })
-        .when('/profilepassword', {
-            templateUrl: './Views/profile_password.html',
-            controller: 'HomeController'
+            controller: 'ProfileController'
         })
         .when('/seeker', {
             templateUrl: './views/seeker/seeker.html',

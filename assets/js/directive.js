@@ -26,6 +26,29 @@ app.directive("leftContentPageAdmin", () => {
   };
 });
 
+app.directive("editProfileSeeker", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/seeker/edit_profile_seeker.html",
+  };
+});
+
+app.directive("profileSeeker", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/seeker/profile_seeker.html",
+  };
+});
+
+app.directive("profilePassword", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/seeker/profile_password.html",
+  };
+});
+
+
+
 app.directive("databg", () => {
   /* 9. data-background */
   return {

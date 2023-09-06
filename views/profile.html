@@ -8,51 +8,12 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-lg-8 col-md-8 d-flex justify-content-center align-items-center">
+                    <div class="col-lg-8 col-md-8 d-flex">
                         <div class="login-wrap p-0">
-                            <div>
-                                <table class="information_profile">
-                                    <tr class="profile_output">
-                                        <td>Full name:</td>
-                                        <td>Nguyễn Chí nhiên</td>
-                                    </tr>
-                                    <tr class="profile_output">
-                                        <td>Address:</td>
-                                        <td>27c/2 Thi Sách, Phường 6, Đà Lạt, Lâm Đồng, Việt Nam</td>
-                                    </tr>
-                                    <tr class="profile_output">
-                                        <td>Birthday:</td>
-                                        <td>09/04/2003</td>
-                                        <!-- <td><input type="date" class="form-control" placeholder="Birthday" required> -->
-                                        </td>
-                                    </tr>
-                                    <tr class="profile_output">
-                                        <td>Phone number:</td>
-                                        <td>0123456789</td>
-                                    </tr>
-                                    <tr class="profile_output">
-                                        <td>Academic level:</td>
-                                        <td>
-                                            Đại học
-                                            <!-- <select class="form-group">
-                                                    <option value="">Nam</option>
-                                                    <option value="">Nữ</option>
-                                                    <option value="">Khác</option>
-                                                </select> -->
-                                        </td>
-                                    </tr>
-                                    <tr class="profile_output">
-                                        <td>Personal CV:</td>
-                                        <td>https://</td>
-                                    </tr>
-                                    <tr class="profile_output">
-                                        <td>Personal Website:</td>
-                                        <td>https://</td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <profile-seeker ng-if="Profile"></profile-seeker>
+                            <edit-profile-seeker ng-if="EditProfile"></edit-profile-seeker>
+                            <profile-password ng-if = "ChangePassword"></profile-password>
                         </div>
-
                     </div>
                     <div class="col-lg-4 col-md-4 custom_button_Profile">
                         <div class="text-center">
@@ -63,14 +24,19 @@
                                 <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                             </button>
                         </div>
+                        <div class="custom_profile_email"> NCN@gmail.com </div>
                         <div class="header-btn d-none f-left d-lg-block change_profile_custom">
-                            <a href="#" class="btn custom_btn">Edit profile</a>
+                            <a href="" class="btn custom_btn" ng-click="showProfileView()">Show profile</a>
                         </div>
                         <div class="header-btn d-none f-left d-lg-block change_profile_custom">
-                            <a href="#!profilepassword" class="btn custom_btn">Change password</a>
+                            <a href="" class="btn custom_btn" ng-click="showEditProfile()">Edit profile</a>
                         </div>
                         <div class="header-btn d-none f-left d-lg-block change_profile_custom">
-                            <a href="#!profilepassword" class="btn custom_btn">Swap employer <span class="fa fa-arrow-right"></span></a>
+                            <a href="" class="btn custom_btn"  ng-click = "changePassword()">Change password</a>
+                        </div>
+                        <div class="header-btn d-none f-left d-lg-block change_profile_custom">
+                            <a href="#!profilepassword" class="btn custom_btn">Swap employer <span
+                                    class="fa fa-arrow-right"></span></a>
                         </div>
                     </div>
                 </div>

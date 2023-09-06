@@ -3218,6 +3218,10 @@ hr {
     display: none;
 }
 
+.input-group-text{
+    background-color: #fff;
+}
+
 .blog_right_sidebar .newsletter_widget .form-control {
     height: 50px;
     border-color: #f0e9ff;
@@ -6087,6 +6091,66 @@ form.search-box .search-form a:hover {
     margin-bottom: 30px ;
 }
 
+.profile_output td input{
+    width: 500px;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.input-icon{
+    position: relative;
+}
+
+.input-icon input[type="password"], .input-icon input[type="text"]  {
+    padding-left: 30px; /* Đặt khoảng cách bên trái cho input để làm chỗ cho biểu tượng */
+  }
+
+.input-group input{
+    width: 500px;
+}
+
+.input-group input:focus{
+    outline: none;
+    border: 1px solid #da2461;
+}
+  
+  .input-icon .icon {
+    position: absolute;
+    top: 50%; /* Đặt vị trí dọc giữa */
+    left: 5px; /* Đặt vị trí từ bên trái */
+    transform: translateY(-50%); /* Để căn giữa theo chiều dọc */
+    color: #8292b2;
+  }
+
+  .input-icon span:hover {
+    border-color: #da2461;
+    color: #da2461;
+  }
+
+  
+  /* Để thay đổi kích thước của biểu tượng (tuỳ chọn) */
+  .input-icon .icon i {
+    font-size: 20px;
+  }
+
+.profile_output td input:focus{
+    border-color: #da2461;
+}
+
+.profile_button_center{
+    margin: 50px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#change_Password_Profile{
+    margin-left: 15%;
+    margin-top: 10%;
+   
+}
+
 .round-button{
     width: 40px;
     height: 40px;
@@ -6110,6 +6174,15 @@ form.search-box .search-form a:hover {
     position: relative;
     width: 100%;
     margin-top: 10px;
+}
+
+.custom_profile_email{
+    color: #da2461;
+    font-weight: bold;
+}
+
+.change_profile_custom:last-child{
+    margin-bottom: 40px;
 }
 
 .change_profile_custom .custom_btn{
