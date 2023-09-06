@@ -228,6 +228,8 @@ iframe {
   display: block;
   padding-bottom: 30px;
 }
+
+
 /*---------------------------------------------*/
 .wrap-input100 {
   position: relative;
@@ -321,6 +323,7 @@ iframe {
   justify-content: var(--center);
   padding-top: 20px;
 }
+
 input[type="submit"] {
   font-size: var(--font_15);
   background: linear-gradient(
