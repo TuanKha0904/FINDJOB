@@ -41,6 +41,9 @@ app.config(function ($routeProvider) {
     .when("/edit_job", {
       templateUrl: "./views/admin/edit_job.html",
     })
+    .when("/edit_seeker", {
+      templateUrl: "./views/admin/edit_seeker.html",
+    })
     .otherwise({
       redirectTo: "/",
     });
