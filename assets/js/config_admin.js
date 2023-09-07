@@ -35,6 +35,12 @@ app.config(function ($routeProvider) {
     .when("/create_post", {
       templateUrl: "./views/admin/create_post.html",
     })
+    .when("/edit_employer", {
+      templateUrl: "./views/admin/edit_employer.html",
+    })
+    .when("/edit_job", {
+      templateUrl: "./views/admin/edit_job.html",
+    })
     .otherwise({
       redirectTo: "/",
     });
