@@ -225,6 +225,7 @@
 
 
 })(jQuery);
+
 var x = true;
 		function myfunction(){
 			if(x){

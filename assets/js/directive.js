@@ -141,13 +141,12 @@ app.directive("range", () => {
 app.directive("nselect", () => {
   /* 6. Nice Selectorp  */
   return {
-    restrict: "A",
+    restrict: "A ",
     link: function (scope, element, attrs) {
-      // Thực hiện mã của bạn ở đây để áp dụng Nice Selector cho phần tử select
       var nice_Select = $('select');
       if (nice_Select.length) {
         nice_Select.niceSelect();
-      }
+      };
       element.niceSelect();
     }
   };
