@@ -14463,8 +14463,9 @@ be a descendant of the grid when it is being dragged.
 
 .app-sidebar__user-avatar {
   background: white;
-  width: 100px;
+  width: 60px;
   margin-bottom: 10px;
+  border-radius: 50%;
 }
 .info-tong {
   font-size: 12px !important;
