@@ -6087,6 +6087,49 @@ form.search-box .search-form a:hover {
     height: 100%;
 }
 
+.edit_post_employers{
+    float: left;
+    margin-left: 100px;
+    
+}
+.radio_button{
+    margin-left: 290px;
+}
+#button_save{
+    margin-left: 250px;
+    margin-top: 50px;
+}
+.edit_post_img{
+    float: right;
+    margin-top: -60px;
+    margin-left: 150px;
+}
+#change_button_post {
+    height: 90px;   
+    margin-right: -220px;
+}
+.change_button_post {
+    height: 30px;
+    margin-top: 100px;
+    margin-bottom: -20px;
+}
+
+.change_button_post button{
+    border-radius: 18px;
+    width: 90px;
+    height: 30px;
+    background-color: #ffff;
+    border-color: #cbcef0;
+    border-style: solid;
+}
+.change_button_post a {
+    color:#818aeb;
+}
+.change_button_post  :hover{
+    background-color: #8b92dd;
+    color: #ffff;
+}
+
 .information_profile{
     margin-bottom: 30px ;
 }
