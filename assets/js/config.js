@@ -51,6 +51,18 @@ app.config(function ($routeProvider) {
         .when('/post_management_admin', {
             templateUrl: 'Views/post_management_admin.html',
         })
+        .when('/job_detail', {
+            templateUrl: 'views/job_detail.html',
+        })
+        .when('/edit_post_employers', {
+            templateUrl: 'views/Edit_Post_Employer.html',
+        })
+        .when('/management_quantity_employers', {
+            templateUrl: 'views/Management_Quantity_Employers.html',
+        })
+        .when('/profile_detail', {
+            templateUrl: 'views/profile_detail.html',
+        })
         .otherwise({
             redirectTo: '/'
         });
