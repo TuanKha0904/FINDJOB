@@ -1826,7 +1826,279 @@ pre code {
 }
 
 .table-hover tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: rgba(223, 42, 96, 0.075);
+}
+
+.table-hover tbody tr td a {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.table-hover tbody tr td a:hover {
+  color: #d20000;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow-x: hidden;
+}
+
+.custom_profile{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 30px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+
+.menu li {
+  margin: 10px;
+  padding: 0;
+  width: 100px;
+  text-align: center;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #d20000;
+  width: 100px;
+  border: 1px solid #d20000;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.menu a:hover {
+  background-color: #d20000;
+  color: #fff;
+}
+
+.profile_output td{
+  padding: 20px 20px;
+}
+
+.custom_button_Profile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.information_profile {
+  width: 100%;
+  margin-bottom: 30px ;
+}
+
+.information_profile tr, .information_profile td{
+  border-style: none;
+}
+
+.custom_profile_email{
+  color: #d20000;
+}
+
+.profile_button_center{
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  border:1px solid #d20000;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #d20000;
+}
+.profile_button_center:focus{
+  outline: none;
+}
+
+
+
+.profile_button_center:hover{
+  cursor: pointer;
+  background-color: #d20000;
+  color: #fff;
+}
+
+.company-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+}
+
+.company-img img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.name_employer{
+  margin: 20px 0;
+  color: #d20000;
+  text-align: center;
+}
+
+.single-job-items{
+  padding: 36px 30px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 5px 22px 57px 0px rgba(68, 82, 147, 0.05);
+    box-sizing: border-box;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -o-transition: .4s;
+    transition: .4s;
+}
+
+.single-job-items .job-items {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.single-job-items .job-tittle a h4 {
+  color: #28395a;
+  font-size: 24px;
+  -webkit-transition: .4s;
+  -moz-transition: .4s;
+  -o-transition: .4s;
+  transition: .4s
+}
+
+.single-job-items div img {
+  overflow: hidden;
+  float: left;
+  margin-right: 32px;
+  z-index: 999;
+}
+
+.single-job-items .job-tittle a h4:hover {
+  color: #8b92dd
+}
+
+.single-job-items .job-tittle ul li {
+  display: inline-block;
+  margin-right: 48px;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.8
+}
+
+.single-job-items .job-tittle ul li:last-child {
+  margin-right: 0px
+}
+
+.single-job-items .job-tittle ul li i {
+  font-size: 14px;
+  color: #bbbbbb;
+  margin-right: 10px
+}
+
+.single-job-items:hover {
+  border:1px solid #da2461 ;
+}
+
+.items-link a {
+  color: #8b92dd;
+  display: block;
+  border: 1px solid #8b92dd;
+  border-radius: 30px;
+  padding: 4px 33px;
+  text-align: center;
+  margin-bottom: 25px
+}
+
+.items-link a:hover {
+  color: #fff;
+  background: #8b92dd;
+  border: 1px solid transparent
+}
+
+.items-link span {
+  color: #454d72;
+  display: block
+}
+
+.small-section-tittle h4 {
+  color: #28395a;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.post-details2 ul {
+  padding-left: 30px
+}
+
+.post-details2 ul li {
+  list-style-type: circle
+}
+
+
+.post-details3 ul li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px
+}
+
+.post-details3 ul li:last-child {
+  margin-bottom: 50px
+}
+
+.post-details4 span {
+  color: #5b5c6e;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 18px
+}
+
+.post-details4 p {
+  margin-bottom: 30px;
+  display: block
+}
+
+.post-details4 ul li {
+  color: #5b5c6e;
+  font-weight: 700;
+  font-size: 18px;
+  display: block
+}
+
+.post-details4 ul li span {
+  color: #5b5c6e;
+  font-weight: 400;
+  font-size: 16px;
+  display: inline-block;
+  padding-left: 18px
 }
 
 .table-primary,
@@ -11060,8 +11332,8 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   background-clip: padding-box;
-  *border-right-width: 2px;
-  *border-bottom-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
   color: #333333;
   font-size: 13px;
   line-height: 1.42857143;
@@ -14413,8 +14685,8 @@ be a descendant of the grid when it is being dragged.
   top: 0;
   bottom: 0;
   left: 0;
-  padding-top: 20px;
   width: 250px;
+  padding-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
   overflow: auto;
@@ -14462,10 +14734,8 @@ be a descendant of the grid when it is being dragged.
 }
 
 .app-sidebar__user-avatar {
-  background: white;
-  width: 60px;
+  width: max-content;
   margin-bottom: 10px;
-  border-radius: 50%;
 }
 .info-tong {
   font-size: 12px !important;
@@ -14519,9 +14789,9 @@ be a descendant of the grid when it is being dragged.
 .app-menu__item:focus {
   background: #c6defd;
   text-decoration: none;
-  color: rgb(22 22 72);
+  color: #d20000;
   box-shadow: none;
-  border: 1px solid rgb(22 22 72);
+  border: 1px solid #c6defd;
 }
 
 .app-menu__icon {

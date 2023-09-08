@@ -22,3 +22,33 @@ app.directive("databg", () => {
   });
 });
 
+app.directive("profileInfor", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/profile_infor.html",
+  };
+});
+
+app.directive("showPostJob", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/post_job.html",
+  };
+});
+
+app.directive("showProfileSeeker", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/seeker_infor.html",
+  };
+});
+
+app.directive("showProfileEmployer", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/employer_infor.html",
+  };
+});
+
+
+
