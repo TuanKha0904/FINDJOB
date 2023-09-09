@@ -2469,7 +2469,7 @@ hr {
     font-size: 50px;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 95px
+    margin-bottom: 50px
 }
 
 @media (max-width: 767px) {
@@ -6106,28 +6106,6 @@ form.search-box .search-form a:hover {
 }
 #change_button_post {
     height: 90px;   
-    margin-right: -220px;
-}
-.change_button_post {
-    height: 30px;
-    margin-top: 100px;
-    margin-bottom: -20px;
-}
-
-.change_button_post button{
-    border-radius: 18px;
-    width: 90px;
-    height: 30px;
-    background-color: #ffff;
-    border-color: #cbcef0;
-    border-style: solid;
-}
-.change_button_post a {
-    color:#818aeb;
-}
-.change_button_post  :hover{
-    background-color: #8b92dd;
-    color: #ffff;
 }
 
 .information_profile{
@@ -6140,6 +6118,73 @@ form.search-box .search-form a:hover {
     border: 1px solid;
     border-radius: 10px;
 }
+
+.bg-info {
+    background-color: #b6bef5 !important;
+    color: #0f2094 !important;
+}
+
+.edit-info i{
+    font-weight: bold;
+    background-color: #fbe2c5 !important;
+    color: #f59d39 !important;
+}
+
+.edit-info i:hover{
+    cursor: pointer;
+    background-color: #da2461 !important;
+    color: #fff !important;
+}
+
+.edit-list i{
+    color: #0b0b2b !important;
+}
+
+
+
+.badge, .badge i {
+    display: inline-block;
+    padding: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: white;
+}
+
+.bg-success, .bg-list {
+    background-color: #bfefc4 !important;
+    color: #02790c !important;
+}
+
+.bg-list:hover {
+    cursor: pointer;
+    background-color: #da2461 !important;
+    color: #fff !important;
+}
+
+.exit_job{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.exit_job i{
+    padding: 10px;
+    border:1px solid red;
+    border-radius: 50%;
+    color: red;
+}
+
+.exit_job i:hover{
+    color: #fff;
+    background-color: red;
+}
+
+
 
 .input-icon{
     position: relative;
@@ -6192,6 +6237,24 @@ form.search-box .search-form a:hover {
     margin-left: 15%;
     margin-top: 10%;
    
+}
+
+.edit_job_input{
+    margin: 20px 0;
+}
+
+.edit_input{
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.edit_input:focus{
+    border-color: #da2461;
+}
+
+.edit_header{
+    font-weight: bold;
 }
 
 .round-button{
@@ -7357,21 +7420,21 @@ form.search-box .search-form a:hover {
 
 @media (max-width: 767px) {
     .job-post-company {
-        padding-top: 70px;
+        padding-top: 50px;
         padding-bottom: 70px
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .job-post-company {
-        padding-top: 70px;
+        padding-top: 50px;
         padding-bottom: 70px
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .job-post-company {
-        padding-top: 70px;
+        padding-top: 50px;
         padding-bottom: 70px
     }
 }
@@ -7426,6 +7489,73 @@ form.search-box .search-form a:hover {
     display: inline-block;
     padding-left: 18px
 }
+
+.post_choose{
+    margin: 50px 0;
+    background-color: #da2461;
+    padding: 10px;
+    border-radius: 30px;
+    box-sizing: border-box;
+}
+
+.post_choose .menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.menu  li{
+    padding: 20px;
+    margin-right: 20px;
+    box-sizing: border-box;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.menu  li:hover{    
+    background-color: rgb(139, 146, 221);
+    cursor: pointer;
+}
+
+.custom_job_detail{
+    margin-top: 50px;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow-x: hidden;   
+}
+
+.custom_edit_job{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 30px;
+  
+}
+
+.edit_job_button{
+    margin-left: 20px;
+}
+
+  
+
+
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .company-img-details {
@@ -7779,6 +7909,11 @@ form.search-box .search-form a:hover {
     margin: 0 3px;
     border-radius: 5px;
     border: 1px solid #f0f0f0
+}
+
+.link{
+    text-decoration: underline;
+    color: #da2461 !important;
 }
 
 .pagination-area .page-link:hover {

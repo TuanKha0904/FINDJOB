@@ -47,6 +47,34 @@ app.directive("profilePassword", () => {
   };
 });
 
+app.directive("approvedPost", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/employer/components/approved_post.html",
+  };
+});
+
+app.directive("allPosts", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/employer/components/all_posts.html",
+  };
+});
+
+app.directive("waitingPost", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/employer/components/waiting_post.html",
+  };
+});
+
+app.directive("editJob", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/employer/components/edit_job.html",
+  };
+});
+
 
 
 app.directive("databg", () => {
@@ -151,3 +179,4 @@ app.directive("nselect", () => {
     }
   };
 });
+

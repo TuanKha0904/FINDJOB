@@ -1,4 +1,4 @@
-var app = angular.module("MyApp", ["ngRoute"]);
+var app = angular.module("MyApp", ["ngRoute", "ng.ckeditor"]);
 
 app.config(function ($routeProvider) {
 
@@ -33,7 +33,7 @@ app.config(function ($routeProvider) {
         })
         .when('/postmanagement', {
             templateUrl: 'Views/post_management.html',
-            controller: 'HomeController'
+            controller: 'EmployerController'
         })
         .when('/profile', {
             templateUrl: 'Views/profile.html',
@@ -53,6 +53,7 @@ app.config(function ($routeProvider) {
         })
         .when('/job_detail', {
             templateUrl: 'views/job_detail.html',
+            controller: 'EmployerController'
         })
         .when('/edit_post_employers', {
             templateUrl: 'views/Edit_Post_Employer.html',
