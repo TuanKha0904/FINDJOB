@@ -77,3 +77,12 @@ app.controller('EmployerController', function ($scope) {
         $scope.inforEmployer = true;
     };
 });
+
+app.controller('HeaderController', function ($scope, $http) {
+    $scope.employer = false;
+    $scope.showEmployer = function(){
+        $scope.employer = !$scope.employer;
+    }
+ });
+
+

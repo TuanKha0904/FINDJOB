@@ -1,14 +1,15 @@
 app.directive("headingPage", () => {
   return {
     restrict: "E",
-    templateUrl: "./views/header.html",
+    templateUrl: "./views/Common/header.html",
+    controller: 'HeaderController'
   };
 });
 
 app.directive("footerPage", () => {
   return {
     restrict: "E",
-    templateUrl: "./views/footer.html",
+    templateUrl: "./views/Common/footer.html",
   };
 });
 
@@ -29,21 +30,21 @@ app.directive("leftContentPageAdmin", () => {
 app.directive("editProfileSeeker", () => {
   return {
     restrict: "E",
-    templateUrl: "./views/seeker/edit_profile_seeker.html",
+    templateUrl: "./views/seeker/components/edit_profile_seeker.html",
   };
 });
 
 app.directive("profileSeeker", () => {
   return {
     restrict: "E",
-    templateUrl: "./views/seeker/profile_seeker.html",
+    templateUrl: "./views/seeker/components/profile_seeker.html",
   };
 });
 
 app.directive("profilePassword", () => {
   return {
     restrict: "E",
-    templateUrl: "./views/seeker/profile_password.html",
+    templateUrl: "./views/seeker/components/profile_password.html",
   };
 });
 

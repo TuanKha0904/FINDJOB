@@ -8,39 +8,31 @@ app.config(function ($routeProvider) {
             controller: 'HomeController'
         })
         .when('/joblisting', {
-            templateUrl: 'Views/job_listing.html',
+            templateUrl: 'views/seeker/job_listing.html',
             controller: 'HomeController'
         })
         .when('/signup', {
-            templateUrl: 'Views/signup.html',
-            controller: 'HomeController'
-        })
-        .when('/signupemployers', {
-            templateUrl: 'Views/signup_employers.html',
-            controller: 'HomeController'
-        })
-        .when('/account', {
-            templateUrl: 'Views/account.html',
+            templateUrl: 'views/Common/signup.html',
             controller: 'HomeController'
         })
         .when('/login', {
-            templateUrl: 'Views/login.html',
+            templateUrl: 'views/Common/login.html',
             controller: 'HomeController'
         })
         .when('/post', {
-            templateUrl: 'Views/post.html',
+            templateUrl: 'views/employer/post.html',
             controller: 'HomeController'
         })
         .when('/postmanagement', {
-            templateUrl: 'Views/post_management.html',
+            templateUrl: 'views/employer/post_management.html',
             controller: 'EmployerController'
         })
         .when('/profile', {
-            templateUrl: 'Views/profile.html',
+            templateUrl: 'views/seeker/profile.html',
             controller: 'ProfileController'
         })
-        .when('/seeker', {
-            templateUrl: 'views/seeker/seeker.html',
+        .when('/employer', {
+            templateUrl: 'views/employer/employers.html',
         })
         .when('/job_details', {
             templateUrl: 'views/seeker/job_details.html',
@@ -52,14 +44,8 @@ app.config(function ($routeProvider) {
             templateUrl: 'Views/post_management_admin.html',
         })
         .when('/job_detail', {
-            templateUrl: 'views/job_detail.html',
+            templateUrl: 'views/employer/job_detail.html',
             controller: 'EmployerController'
-        })
-        .when('/edit_post_employers', {
-            templateUrl: 'views/Edit_Post_Employer.html',
-        })
-        .when('/management_quantity_employers', {
-            templateUrl: 'views/Management_Quantity_Employers.html',
         })
         .when('/profile_detail', {
             templateUrl: 'views/profile_detail.html',
@@ -70,6 +56,10 @@ app.config(function ($routeProvider) {
         })
         .when('/edit_job', {
             templateUrl: 'views/employer/edit_job.html',
+            controller: 'EmployerController'
+        })
+        .when('/profile_employer', {
+            templateUrl: 'views/employer/profile.html',
             controller: 'EmployerController'
         })
         .otherwise({
