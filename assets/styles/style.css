@@ -6281,6 +6281,19 @@ form.search-box .search-form a:hover {
     border: 1px solid black;
 }
 
+.post-input{
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: #26317f;
+    color: #fff;
+}
+
+.post-input:focus{
+    background-color: #fff;
+    border: 1px solid #da2461;
+    color: #000;
+}
+
 .edit_input:focus{
     border-color: #da2461;
 }
@@ -6672,7 +6685,8 @@ form.search-box .search-form a:hover {
 
 .apply-process-area .single-process {
     padding: 44px 28px;
-    background: #26317f
+    background: #26317f;
+    box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
@@ -6735,6 +6749,9 @@ form.search-box .search-form a:hover {
     padding: 59px 28px;
     border-radius: 5px;
     left: -100px
+}
+.text-header{
+    color: #fff;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
