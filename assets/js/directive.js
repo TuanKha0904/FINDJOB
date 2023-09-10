@@ -68,12 +68,22 @@ app.directive("waitingPost", () => {
   };
 });
 
-app.directive("editJob", () => {
+app.directive("inforEmployer", () => {
   return {
     restrict: "E",
-    templateUrl: "./views/employer/components/edit_job.html",
+    templateUrl: "./views/employer/components/infor_employer.html",
   };
 });
+
+app.directive("inforSeekerApply", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/employer/components/infor_seeker_apply.html",
+  };
+});
+
+
+
 
 
 
@@ -180,3 +190,13 @@ app.directive("nselect", () => {
   };
 });
 
+app.directive("ckeditor", function() {
+  return {
+    restrict: "A ",
+    link: function(scope, element, attrs, ngModel) {
+      // Tạo CKEditor cho element
+      var editor = CKEDITOR.replace(element[0]);
+      
+    }
+  };
+});

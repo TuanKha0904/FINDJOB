@@ -17,7 +17,7 @@
                     <div class="single-job-items mb-30">
                         <div class="job-items">
                             <div class="company-img">
-                                <a href="#!job_details"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                <a href="#!job_detail"><img src="assets/img/icon/job-list1.png" alt=""></a>
                             </div>
                             <div class="job-tittle">
                                 <a href="#!job_detail">
@@ -31,10 +31,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="items-link f-right" id="change_button_post">
+                        <div class="items-link f-right job-link">
                             <a href="#!job_detail">Fulltime</a>
                             <span>7 hours ago</span>
-                            <span class="badge bg-list">Apply List</span></li>
+                            <a href="#!apply_list" class="badge bg-list">Apply List</a>
                         </div>
                         <span class="exit_job"><i class="fas fa-times"></i></span>
                     </div>
@@ -56,10 +56,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="items-link f-right" id="change_button_post">
+                        <div class="items-link f-right job-link">
                             <a href="#!job_detail">Fulltime</a>
                             <span>7 hours ago</span>
-                            <span class="badge bg-list">Apply List</span></li>
+                            <a href="#!apply_list" class="badge bg-list">Apply List</a>
                         </div>
                         <span class="exit_job"><i class="fas fa-times"></i></span>
                     </div>
@@ -81,10 +81,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="items-link f-right" id="change_button_post">
+                        <div class="items-link f-right job-link">
                             <a href="#!job_detail">Fulltime</a>
                             <span>7 hours ago</span>
-                            <span class="badge bg-list">Apply List</span></li>
+                            <a href="#!apply_list" class="badge bg-list">Apply List</a>
                         </div>
                         <span class="exit_job"><i class="fas fa-times"></i></span>
                     </div>
@@ -106,10 +106,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="items-link f-right" id="change_button_post">
+                        <div class="items-link f-right job-link">
                             <a href="#!job_detail">Fulltime</a>
                             <span>7 hours ago</span>
-                            <span class="badge bg-list">Apply List</span></li>
+                            <a href="#!apply_list" class="badge bg-list">Apply List</a>
                         </div>
                         <span class="exit_job"><i class="fas fa-times"></i></span>
                     </div>
@@ -118,4 +118,5 @@
         </div>
     </div>
     <!-- Featured_job_end -->
+    <apply-list ng-if="applyList"></apply-list>
 </section>

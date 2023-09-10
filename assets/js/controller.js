@@ -48,6 +48,8 @@ app.controller('EmployerController', function ($scope) {
     $scope.ApprovedPost = false;
     $scope.WaitingPost = false;
     $scope.editJob = false;
+    $scope.inforEmployer = true;
+    $scope.inforSeekerApply = false;
     $scope.ShowAllPosts = function () {
         $scope.AllPosts = true;
         $scope.ApprovedPost = false;
@@ -66,5 +68,12 @@ app.controller('EmployerController', function ($scope) {
     $scope.ShowEditJob = function(){
         $scope.editJob = !$scope.editJob;
     };
-
+    $scope.showInforSeekerApply = function(){
+        $scope.inforSeekerApply = true;
+        $scope.inforEmployer = false;
+    };
+    $scope.unshowInforSeekerApply = function(){
+        $scope.inforSeekerApply = false;
+        $scope.inforEmployer = true;
+    };
 });

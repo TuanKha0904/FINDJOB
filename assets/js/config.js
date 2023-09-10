@@ -64,6 +64,14 @@ app.config(function ($routeProvider) {
         .when('/profile_detail', {
             templateUrl: 'views/profile_detail.html',
         })
+        .when('/apply_list', {
+            templateUrl: 'views/employer/apply_list.html',
+            controller: 'EmployerController'
+        })
+        .when('/edit_job', {
+            templateUrl: 'views/employer/edit_job.html',
+            controller: 'EmployerController'
+        })
         .otherwise({
             redirectTo: '/'
         });
