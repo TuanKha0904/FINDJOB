@@ -1,0 +1,80 @@
+<section>
+    <main class="app-content">
+        <div class="app-title">
+            <ul class="app-breadcrumb breadcrumb side">
+                <li class="breadcrumb-item active">
+                    <a href="#"><b>Account List</b></a>
+                </li>
+            </ul>
+            <div id="clock"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="search">
+                            <input type="text" class="search-box" placeholder="Please enter search keyword..." />
+                            <a class="btn btn-search btn-sm" type="button" title="search">
+                                <i class="fas fa-search"></i> Search
+                            </a>
+                        </div>
+
+                        <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0"
+                            border="0" id="sampleTable">
+                            <thead>
+                                <tr>
+                                    <th>Account ID</th>
+                                    <th width="150">Email</th>
+                                    <th width="20">Password</th>
+                                    <th>Date_create</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="" ng-click="InforProfile()">#CD12837</a></td>
+                                    <td>John@gmail.com</td>
+                                    <td>123456B</td>
+                                    <td>15/08/2023</td>
+                                    <td class="table-td-center">
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                            onclick="myFunction(this)">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="" ng-click="InforProfile()">#CD12837</a></td>
+                                    <td>John@gmail.com</td>
+                                    <td>123456A</td>
+                                    <td>15/08/2023</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                            onclick="myFunction(this)">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="" ng-click="InforProfile()">#CD12837</a></td>
+                                    <td>John@gmail.com</td>
+                                    <td>123456D</td>
+                                    <td>15/08/2023</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                            onclick="myFunction()">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <profile-infor ng-if="showProfile"></profile-infor>
+    </main>
+</section>

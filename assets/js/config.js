@@ -62,6 +62,14 @@ app.config(function ($routeProvider) {
             templateUrl: 'views/employer/profile.html',
             controller: 'EmployerController'
         })
+        .when('/admin', {
+            templateUrl: 'views/admin/login_admin.html',
+            controller: 'AdminController'
+        })
+        .when('/admin_main', {
+            templateUrl: 'views/admin/admin.html',
+            controller: 'AdminController'
+        })
         .otherwise({
             redirectTo: '/'
         });

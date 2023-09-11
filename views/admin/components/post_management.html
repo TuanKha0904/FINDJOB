@@ -1,0 +1,106 @@
+<section>
+    <main class="app-content">
+        <div class="app-title">
+            <ul class="app-breadcrumb breadcrumb side">
+                <li class="breadcrumb-item active">
+                    <a href="#"><b>Post List</b></a>
+                </li>
+            </ul>
+            <div id="clock"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="search">
+                            <input type="text" class="search-box" placeholder="Please enter search keyword..." />
+                            <a class="btn btn-search btn-sm" type="button" title="search">
+                                <i class="fas fa-search"></i> Search
+                            </a>
+                        </div>
+
+                        <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0"
+                            border="0" id="sampleTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th width="150">Name</th>
+                                    <th width="20">Description</th>
+                                    <th>Address</th>
+                                    <th>Requirement</th>
+                                    <th>Minimum salary</th>
+                                    <th>Maximum salary</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                                    <td>Job1</td>
+                                    <td>
+                                        Mobile phone is one of the great inventions of l people.
+                                        Everyone owns at least one phone these days.
+                                    </td>
+                                    <td>Da Lat</td>
+                                    <td>Dai hoc</td>
+                                    <td>4.000.000</td>
+                                    <td>10.000.000</td>
+                                    <td class="table-td-center">
+                                        <button class="btn btn-primary btn-sm edit" type="button">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm trash" type="button">
+                                            <i class="fas fa-close"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                                    <td>Job1</td>
+                                    <td>
+                                        Mobile phone is one of the great inventions of l people.
+                                        Everyone owns at least one phone these days.
+                                    </td>
+                                    <td>Da Lat</td>
+                                    <td>Dai hoc</td>
+                                    <td>4.000.000</td>
+                                    <td>10.000.000</td>
+                                    <td class="table-td-center">
+                                        <button class="btn btn-primary btn-sm edit" type="button">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm trash" type="button">
+                                            <i class="fas fa-close"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                                    <td>Job1</td>
+                                    <td>
+                                        Mobile phone is one of the great inventions of l people.
+                                        Everyone owns at least one phone these days.
+                                    </td>
+                                    <td>Da Lat</td>
+                                    <td>Dai hoc</td>
+                                    <td>4.000.000</td>
+                                    <td>10.000.000</td>
+                                    <td class="table-td-center">
+                                        <button class="btn btn-primary btn-sm edit" type="button">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm trash" type="button">
+                                            <i class="fas fa-close"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <show-post-job ng-if="showPostJob"></show-post-job>
+    </main>
+</section>

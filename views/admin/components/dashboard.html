@@ -1,0 +1,140 @@
+<section>
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <main class="col-xl-10 col-lg-10 col-md-10 app-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="app-title">
+            <ul class="app-breadcrumb breadcrumb">
+              <li class="breadcrumb-item">
+                <b>Dashboard</b>
+              </li>
+            </ul>
+            <div id="clock"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!--Left-->
+        <div class="col-md-12 col-lg-6">
+          <div class="row">
+            <!-- col-6 -->
+            <div class="col-md-6">
+              <div class="widget-small primary coloured-icon">
+                <i class="icon bx bxs-user-account fa-3x"></i>
+                <div class="info">
+                  <h4>Total Account</h4>
+                  <p><b>100</b></p>
+                  <p class="info-tong">Total number of accounts managed.</p>
+                </div>
+              </div>
+            </div>
+            <!-- col-6 -->
+            <div class="col-md-6">
+              <div class="widget-small info coloured-icon">
+                <i class="icon bx bxs-data fa-3x"></i>
+                <div class="info">
+                  <h4>Total Post</h4>
+                  <p><b>500</b></p>
+                  <p class="info-tong">Total number of job postings.</p>
+                </div>
+              </div>
+            </div>
+            <!-- col-12 -->
+            <div class="col-md-12"></div>
+            <!-- / col-12 -->
+            <!-- col-12 -->
+            <div class="col-md-12">
+              <div class="tile">
+                <h3 class="tile-title">Latest account</h3>
+                <div>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="" ng-click="InforProfile()">#183</a></td>
+                        <td>john76@gmail.com</td>
+                        <td><span class="tag tag-success">0921387221</span></td>
+                      </tr>
+                      <tr>
+                        <td><a href="" ng-click="InforProfile()">#183</a></td>
+                        <td>john76@gmail.com</td>
+                        <td><span class="tag tag-success">0921387221</span></td>
+                      </tr>
+                      <tr>
+                        <td><a href="" ng-click="InforProfile()">#183</a></td>
+                        <td>john76@gmail.com</td>
+                        <td><span class="tag tag-success">0921387221</span></td>
+                      </tr>
+                      <tr>
+                        <td><a href="" ng-click="InforProfile()">#183</a></td>
+                        <td>john76@gmail.com</td>
+                        <td><span class="tag tag-success">0921387221</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- / col-12 -->
+          </div>
+        </div>
+        <!--END left-->
+        <!--Right-->
+        <div class="col-md-12 col-lg-6">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="tile">
+                <h3 class="tile-title">Latest recruitment post</h3>
+                <div>
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Employer Name</th>
+                        <th>Job title</th>
+                        <th>Posted date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                        <td>CGV</td>
+                        <td>Java Backend</td>
+                        <td>08/09/2023</td>
+                        <td><span class="badge bg-info">Waiting</span></td>
+                      </tr>
+                      <tr>
+                        <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                        <td>BigC</td>
+                        <td>Java Backend</td>
+                        <td>08/09/2023</td>
+                        <td><span class="badge bg-success">Approved</span></td>
+                      </tr>
+                      <tr>
+                        <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                        <td>E-Mart</td>
+                        <td>Java Backend</td>
+                        <td>08/09/2023</td>
+                        <td><span class="badge bg-success">Approved</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- / div trống-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <profile-infor ng-if="showProfile"></profile-infor>
+        <show-post-job ng-if="showPostJob"></show-post-job>
+        <!--END right-->
+      </div>
+    </main>  
+</section>

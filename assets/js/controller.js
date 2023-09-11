@@ -23,10 +23,15 @@ app.controller('ProfileController', function ($scope) {
 });
 
 app.controller('AdminController', function ($scope) {
+// Show component child focus on page parent
     $scope.showProfile = false;
     $scope.showPostJob = false;
     $scope.showSeeker = true;
     $scope.showEmployer = false;
+    $scope.dashboard = true;
+    $scope.account = false;
+    $scope.job = false;
+    $scope.post = false;
     $scope.InforProfile = function () {
         $scope.showProfile = !$scope.showProfile;
     };
@@ -36,11 +41,37 @@ app.controller('AdminController', function ($scope) {
     $scope.showProfileSeeker = function () {
         $scope.showSeeker = true;
         $scope.showEmployer = false;
-    }
+    };
     $scope.showProfileEmployer = function () {
         $scope.showEmployer = true;
         $scope.showSeeker = false;
-    }
+    };
+
+// show component page
+    $scope.showDashboard = function(){
+        $scope.dashboard = true;
+        $scope.account = false;
+        $scope.job = false;
+        $scope.post = false;
+    };
+    $scope.showAccount = function(){
+        $scope.dashboard = false;
+        $scope.account = true;
+        $scope.job = false;
+        $scope.post = false;
+    };
+    $scope.showJob = function(){
+        $scope.dashboard = false;
+        $scope.account = false;
+        $scope.job = true;
+        $scope.post = false;
+    };
+    $scope.showPost = function(){
+        $scope.dashboard = false;
+        $scope.account = false;
+        $scope.job = false;
+        $scope.post = true;
+    };
 });
 
 app.controller('EmployerController', function ($scope) {
@@ -78,11 +109,11 @@ app.controller('EmployerController', function ($scope) {
     };
 });
 
-app.controller('HeaderController', function ($scope, $http) {
+app.controller('HeaderController', ['$scope', '$location', function($scope, $location)  {
     $scope.employer = false;
     $scope.showEmployer = function(){
         $scope.employer = !$scope.employer;
     }
- });
+ }]);
 
 

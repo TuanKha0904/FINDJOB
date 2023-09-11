@@ -84,6 +84,69 @@ app.directive("inforSeekerApply", () => {
 });
 
 
+app.directive("profileInfor", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/profile_infor.html",
+  };
+});
+
+app.directive("showPostJob", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/post_job.html",
+  };
+});
+
+app.directive("showProfileSeeker", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/seeker_infor.html",
+  };
+});
+
+app.directive("showProfileEmployer", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/employer_infor.html",
+  };
+});
+
+app.directive("dashBoard", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/dashboard.html",
+  };
+});
+
+app.directive("accountManagement", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/account_management.html",
+  };
+});
+
+app.directive("jobManagement", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/job_management.html",
+  };
+});
+
+app.directive("postManagement", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/post_management.html",
+  };
+});
+
+
+
+
+
+
+
+
 
 
 
@@ -201,3 +264,90 @@ app.directive("ckeditor", function() {
     }
   };
 });
+
+app.directive('hideOnAdmin', ['$location', function($location) {
+  return {
+      restrict: 'A',
+      link: function(scope, element) {
+          scope.$watch(function() {
+              return $location.path();
+          }, function(newPath) {
+              if (newPath.indexOf('admin') !== -1) {
+                  element.css('display', 'none');
+              } else {
+                  element.css('display', 'block');
+              }
+          });
+      }
+  };
+}]);
+
+app.directive('togglePasswordVisibility', function() {
+  return {
+      restrict: 'A',
+      link: function(scope, element) {
+          element.on('click', function() {
+              var passwordField = document.getElementById("password-field");
+              var eyeIcon = document.querySelector(".click-eye");
+
+              if (passwordField.type === "password") {
+                  passwordField.type = "text";
+                  eyeIcon.classList.remove("fa-eye-slash");
+                  eyeIcon.classList.add("fa-eye");
+              } else {
+                  passwordField.type = "password";
+                  eyeIcon.classList.remove("fa-eye");
+                  eyeIcon.classList.add("fa-eye-slash");
+              }
+          });
+      }
+  };
+});
+
+app.directive('clock', ['$timeout', function($timeout) {
+  return {
+      restrict: 'A',
+      link: function(scope, element) {
+          function updateTime() {
+              var today = new Date();
+              var weekday = new Array(7);
+              weekday[0] = "Sunday";
+              weekday[1] = "Monday";
+              weekday[2] = "Tuesday";
+              weekday[3] = "Wednesday";
+              weekday[4] = "Thursday";
+              weekday[5] = "Friday";
+              weekday[6] = "Saturday";
+              var day = weekday[today.getDay()];
+              var dd = today.getDate();
+              var mm = today.getMonth() + 1;
+              var yyyy = today.getFullYear();
+              var h = today.getHours();
+              var m = today.getMinutes();
+              var s = today.getSeconds();
+              m = checkTime(m);
+              s = checkTime(s);
+              nowTime = h + " : " + m + " : " + s;
+              if (dd < 10) {
+                  dd = "0" + dd;
+              }
+              if (mm < 10) {
+                  mm = "0" + mm;
+              }
+              today = day + ", " + dd + "/" + mm + "/" + yyyy;
+              tmp = '<span class="date"> ' + today + " - " + nowTime + "</span>";
+              element.html(tmp);
+              clocktime = $timeout(updateTime, 1000);
+          }
+
+          function checkTime(i) {
+              if (i < 10) {
+                  i = "0" + i;
+              }
+              return i;
+          }
+
+          updateTime();
+      }
+  };
+}]);

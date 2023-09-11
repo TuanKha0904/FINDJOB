@@ -2,11 +2,6 @@
 <html lang="en">
 
 <head>
-  <title>FIND JOB | Admin</title>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Main CSS-->
   <link rel="stylesheet" type="text/css" href="assets/styles/admin.css" />
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
@@ -19,22 +14,41 @@
 
 </head>
 
-<body onload="time()" class="app sidebar-mini rtl" ng-app="MyApp2">
-  <!-- Sidebar menu-->
-  <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-  <ng-view></ng-view>
-
-  <left-content-page-admin></left-content-page-admin>
-
-  <!-- JS here -->
-  <script src="assets/js/angularjs.js"></script>
-  <script src="assets/js/angular_route.js"></script>
-  <script src="assets/js/config_admin.js"></script>
-  <script src="assets/js/directive_admin.js"></script>
-  <script src="assets/js/controller.js"></script>
-
+<body onload="time()" class="app sidebar-mini rtl">
+  <aside class="col-xl-2 col-lg-2 col-md-2 app-sidebar">
+    <div class="app-sidebar__user">
+      <img class="app-sidebar__user-avatar" src="assets/img/logo/logo2_footer.png" alt="Logo Image" />
+      <div>
+        <p class="app-sidebar__user-name"><b>Admin</b></p>
+      </div>
+    </div>
+    <hr />
+    <ul class="app-menu">
+      <li>
+        <a class="app-menu__item" href="" ng-click="showDashboard()"><span class="app-menu__label">Dashboard</span></a>
+      </li>
+      <li>
+        <a class="app-menu__item" href="" ng-click="showAccount()"><span class="app-menu__label">Account
+            Management</span></a>
+      </li>
+      <li>
+        <a class="app-menu__item" href="" ng-click="showJob()"><span class="app-menu__label">Job Management</span></a>
+      </li>
+      <li>
+        <a class="app-menu__item" href="" ng-click="showPost()"><span class="app-menu__label">Post
+            Management</span></a>
+      </li>
+      <li>
+        <a class="app-menu__item" href="#!admin"><span class="app-menu__label">Exit</span></a>
+      </li>
+    </ul>
+  </aside>
+  <dash-board ng-if="dashboard"></dash-board>
+  <account-management ng-if="account"></account-management>
+  <job-management ng-if="job"></job-management>
+  <post-management ng-if="post"></post-management>
   <script>
-        function time() {
+    function time() {
       var today = new Date();
       var weekday = new Array(7);
       weekday[0] = "Sunday";
@@ -64,7 +78,7 @@
       tmp = '<span class="date"> ' + today + " - " + nowTime + "</span>";
       document.getElementById("clock").innerHTML = tmp;
       clocktime = setTimeout("time()", "1000", "Javascript");
-    
+
       function checkTime(i) {
         if (i < 10) {
           i = "0" + i;
