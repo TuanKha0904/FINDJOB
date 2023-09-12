@@ -1,48 +1,13 @@
 <section class="ftco-section col-xl-12 col-lg-12 col-md-12">
 	<div class="container">
-		<div class="row justify-content-left ">
-			<div class="col-xl-6 col-lg-6 col-md-6 justify-content-left my-auto">
-				<div class="col-xl-12 col-lg-12 col-md-12 pt-50 pb-50 custom_profile">
-					<h3 class="text-center" style="color: #28395A;">Sign up</h3>
-					<div class="input-group ">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-solid fa-envelope"></i></span>
-						</div>
-						<input type="email" name="email" class="form-control" placeholder="Email" aria-label="email"
-							value="">
-					</div>
-					<br>
-					<div class="input-group ">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-solid fa-lock"></i></span>
-						</div>
-						<input type="password" id="pass" class="form-control" placeholder="password"
-							aria-label="password" value="">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-solid fa-eye"
-									onclick="myfunction()"></i></span>
-						</div>
-					</div>
-					<br>
-					<div class="input-group ">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-solid fa-lock"></i></span>
-						</div>
-						<input type="password" id="pass2" class="form-control" placeholder="Repeat password"
-							aria-label="password" value="">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-solid fa-eye"
-									onclick="myfunction2()"></i></span>
-						</div>
-					</div>
-					<div class="header-btn change_profile_custom profile_button_center">
-						<a href="" class="btn custom_btn mr-10">Seeker <i class="fas fa-arrow-right"></i></a>
-						<a href="" class="btn custom_btn">Employer <i class="fas fa-arrow-right"></i></a>
-					</div>
-				</div>
+		<div class="row justify-content-center my-auto">
+			<div class="col-xl-6 col-lg-6 col-md-6 pt-30 pb-30">
+				<signup ng-if="signupService.signup"></signup>
+				<employer-signup ng-if="signupService.employerSignup"></employer-signup>
+				<seeker-signup ng-if="signupService.seekerSignup"></seeker-signup>			
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 pt-30 pb-30">
-				<img src="assets/img/service/support-img.jpg" alt="" style="border-radius: 50px;" />
+				<img src="assets/img/service/support-img.jpg" alt="" />
 			</div>
 		</div>
 	</div>

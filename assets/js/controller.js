@@ -1,4 +1,4 @@
-app.controller('HomeController', function ($scope, $http) { });
+app.controller('HomeController', function () { });
 
 app.controller('ProfileController', function ($scope) {
     $scope.Profile = true;
@@ -109,7 +109,12 @@ app.controller('EmployerController', function ($scope) {
     };
 });
 
-app.controller('HeaderController', ['$scope', '$location', function($scope, $location)  {
+app.controller('SignupController', function ($scope, SignupService) {
+    $scope.signupService = SignupService;
+});
+
+
+app.controller('HeaderController', ['$scope', '$location', function($scope)  {
     $scope.employer = false;
     $scope.showEmployer = function(){
         $scope.employer = !$scope.employer;

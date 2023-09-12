@@ -478,8 +478,42 @@ hr {
     height: 50px;
 }
 
+.a_forgot_create{
+    color: #0078ff;
+    text-decoration: underline;
+}
 
-.btn::before {
+.a_forgot_create:hover{
+    color: #da2461;
+    text-decoration: underline;
+}
+
+.radio:hover{
+    color: #da2461;
+}
+/* Tạo kiểu cho input radio bằng cách ẩn đi circle mặc định */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 50%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  /* Thay đổi màu của input khi được kiểm tra (checked) */
+  input[type="radio"]:checked {
+    background-color: #da2461; /* Màu nền của input khi checked */
+  }
+
+  input[type="radio"]:checked + .radio-label{
+    color: #da2461;
+  }
+
+  .btn::before {
     content: "";
     position: absolute;
     left: 0;

@@ -83,7 +83,6 @@ app.directive("inforSeekerApply", () => {
   };
 });
 
-
 app.directive("profileInfor", () => {
   return {
     restrict: "E",
@@ -139,6 +138,33 @@ app.directive("postManagement", () => {
     templateUrl: "./views/admin/components/post_management.html",
   };
 });
+
+app.directive("signup", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/Common/components/signup.html",
+    controller: 'SignupController'
+  };
+});
+
+app.directive("employerSignup", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/Common/components/employer_signup.html",
+    controller: 'SignupController'
+  };
+});
+
+app.directive("seekerSignup", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/Common/components/seeker_signup.html",
+    controller: 'SignupController'
+  };
+});
+
+
+
 
 
 
