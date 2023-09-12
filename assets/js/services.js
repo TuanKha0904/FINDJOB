@@ -24,4 +24,12 @@ app.service('SignupService', function() {
   };
 });
 
+app.service('ApplyService', function() {
+  var service = this;
+  
+  service.apply = false;  
+  service.showApply = function() {
+    service.apply = !service.apply;
+  };
+});
 

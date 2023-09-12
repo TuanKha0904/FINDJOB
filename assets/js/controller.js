@@ -113,12 +113,15 @@ app.controller('SignupController', function ($scope, SignupService) {
     $scope.signupService = SignupService;
 });
 
+app.controller('JobDetailController', function($scope, ApplyService){
+   $scope.apply = ApplyService;
+});
 
-app.controller('HeaderController', ['$scope', '$location', function($scope)  {
+app.controller('HeaderController', function($scope)  {
     $scope.employer = false;
     $scope.showEmployer = function(){
         $scope.employer = !$scope.employer;
     }
- }]);
+});
 
 

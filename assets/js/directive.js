@@ -163,6 +163,17 @@ app.directive("seekerSignup", () => {
   };
 });
 
+app.directive("applyJob", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/seeker/components/apply.html",
+    controller: 'JobDetailController'
+  };
+});
+
+
+
+
 
 
 
@@ -324,26 +335,6 @@ app.directive('togglePasswordVisibility', function() {
                   passwordField.type = "password";
                   eyeIcon.classList.remove("fa-eye");
                   eyeIcon.classList.add("fa-eye-slash");
-              }
-          });
-      }
-  };
-});
-
-app.directive('togglePasswordVisibility', function() {
-  return {
-      restrict: 'A',
-      link: function(scope, element) {
-          element.on('click', function() {
-              var passwordField = element.find(".password-field");
-              var eyeIcon = element.find(".click-eye");
-
-              if (passwordField.attr("type") === "password") {
-                  passwordField.attr("type", "text");
-                  eyeIcon.removeClass("fa-eye-slash").addClass("fa-eye");
-              } else {
-                  passwordField.attr("type", "password");
-                  eyeIcon.removeClass("fa-eye").addClass("fa-eye-slash");
               }
           });
       }

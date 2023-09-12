@@ -36,6 +36,7 @@ app.config(function ($routeProvider) {
         })
         .when('/job_details', {
             templateUrl: 'views/seeker/job_details.html',
+            controller: 'JobDetailController'
         })
         .when('/history', {
             templateUrl: 'views/seeker/history.html',

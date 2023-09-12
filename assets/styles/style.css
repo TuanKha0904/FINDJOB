@@ -6296,6 +6296,11 @@ form.search-box .search-form a:hover {
     background-color: red;
 }
 
+.custom_apply{
+    background-color: #99ccff;
+    border-radius: 50px;
+}
+
 
 
 .input-icon{
