@@ -261,3 +261,22 @@ function myfunction2() {
   }
 };
 
+function myfunction3() {
+  var passwordField = document.getElementById('pass3');
+  var eyeIcon = document.querySelector('.click-eye3');
+
+  if (x) {
+    passwordField.type = 'text';
+    eyeIcon.classList.remove('fa-eye-slash');
+    eyeIcon.classList.add('fa-eye');
+    x = false;
+  } else {
+    passwordField.type = 'password';
+    eyeIcon.classList.remove('fa-eye');
+    eyeIcon.classList.add('fa-eye-slash');
+    x = true;
+  }
+};
+
+
+

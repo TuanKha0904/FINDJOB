@@ -167,9 +167,16 @@ app.directive("applyJob", () => {
   return {
     restrict: "E",
     templateUrl: "./views/seeker/components/apply.html",
-    controller: 'JobDetailController'
   };
 });
+
+app.directive("inforJob", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/seeker/components/infor_job.html",
+  };
+});
+
 
 
 

@@ -117,6 +117,15 @@ app.controller('JobDetailController', function($scope, ApplyService){
    $scope.apply = ApplyService;
 });
 
+app.controller('HistoryController', function($scope, ApplyService){
+    $scope.apply = ApplyService;
+    $scope.job = false;
+    $scope.showInforJob = function(){
+        $scope.job = !$scope.job;
+    }
+ });
+ 
+
 app.controller('HeaderController', function($scope)  {
     $scope.employer = false;
     $scope.showEmployer = function(){

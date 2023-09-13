@@ -40,6 +40,7 @@ app.config(function ($routeProvider) {
         })
         .when('/history', {
             templateUrl: 'views/seeker/history.html',
+            controller: 'HistoryController'
         })
         .when('/post_management_admin', {
             templateUrl: 'Views/post_management_admin.html',
