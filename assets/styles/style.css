@@ -6401,6 +6401,29 @@ form.search-box .search-form a:hover {
     margin-top: -10px;
 }
 
+.cover_company{
+    object-fit: cover; 
+    border-radius: 40px; 
+    height: 300px;
+}
+
+.logo_company{
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 1px solid #da2461;
+}
+
+.box_logo{
+    margin-top: -50px;  
+    position: relative;
+}
+
+.camera{
+    position: relative;
+     margin-left: -20px;
+      margin-top: 10px;
+}
+
 .round-button:hover{
     color: #fff;
     background-color: #da2461;

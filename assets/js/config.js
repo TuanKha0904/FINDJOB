@@ -31,9 +31,6 @@ app.config(function ($routeProvider) {
             templateUrl: 'views/seeker/profile.html',
             controller: 'ProfileController'
         })
-        .when('/employer', {
-            templateUrl: 'views/employer/employers.html',
-        })
         .when('/job_details', {
             templateUrl: 'views/seeker/job_details.html',
             controller: 'JobDetailController'

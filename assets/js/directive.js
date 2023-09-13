@@ -177,6 +177,15 @@ app.directive("inforJob", () => {
   };
 });
 
+app.directive("editProfile", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/employer/components/edit_profile.html",
+  };
+});
+
+
+
 
 
 

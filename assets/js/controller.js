@@ -74,7 +74,8 @@ app.controller('AdminController', function ($scope) {
     };
 });
 
-app.controller('EmployerController', function ($scope) {
+app.controller('EmployerController', function ($scope, ProfileEmployerService) {
+    $scope.editProfile = ProfileEmployerService;
     $scope.AllPosts = true;
     $scope.ApprovedPost = false;
     $scope.WaitingPost = false;
@@ -125,7 +126,6 @@ app.controller('HistoryController', function($scope, ApplyService){
     }
  });
  
-
 app.controller('HeaderController', function($scope)  {
     $scope.employer = false;
     $scope.showEmployer = function(){

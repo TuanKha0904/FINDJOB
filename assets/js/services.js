@@ -33,3 +33,12 @@ app.service('ApplyService', function() {
   };
 });
 
+app.service('ProfileEmployerService', function() {
+  var service = this;
+  
+  service.editProfile = false;  
+  service.showEditProfile = function() {
+    service.editProfile = !service.editProfile;
+  };
+});
+
