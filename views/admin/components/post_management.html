@@ -20,13 +20,12 @@
                             </a>
                         </div>
 
-                        <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0"
+                        <table class="table table-hover table-bordered js-copytextarea mt-20" cellpadding="0" cellspacing="0"
                             border="0" id="sampleTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th width="150">Name</th>
-                                    <th width="20">Description</th>
+                                    <th class="col-md-4">Name</th>
                                     <th>Address</th>
                                     <th>Requirement</th>
                                     <th>Minimum salary</th>
@@ -36,12 +35,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                                    <td><a href="" ng-click="admin.InforPostJob()">#183</a></td>
                                     <td>Job1</td>
-                                    <td>
-                                        Mobile phone is one of the great inventions of l people.
-                                        Everyone owns at least one phone these days.
-                                    </td>
                                     <td>Da Lat</td>
                                     <td>Dai hoc</td>
                                     <td>4.000.000</td>
@@ -56,12 +51,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                                    <td><a href="" ng-click="admin.InforPostJob()">#183</a></td>
                                     <td>Job1</td>
-                                    <td>
-                                        Mobile phone is one of the great inventions of l people.
-                                        Everyone owns at least one phone these days.
-                                    </td>
                                     <td>Da Lat</td>
                                     <td>Dai hoc</td>
                                     <td>4.000.000</td>
@@ -76,12 +67,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><a href="" ng-click="InforPostJob()">#183</a></td>
+                                    <td><a href="" ng-click="admin.InforPostJob()">#183</a></td>
                                     <td>Job1</td>
-                                    <td>
-                                        Mobile phone is one of the great inventions of l people.
-                                        Everyone owns at least one phone these days.
-                                    </td>
                                     <td>Da Lat</td>
                                     <td>Dai hoc</td>
                                     <td>4.000.000</td>
@@ -101,6 +88,6 @@
                 </div>
             </div>
         </div>
-        <show-post-job ng-if="showPostJob"></show-post-job>
+        <show-post-job ng-if="admin.showPostJob"></show-post-job>
     </main>
 </section>
