@@ -1,5 +1,16 @@
 var app = angular.module("MyApp", ["ngRoute", "ng.ckeditor"]);
 
+// Config Firebase
+var firebaseConfig = {
+    apiKey: 'AIzaSyD_mccfU36uTeIcExGaWxxPre3MIiWDuic',
+    authDomain: 'findjob-c0793.firebaseapp.com',
+    projectId: 'findjob-c0793',
+};
+// Khởi tạo ứng dụng Firebase
+firebase.initializeApp(firebaseConfig);
+
+  
+
 app.config(function ($routeProvider) {
 
     $routeProvider

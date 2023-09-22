@@ -113,7 +113,7 @@ app.service('EmployerService', function() {
 
 app.service('HeaderService', function() {
   var service = this;
-  service.employer = false;
+  service.employer = true;
   service.showEmployer = function(){
       service.employer = !service.employer;
   }
