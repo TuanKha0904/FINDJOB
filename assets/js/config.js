@@ -70,7 +70,7 @@ app.config(function ($routeProvider) {
         })
         .when('/admin', {
             templateUrl: 'views/admin/login_admin.html',
-            controller: 'AdminController'
+            controller: 'LoginAdminController'
         })
         .when('/admin_main', {
             templateUrl: 'views/admin/admin.html',

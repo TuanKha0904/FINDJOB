@@ -6,10 +6,43 @@ app.controller('ProfileController', function ($scope, ProfileService) {
     $scope.profile = ProfileService;
 });
 
-app.controller('AdminController', function ($scope, AdminService) {
-    // Show component child focus on page parent
-    $scope.admin = AdminService;
+app.controller('LoginAdminController', function ($scope, $http, $location, $rootScope) {
+    $scope.login = function (email, password) {
+        $http({
+            method: 'POST',
+            url: url + 'Account/Login',
+            params: {
+                email: email,
+                password: password
+            }
+        })
+            .then(function (response) {
+                $scope.adminLogin = response.data;
+                if ($scope.adminLogin.idToken == null)
+                    console.log("Đăng nhập thất bại");
+                else {
+                    $http.defaults.headers.common['Authorization'] = 'Bearer ' + $scope.adminLogin.idToken;
+                    $http({
+                        method: 'POST',
+                        url: url + 'Account',
+                    })
+                        .then(function (response) {
+                            $rootScope.adminInfor = response.data;
+                            $location.path('/admin_main');
+                        });
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 });
+
+app.controller('AdminController', function ($scope, AdminService, $rootScope) {
+    $scope.admin = AdminService;
+    $scope.Infor = $rootScope.adminInfor;
+});
+
 
 app.controller('EmployerController', function ($scope, EmployerService) {
     $scope.employer = EmployerService;
