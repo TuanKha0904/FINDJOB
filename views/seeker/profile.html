@@ -16,15 +16,15 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 custom_button_Profile">
-                        <div class="text-center">
-                            <img src="assets/img/logo/testimonial.png" alt="">
+                        <div class="text-center profile_image">
+                            <img ng-src="{{userLogin.photo}}" alt="">
                         </div>
                         <div class="text-center">
                             <button type="button" class="round-button">
                                 <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                             </button>
                         </div>
-                        <div class="custom_profile_email"> NCN@gmail.com </div>
+                        <div class="custom_profile_email">{{userLogin.email}}</div>
                         <div class="header-btn d-none f-left d-lg-block change_profile_custom">
                             <a href="" class="btn custom_btn" ng-click="profile.showProfileView()">Show profile</a>
                         </div>

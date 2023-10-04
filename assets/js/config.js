@@ -22,13 +22,9 @@ app.config(function ($routeProvider) {
             templateUrl: 'views/seeker/job_listing.html',
             controller: 'HomeController'
         })
-        .when('/signup', {
-            templateUrl: 'views/Common/signup.html',
-            controller: 'SignupController'
-        })
         .when('/login', {
             templateUrl: 'views/Common/login.html',
-            controller: 'HomeController'
+            controller: 'SigninController'
         })
         .when('/post', {
             templateUrl: 'views/employer/post.html',

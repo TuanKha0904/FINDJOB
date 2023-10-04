@@ -20,29 +20,28 @@
 							<input type="password" class="form-control password-field" placeholder="password"
 								aria-label="password" value="">
 							<div class="input-group-prepend">
-								<span toggle="#password-field" class="input-group-text" toggle-password-visibility><i class="fa fa-eye-slash click-eye field-icon"></i></span>
+								<span toggle="#password-field" class="input-group-text" toggle-password-visibility><i
+										class="fa fa-eye-slash click-eye field-icon"></i></span>
 							</div>
-						</div>
-						<div class="row justify-content-center mx-auto mt-20 mb-20">
-							<label class=" col-md-4 col-lg-4 text-center radio">
-								<input type="radio" ng-model="userType" value="seeker">
-								<span class="radio-label">Seeker</span>
-							</label>
-							<label class=" col-md-4 col-lg-4 text-center radio">
-								<input type="radio" ng-model="userType" value="employer">
-								<span class="radio-label">Employer</span>
-							</label>
 						</div>
 					</form>
 				</div>
-				<div class="row justify-content-center">
+				<div class="row justify-content-center mt-30">
 					<div class="header-btn">
 						<a href="#" class="btn head-btn1">Login</a>
 					</div>
 				</div>
+				<div class="row justify-content-center">
+					<div class="col-md-4 col-lg-4 text-center mt-20 mb-20" ng-click="loginWithGoogle()">
+						<a href="" class="google_login pt-10 pb-10 pl-10 pr-10">
+							<img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+								src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+							Login with Google
+						</a>
+					</div>
+				</div>
 				<div class="row f-right mt-10 mr-30">
 					<a href="" class="a_forgot_create">Forgot password</a>
-					<a href="#!signup" class="a_forgot_create ml-20">Create new account</a>
 				</div>
 			</div>
 		</div>

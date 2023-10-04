@@ -1,27 +1,6 @@
-app.service('SignupService', function() {
+app.service('SigninService', function() {
   var service = this;
-  
-  service.signup = true;
-  service.employerSignup = false;
-  service.seekerSignup = false;
-  
-  service.showEmployerSignup = function() {
-    service.signup = false;
-    service.employerSignup = true;
-    service.seekerSignup = false;
-  };
-  
-  service.showSeekerSignup = function() {
-    service.signup = false;
-    service.employerSignup = false;
-    service.seekerSignup = true;
-  };
-  
-  service.showSignup = function() {
-    service.signup = true;
-    service.employerSignup = false;
-    service.seekerSignup = false;
-  };
+
 });
 
 app.service('HistoryService', function() {
@@ -113,7 +92,9 @@ app.service('EmployerService', function() {
 
 app.service('HeaderService', function() {
   var service = this;
-  service.employer = true;
+
+  service.loggedIn = false;
+  service.employer = false;
   service.showEmployer = function(){
       service.employer = !service.employer;
   }

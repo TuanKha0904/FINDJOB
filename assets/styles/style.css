@@ -6052,6 +6052,16 @@ form.search-box .select-form .nice-select {
     border: 0;
 }
 
+.google_login{
+    color: black;
+    border: 1px solid #da2461;
+    border-radius: 30px;
+}
+
+.google_login:hover{
+    background-color: #da2461;    
+}
+
 
 @media (max-width: 767px) {
     form.search-box .select-form .nice-select {
@@ -6154,6 +6164,14 @@ form.search-box .search-form a:hover {
     align-items: center;
     text-align: center;
     height: 100%;
+}
+
+.profile_image img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit:cover;
+    object-position: 50%;
 }
 
 .edit_post_employers{
