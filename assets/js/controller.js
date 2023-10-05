@@ -48,11 +48,9 @@ app.controller('EmployerController', function ($scope, EmployerService) {
     $scope.employer = EmployerService;
 });
 
-app.controller('SigninController', function ($scope, SigninService, $http, $rootScope, HeaderService, $window) {
-    $scope.signinService = SigninService;
-    $scope.headerService = HeaderService;
-    $rootScope.userLogin;
-
+app.controller('SigninController', function ($scope, $http, $window, UserService, HeaderService) {
+    $scope.header = HeaderService;
+    // Login with Google
     $scope.loginWithGoogle = function () {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase
@@ -71,20 +69,85 @@ app.controller('SigninController', function ($scope, SigninService, $http, $root
                     url: url + 'Account',
                 })
                     .then(function (response) {
-                        $rootScope.userLogin = response.data;
-                        $scope.headerService.loggedIn = true;
-                        // Go back to previous page
-                        $window.history.back();
+                        $scope.result = response.data;
+                        var user = $scope.result;
+                        if(user == null)
+                            alert('Login failed');
+                        else{
+                            UserService.setUser(user.uid, user.name, user.email, user.photo, user.phoneNumber);
+                            $scope.header.isUserLoggedIn = true;
+                            alert('Login success');
+                            // Go back to previous page
+                            $window.history.back();
+                        }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        alert(error);
                     });
             })
             .catch(function (error) {
                 console.log(error);
             });
     };
+
+    // Login with Email and Password
+    $scope.login = function (email, password) {
+        $http({
+            method: 'POST',
+            url: url + 'Account/Login',
+            params: {
+                email: email,
+                password: password
+            }
+        })
+            .then(function (response) {
+                $scope.result = response.data;
+                if ($scope.result.idToken == null)
+                    alert('Wrong email or password');
+                else {
+                    $http.defaults.headers.common['Authorization'] = 'Bearer ' + $scope.result.idToken;
+                    $http({
+                        method: 'POST',
+                        url: url + 'Account',
+                    })
+                        .then(function (response) {
+                            $scope.result = response.data;
+                            var user = $scope.result;
+                            if(user == null)
+                                alert('Login failed');
+                            else{
+                                UserService.setUser(user.uid, user.name, user.email, user.photo, user.phoneNumber);
+                                $scope.header.isUserLoggedIn = true;
+                                alert('Login success');
+                                // Go back to previous page
+                                $window.history.back();
+                            }
+                        });
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 });
+
+app.controller('HeaderController', function ($scope, UserService, $location, HeaderService) {
+    $scope.header = HeaderService;
+    $scope.user = UserService.getUser();
+   if($scope.user){
+        $scope.header.isUserLoggedIn = true;
+        if (!$scope.user.Photo) {
+            $scope.user.Photo = 'https://i.ibb.co/LQNHSjF/24-248253-user-profile-default-image-png-clipart-png-download.png';
+        }
+   }
+    // logout
+    $scope.logout = function () {
+        UserService.logout();
+        header.isUserLoggedIn = false;
+        $location.path('/');
+    }
+});
+
 
 app.controller('JobDetailController', function ($scope, ApplyService) {
     $scope.apply = ApplyService;

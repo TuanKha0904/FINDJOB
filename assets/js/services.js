@@ -1,8 +1,3 @@
-app.service('SigninService', function() {
-  var service = this;
-
-});
-
 app.service('HistoryService', function() {
   var service = this;
   
@@ -92,9 +87,8 @@ app.service('EmployerService', function() {
 
 app.service('HeaderService', function() {
   var service = this;
-
-  service.loggedIn = false;
   service.employer = false;
+  service.isUserLoggedIn = false;
   service.showEmployer = function(){
       service.employer = !service.employer;
   }
@@ -163,6 +157,33 @@ app.service('AdminService', function() {
 
   }
 });
+
+app.service('UserService', function () {
+  var user = {};
+
+ // Trong UserService
+this.setUser = function (uid, name, email, photo, phoneNumber) {
+  user.Uid = uid;
+  user.Name = name;
+  user.Email = email;
+  
+  // Kiểm tra nếu user.Photo là null, gán đường dẫn ảnh mặc định
+  if (photo == null) {
+    user.Photo = 'https://i.ibb.co/LQNHSjF/24-248253-user-profile-default-image-png-clipart-png-download.png';
+  } else {
+    user.Photo = photo;
+  }
+  user.PhoneNumber = phoneNumber;
+};
+  this.getUser = function () {
+      return user;
+  };
+
+  this.logout = function () {
+      user = {};
+  }
+});
+
 
 
 
