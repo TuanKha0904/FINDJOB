@@ -133,21 +133,23 @@ app.controller('SigninController', function ($scope, $http, $window, UserService
 
 app.controller('HeaderController', function ($scope, UserService, $location, HeaderService) {
     $scope.header = HeaderService;
-    $scope.user = UserService.getUser();
-   if($scope.user){
+    $scope.user = UserService;
+    
+    // Lấy thông tin người dùng từ UserService
+    $scope.inforUser = $scope.user.getUser();
+
+    // Kiểm tra xem người dùng đã đăng nhập hay chưa
+    if ($scope.inforUser && $scope.inforUser.Photo) {
         $scope.header.isUserLoggedIn = true;
-        if (!$scope.user.Photo) {
-            $scope.user.Photo = 'https://i.ibb.co/LQNHSjF/24-248253-user-profile-default-image-png-clipart-png-download.png';
-        }
-   }
+    }
+    
     // logout
     $scope.logout = function () {
         UserService.logout();
-        header.isUserLoggedIn = false;
+        $scope.header.isUserLoggedIn = false;
         $location.path('/');
     }
 });
-
 
 app.controller('JobDetailController', function ($scope, ApplyService) {
     $scope.apply = ApplyService;
@@ -158,8 +160,5 @@ app.controller('HistoryController', function ($scope, HistoryService, ApplyServi
     $scope.apply = ApplyService;
 });
 
-app.controller('HeaderController', function ($scope, HeaderService) {
-    $scope.header = HeaderService;
-});
 
 

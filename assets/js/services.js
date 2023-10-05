@@ -42,7 +42,6 @@ app.service('ProfileService', function() {
   };
 });
 
-
 app.service('EmployerService', function() {
   var service = this;
   

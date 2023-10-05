@@ -32,11 +32,11 @@
                       class="fas fa-sync-alt"></i>Swap</a>
                   <a ng-if="!header.isUserLoggedIn" href="#!login" class="btn head-btn2">Login</a>
                 </div>
-                <div class="text-center mr-20" ng-if="header.isUserLoggedIn">
-                  <img class="header_image" ng-src="{{user.Photo}}" alt="">
+                <div class="text-center mr-20">
+                  <img class="header_image" ng-if="header.isUserLoggedIn" ng-src="{{inforUser.Photo}}" alt="">
                 </div>
                 <div>
-                  <a ng-if="header.isUserLoggedIn" href="" class="btn swap logout"><i class="fas fa-sign-out-alt"></i></a>
+                  <a ng-if="header.isUserLoggedIn" href="" class="btn swap logout" ng-click="logout()"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
               </div>
             </div>
