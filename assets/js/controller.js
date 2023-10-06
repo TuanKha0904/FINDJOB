@@ -1,4 +1,4 @@
-const url = 'https://findjob.zeabur.app/api/'
+const url = 'https://findjob.zeabur.app/api/';
 
 app.controller('HomeController', function () { });
 
@@ -11,13 +11,48 @@ app.controller('ProfileController', function ($scope, $http, ProfileService, Use
         method: 'GET',
         url: url + 'Seeker/CV',
     })
-    .then(function (response) {
-        $scope.seeker = response.data;
-    })
-    .catch(function (error) {
-        console.log(error);
-    })
+        .then(function (response) {
+            $scope.seeker = response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
+
+    $scope.uploadImage = function () {
+        document.getElementById('filePicker').click();
+        document.getElementById('filePicker').onchange = function () {
+            var image = document.getElementById('filePicker').files[0];
+            if (image) {
+                // Tạo một FormData object và thêm dữ liệu ảnh vào đó
+                var formdata = new FormData();
+                formdata.append("image", image);
+
+                var requestOptions = {
+                    method: 'POST',
+                    body: formdata,
+                  };
+                  
+                  fetch("https://api.imgbb.com/1/upload?key=b6781f912986eb6e6973af895b680cd0", requestOptions)
+                .then(function (response) {
+                    response.json().then(function (result) {
+                        var urlImage = result.data.url;
+                        UserService.setUser($scope.user.id, $scope.user.name, $scope.user.email, urlImage, $scope.user.phoneNumber) // Dữ liệu trả về từ API
+                        $http({
+                            method: 'PUT',
+                            url: url + 'Account/Photo',
+                            data: {"photoUrl": urlImage}
+                        })
+                        .catch(function (error) {
+                            alert(error.message);
+                        })
+                    });
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        };
+    };
 });
 
 app.controller('LoginAdminController', function ($scope, $http, $location, $rootScope) {
@@ -86,9 +121,9 @@ app.controller('SigninController', function ($scope, $http, $window, UserService
                     .then(function (response) {
                         $scope.result = response.data;
                         var user = $scope.result;
-                        if(user == null)
+                        if (user == null)
                             alert('Login failed');
-                        else{
+                        else {
                             UserService.setUser(user.uid, user.name, user.email, user.photo, user.phoneNumber);
                             $scope.header.isUserLoggedIn = true;
                             alert('Login success');
@@ -129,9 +164,9 @@ app.controller('SigninController', function ($scope, $http, $window, UserService
                         .then(function (response) {
                             $scope.result = response.data;
                             var user = $scope.result;
-                            if(user == null)
+                            if (user == null)
                                 alert('Login failed');
-                            else{
+                            else {
                                 UserService.setUser(user.uid, user.name, user.email, user.photo, user.phoneNumber);
                                 $scope.header.isUserLoggedIn = true;
                                 alert('Login success');
@@ -150,7 +185,7 @@ app.controller('SigninController', function ($scope, $http, $window, UserService
 app.controller('HeaderController', function ($scope, UserService, $location, HeaderService) {
     $scope.header = HeaderService;
     $scope.user = UserService;
-    
+
     // Lấy thông tin người dùng từ UserService
     $scope.inforUser = $scope.user.getUser();
 
@@ -158,7 +193,7 @@ app.controller('HeaderController', function ($scope, UserService, $location, Hea
     if ($scope.inforUser && $scope.inforUser.Photo) {
         $scope.header.isUserLoggedIn = true;
     }
-    
+
     // logout
     $scope.signout = function () {
         UserService.logout();

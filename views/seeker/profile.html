@@ -20,7 +20,8 @@
                             <img ng-src="{{user.Photo}}" alt="">
                         </div>
                         <div class="text-center">
-                            <button type="button" class="round-button">
+                            <input type="file" id="filePicker" accept="image/*" style="display: none;">
+                            <button type="button" class="round-button" ng-click="uploadImage()">
                                 <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                             </button>
                         </div>
