@@ -31,6 +31,7 @@ app.directive("editProfileSeeker", () => {
   return {
     restrict: "E",
     templateUrl: "./views/seeker/components/edit_profile_seeker.html",
+    controller: 'ProfileController',
   };
 });
 
@@ -38,6 +39,7 @@ app.directive("profileSeeker", () => {
   return {
     restrict: "E",
     templateUrl: "./views/seeker/components/profile_seeker.html",
+    controller: 'ProfileController'
   };
 });
 

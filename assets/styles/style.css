@@ -6158,6 +6158,10 @@ form.search-box .search-form a:hover {
     padding: 20px 20px;
 }
 
+.profile_output td:last-child{
+    color: #506172;
+}
+
 .custom_button_Profile{
     display: flex;
     flex-direction: column;

@@ -2,23 +2,40 @@ const url = 'https://findjob.zeabur.app/api/';
 
 app.controller('HomeController', function () { });
 
-app.controller('ProfileController', function ($scope, $http, ProfileService, UserService) {
+app.controller('ProfileController', function ($scope, $http, $sce, ProfileService, UserService) {
     $scope.profile = ProfileService;
     $scope.user = UserService.getUser();
+
+    // initialize seeker profile
+    $scope.seeker = {
+        name: '',
+        email: '',
+        phone_Number: '',
+        birthday: '',
+        address: '',
+        experience: '',
+        skills: '',
+        education: '',
+        major: ''
+    };
 
     //Get infor seeker 
     $http({
         method: 'GET',
         url: url + 'Seeker/CV',
+    }).then(function (response) {
+        $scope.seeker = response.data;
+        // Cập nhật dữ liệu vào CKEditor
+        CKEDITOR.instances.experienceEditor.setData($scope.seeker.experience);
+        CKEDITOR.instances.skillsEditor.setData($scope.seeker.skills);   
+        $scope.seeker.experience = $sce.trustAsHtml(response.data.experience);
+        $scope.seeker.skills = $sce.trustAsHtml(response.data.skills);
     })
-        .then(function (response) {
-            $scope.seeker = response.data;
-        })
         .catch(function (error) {
             console.log(error);
         });
 
-
+    // Upload image
     $scope.uploadImage = function () {
         document.getElementById('filePicker').click();
         document.getElementById('filePicker').onchange = function () {
@@ -31,28 +48,56 @@ app.controller('ProfileController', function ($scope, $http, ProfileService, Use
                 var requestOptions = {
                     method: 'POST',
                     body: formdata,
-                  };
-                  
-                  fetch("https://api.imgbb.com/1/upload?key=b6781f912986eb6e6973af895b680cd0", requestOptions)
-                .then(function (response) {
-                    response.json().then(function (result) {
-                        var urlImage = result.data.url;
-                        UserService.setUser($scope.user.id, $scope.user.name, $scope.user.email, urlImage, $scope.user.phoneNumber) // Dữ liệu trả về từ API
-                        $http({
-                            method: 'PUT',
-                            url: url + 'Account/Photo',
-                            data: {"photoUrl": urlImage}
-                        })
-                        .catch(function (error) {
-                            alert(error.message);
-                        })
+                };
+
+                fetch("https://api.imgbb.com/1/upload?key=b6781f912986eb6e6973af895b680cd0", requestOptions)
+                    .then(function (response) {
+                        response.json().then(function (result) {
+                            var urlImage = result.data.url;
+                            UserService.setUser($scope.user.id, $scope.user.name, $scope.user.email, urlImage, $scope.user.phoneNumber) // Dữ liệu trả về từ API
+                            $http({
+                                method: 'PUT',
+                                url: url + 'Account/Photo',
+                                data: { "photoUrl": urlImage }
+                            })
+                                .catch(function (error) {
+                                    alert(error.message);
+                                })
+                        });
+                    }).catch(function (error) {
+                        console.log(error);
                     });
-                }).catch(function (error) {
-                    console.log(error);
-                });
             }
         };
     };
+
+    //Edit profile seeker
+    $scope.EditProfile = function (name, email, phone_Number, birthday, address, education, major) {
+        var experience = CKEDITOR.instances.experienceEditor.getData();
+        var skills = CKEDITOR.instances.skillsEditor.getData();
+        $http({
+            method: 'PUT',
+            url: url + 'Seeker/UpdateCV',
+            data: {
+                name: name,
+                email: email,
+                phone_Number: phone_Number,
+                birthday: birthday,
+                address: address,
+                experience: experience,
+                skills: skills,
+                education: education,
+                major: major
+            }
+        })
+            .then(function (response) {
+                alert(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    }
 });
 
 app.controller('LoginAdminController', function ($scope, $http, $location, $rootScope) {

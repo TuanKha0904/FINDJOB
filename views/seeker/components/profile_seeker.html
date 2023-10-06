@@ -21,20 +21,20 @@
             <td>{{seeker.address}}</td>
         </tr>
         <tr class="profile_output">
-            <td>Experience:</td>
-            <td>{{seeker.experience}}</td>
-        </tr>
-        <tr class="profile_output">
-            <td>Skills:</td>
-            <td>{{seeker.skills}}</td>
-        </tr>
-        <tr class="profile_output">
             <td>Education:</td>
             <td>{{seeker.education}}</td>
         </tr>
         <tr class="profile_output">
             <td>Major:</td>
             <td>{{seeker.major}}</td>
+        </tr>
+        <tr class="profile_output">
+            <td>Experience:</td>
+            <td><div ng-bind-html="seeker.experience"></div></td>
+        </tr>
+        <tr class="profile_output">
+            <td>Skills:</td>
+            <td><div ng-bind-html="seeker.skills"></div></td>
         </tr>
     </table>
 </section>

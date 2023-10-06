@@ -1,4 +1,4 @@
-var app = angular.module("MyApp", ["ngRoute", "ng.ckeditor"]);
+var app = angular.module("MyApp", ["ngRoute", "ng.ckeditor", "ngSanitize"]);
 
 // Config Firebase
 var firebaseConfig = {
