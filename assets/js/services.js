@@ -183,6 +183,21 @@ this.setUser = function (uid, name, email, photo, phoneNumber) {
   }
 });
 
+app.service('authService', function () {
+  var token = null;
+
+  //set Token
+  this.setToken = function (newToken) {
+    token = newToken;
+  };
+
+  //get Token
+  this.getToken = function () {
+    return token;
+  };
+});
+
+
 
 
 

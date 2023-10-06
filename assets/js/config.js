@@ -9,10 +9,27 @@ var firebaseConfig = {
 // Khởi tạo ứng dụng Firebase
 firebase.initializeApp(firebaseConfig);
 
+
+// create interceptor
+app.factory('authInterceptor', function ($injector) {
+    return {
+      request: function (config) {
+        var authService = $injector.get('authService');
+        
+        // Check (if haven token)
+        if (!config.headers.Authorization && authService.getToken()) {
+          config.headers.Authorization = 'Bearer ' + authService.getToken();
+        }
+        
+        return config;
+      }
+    };
+  });
+  
   
 
-app.config(function ($routeProvider) {
-
+app.config(function ($routeProvider, $httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
     $routeProvider
         .when('/', {
             templateUrl: 'Views/home.html',

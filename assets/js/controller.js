@@ -2,8 +2,22 @@ const url = 'https://findjob.zeabur.app/api/'
 
 app.controller('HomeController', function () { });
 
-app.controller('ProfileController', function ($scope, ProfileService) {
+app.controller('ProfileController', function ($scope, $http, ProfileService, UserService) {
     $scope.profile = ProfileService;
+    $scope.user = UserService.getUser();
+
+    //Get infor seeker 
+    $http({
+        method: 'GET',
+        url: url + 'Seeker/CV',
+    })
+    .then(function (response) {
+        $scope.seeker = response.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+    })
+
 });
 
 app.controller('LoginAdminController', function ($scope, $http, $location, $rootScope) {
@@ -48,7 +62,7 @@ app.controller('EmployerController', function ($scope, EmployerService) {
     $scope.employer = EmployerService;
 });
 
-app.controller('SigninController', function ($scope, $http, $window, UserService, HeaderService) {
+app.controller('SigninController', function ($scope, $http, $window, UserService, HeaderService, authService) {
     $scope.header = HeaderService;
     // Login with Google
     $scope.loginWithGoogle = function () {
@@ -64,6 +78,7 @@ app.controller('SigninController', function ($scope, $http, $window, UserService
             .then(function (accessToken) {
                 // Send accessToken as Authorization header to API
                 $http.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
+                authService.setToken(accessToken);
                 $http({
                     method: 'POST',
                     url: url + 'Account',
@@ -106,6 +121,7 @@ app.controller('SigninController', function ($scope, $http, $window, UserService
                     alert('Wrong email or password');
                 else {
                     $http.defaults.headers.common['Authorization'] = 'Bearer ' + $scope.result.idToken;
+                    authService.setToken($scope.result.idToken);
                     $http({
                         method: 'POST',
                         url: url + 'Account',
@@ -144,7 +160,7 @@ app.controller('HeaderController', function ($scope, UserService, $location, Hea
     }
     
     // logout
-    $scope.logout = function () {
+    $scope.signout = function () {
         UserService.logout();
         $scope.header.isUserLoggedIn = false;
         $location.path('/');
