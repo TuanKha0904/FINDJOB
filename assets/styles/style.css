@@ -4638,6 +4638,11 @@ del {
     border-radius: 20px
 }
 
+.heading_password{
+    color: #014b85;
+    text-align: center;
+}
+
 .genric-btn.arrow {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;

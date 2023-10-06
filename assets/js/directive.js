@@ -47,6 +47,7 @@ app.directive("profilePassword", () => {
   return {
     restrict: "E",
     templateUrl: "./views/seeker/components/profile_password.html",
+    controller: 'ProfileController'
   };
 });
 

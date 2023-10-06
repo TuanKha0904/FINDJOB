@@ -27,7 +27,7 @@ app.controller('ProfileController', function ($scope, $http, $sce, ProfileServic
         $scope.seeker = response.data;
         // Cập nhật dữ liệu vào CKEditor
         CKEDITOR.instances.experienceEditor.setData($scope.seeker.experience);
-        CKEDITOR.instances.skillsEditor.setData($scope.seeker.skills);   
+        CKEDITOR.instances.skillsEditor.setData($scope.seeker.skills);
         $scope.seeker.experience = $sce.trustAsHtml(response.data.experience);
         $scope.seeker.skills = $sce.trustAsHtml(response.data.skills);
     })
@@ -97,7 +97,27 @@ app.controller('ProfileController', function ($scope, $http, $sce, ProfileServic
                 console.log(error);
             });
 
-    }
+    };
+
+    //Change password
+    $scope.changePassword = function (password, repeatPassword) {
+        if (password === repeatPassword)
+            $http({
+                method: 'PUT',
+                url: url + 'Account/Password',
+                data: {
+                    password: password
+                }
+            })
+                .then(function (response) {
+                    alert(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        else
+            alert('Passwords do not match');
+    };
 });
 
 app.controller('LoginAdminController', function ($scope, $http, $location, $rootScope) {
