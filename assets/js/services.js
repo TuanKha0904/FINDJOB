@@ -168,7 +168,7 @@ this.setUser = function (uid, name, email, photo, phoneNumber) {
   
   // Kiểm tra nếu user.Photo là null, gán đường dẫn ảnh mặc định
   if (photo == null) {
-    user.Photo = 'https://i.ibb.co/LQNHSjF/24-248253-user-profile-default-image-png-clipart-png-download.png';
+    user.Photo = 'https://i.ibb.co/9NVr67G/user.jpg';
   } else {
     user.Photo = photo;
   }

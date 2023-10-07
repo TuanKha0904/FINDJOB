@@ -184,6 +184,7 @@ app.directive("editProfile", () => {
   return {
     restrict: "E",
     templateUrl: "./views/employer/components/edit_profile.html",
+    controller: 'ProfileEmployerController',
   };
 });
 
@@ -416,3 +417,4 @@ app.directive('clock', ['$timeout', function($timeout) {
       }
   };
 }]);
+

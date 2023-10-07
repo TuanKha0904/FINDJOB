@@ -83,7 +83,7 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when('/profile_employer', {
             templateUrl: 'views/employer/profile.html',
-            controller: 'EmployerController'
+            controller: 'ProfileEmployerController'
         })
         .when('/admin', {
             templateUrl: 'views/admin/login_admin.html',

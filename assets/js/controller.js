@@ -157,7 +157,6 @@ app.controller('AdminController', function ($scope, AdminService, $rootScope) {
     $scope.Infor = $rootScope.adminInfor;
 });
 
-
 app.controller('EmployerController', function ($scope, EmployerService) {
     $scope.employer = EmployerService;
 });
@@ -276,5 +275,135 @@ app.controller('HistoryController', function ($scope, HistoryService, ApplyServi
     $scope.apply = ApplyService;
 });
 
+app.controller('ProfileEmployerController', function ($scope, $http, $sce, EmployerService) {
+    $scope.employerService = EmployerService;
+    $scope.employer = {
+        contact_phone: '',
+        email: '',
+        employer_about: '',
+        employer_address: '',
+        employer_name: '',
+        employer_website: '',
+        image_cover: '',
+        employer_image: ''
+    };
+    $http({
+        method: 'GET',
+        url: url + 'Employer/Get',
+    })
+        .then(function (response) {
+            $scope.employer = response.data;
+            if ($scope.employer.image_cover == null)
+                $scope.employer.image_cover = 'https://i.ibb.co/d0mPWbw/Untitled-design.png';
+            if ($scope.employer.employer_image == null)
+                $scope.employer.employer_image = 'https://i.ibb.co/qdz9N2N/FJ.png';
+            CKEDITOR.instances.aboutEmployer.setData($scope.employer.employer_about);
+            $scope.employer.employer_about = $sce.trustAsHtml(response.data.employer_about);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+    $scope.updateEmployerProfile = function (employer_name, email, contact_phone, employer_website, employer_address) {
+        var about = CKEDITOR.instances.aboutEmployer.getData();
+        $http({
+            method: 'PUT',
+            url: url + 'Employer/Infor',
+            data: {
+                name: employer_name,
+                email: email,
+                phone: contact_phone,
+                website: employer_website,
+                address: employer_address,
+                about: about
+            }
+        })
+            .then(function (response) {
+                EmployerService.editProfile = false;
+                alert(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+    $scope.uploadImage = function () {
+        document.getElementById('MainImage').click();
+        document.getElementById('MainImage').onchange = function () {
+            var image = document.getElementById('MainImage').files[0];
+            if (image) {
+                // Tạo một FormData object và thêm dữ liệu ảnh vào đó
+                var formdata = new FormData();
+                formdata.append("image", image);
+
+                var requestOptions = {
+                    method: 'POST',
+                    body: formdata,
+                };
+
+                fetch("https://api.imgbb.com/1/upload?key=b6781f912986eb6e6973af895b680cd0", requestOptions)
+                    .then(function (response) {
+                        response.json().then(function (result) {
+                            var urlImage = result.data.url;
+                            $http({
+                                method: 'PUT',
+                                url: url + 'Employer/Image',
+                                data: { "image": urlImage }
+                            })
+                            .then(function (response) {
+                                $scope.employer.employer_image = urlImage;
+                                alert(response.data);
+                            })
+                                .catch(function (error) {
+                                    alert(error.message);
+                                })
+                        });
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        };
+    };
+
+    $scope.uploadImageCover = function () {
+        document.getElementById('ImageCover').click();
+        document.getElementById('ImageCover').onchange = function () {
+            var image = document.getElementById('ImageCover').files[0];
+            if (image) {
+                // Tạo một FormData object và thêm dữ liệu ảnh vào đó
+                var formdata = new FormData();
+                formdata.append("image", image);
+
+                var requestOptions = {
+                    method: 'POST',
+                    body: formdata,
+                };
+
+                fetch("https://api.imgbb.com/1/upload?key=b6781f912986eb6e6973af895b680cd0", requestOptions)
+                    .then(function (response) {
+                        response.json().then(function (result) {
+                            var urlImage = result.data.url;
+                            $http({
+                                method: 'PUT',
+                                url: url + 'Employer/ImageCover',
+                                data: { "imageCover": urlImage }
+                            })
+                            .then(function (response) {
+                                $scope.employer.image_cover = urlImage;
+                                alert(response.data);
+                            })
+                                .catch(function (error) {
+                                    alert(error.message);
+                                })
+                        });
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        };
+    };
+
+
+});
 
 

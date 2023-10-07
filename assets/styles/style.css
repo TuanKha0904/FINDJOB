@@ -6426,6 +6426,8 @@ form.search-box .search-form a:hover {
 
 .logo_company{
     border-radius: 50%; 
+    width: 100px;
+    height: 100px;
     object-fit: cover; 
     border: 1px solid #da2461;
 }

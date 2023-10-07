@@ -2,64 +2,63 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-12 col-lg-12 col-md-12 custom_profile">
-                <div class="custom_profile_header">
-                    <img src="assets/img/hero/about.jpg" alt="" class="col-xl-10 col-lg-10 col-md-10 cover_company">
+                <div class="custom_profile_header" ng-click="uploadImageCover()">
+                    <img ng-src="{{employer.image_cover}}" alt="image cover" class="col-xl-10 col-lg-10 col-md-10 cover_company">
                 </div>
                 <div class="row justify-content-center">
                     <div class="text-center box_logo">
-                        <img src="assets/img/icon/job-list1.png" alt=""
+                        <img ng-src="{{employer.employer_image}}" alt="employer image"
                             class="logo_company">
                     </div>
+                    <input type="file" id="MainImage" style="display: none;" accept="image/*">
+                    <input type="file" id="ImageCover" style="display: none;" accept="image/*">
                     <div class="text-center camera">
-                        <button type="button" class="round-button">
+                        <button type="button" class="round-button" ng-click="uploadImage()">
                             <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                         </button>
                     </div>
                 </div>
                 <div class="text-center mt-30">
-                    <h1>Ziggo Company</h1>
+                    <h1>{{employer.employer_name}}</h1>
                 </div>
                 <hr>
                 <div class="row justify-content-center pb-30">
                     <div class="col-xl-4 col-lg-4 col-md-4"">
                         <div class=" row justify-content-center">
                         <div class="edit_header col-xl-4 col-lg-4 col-md-4">Email: </div>
-                        <a href="" class="col-xl-6 col-lg-6 col-md-6 link ">Ziggo@gmail.com</a>
+                        <a href="" class="col-xl-6 col-lg-6 col-md-6 link ">{{employer.email}}</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4">
                     <div class="row justify-content-center">
                         <div class="edit_header col-xl-4 col-lg-4 col-md-4">Contact: </div>
-                        <a href="" class="col-xl-6 col-lg-6 col-md-6 link">1234567890</a>
+                        <a href="" class="col-xl-6 col-lg-6 col-md-6 link">{{employer.contact_phone}}</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4">
                     <div class="row justify-content-center">
                         <div class="edit_header col-xl-4 col-lg-4 col-md-4">Website: </div>
-                        <a href="" class="col-xl-6 col-lg-6 col-md-6 link">https://Ziggo.vn</a>
+                        <a href="{{employer.employer_website}}" target="_blank" class="col-xl-6 col-lg-6 col-md-6 link">{{employer.employer_website}}</a>
                     </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 mt-30">
                     <div class="row justify-content-center text-center">
                         <div class="edit_header col-xl-2 col-lg-2 col-md-2">Address: </div>
-                        <span class="col-xl-4 col-lg-4 col-md-4">27c/2 THi Sách p6 đà lạt lâm đồng</span>
+                        <span class="col-xl-4 col-lg-4 col-md-4">{{employer.employer_address}}</span>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 mt-30 custom_profile">
                     <div class="row justify-content-center pb-30">
                         <h3>About Us</h3>
                     </div>
-                    <div class="row pb-30 text-center">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Quaerat ullam aliquid aperiam illo laborum eaque minima modi corrupti!
-                        Ad repudiandae fugit aspernatur dolorum. Alias fugiat non deserunt obcaecati rem amet!
+                    <div class="row pb-30 text-center" ng-bind-html="employer.employer_about">
                     </div>
                 </div>
             </div>
             <div class="header-btn d-none f-right d-lg-block mb-30">
-                <a href="" class="btn custom_btn" ng-click="employer.showEditProfile()">Edit profile</a>
+                <a href="" class="btn custom_btn" ng-click="employerService.showEditProfile()">Edit profile</a>
             </div>
         </div>
-        <edit-profile ng-if="employer.editProfile"></edit-profile>
+        <edit-profile ng-if="employerService.editProfile"></edit-profile>
     </div>
 </section>
