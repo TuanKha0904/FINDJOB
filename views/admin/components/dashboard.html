@@ -23,7 +23,7 @@
                 <i class="icon bx bxs-user-account fa-3x"></i>
                 <div class="info">
                   <h4>Total Account</h4>
-                  <p><b>100</b></p>
+                  <p><b>{{quantityAccount}}</b></p>
                   <p class="info-tong">Total number of accounts managed.</p>
                 </div>
               </div>
@@ -34,7 +34,7 @@
                 <i class="icon bx bxs-data fa-3x"></i>
                 <div class="info">
                   <h4>Total Post</h4>
-                  <p><b>500</b></p>
+                  <p><b>{{quantityJob}}</b></p>
                   <p class="info-tong">Total number of job postings.</p>
                 </div>
               </div>
@@ -52,29 +52,14 @@
                       <tr>
                         <th>ID</th>
                         <th>Email</th>
-                        <th>Phone Number</th>
+                        <th>Name</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody ng-repeat="account in accounts">
                       <tr>
-                        <td><a href="" ng-click="admin.InforProfile()">#183</a></td>
-                        <td>john76@gmail.com</td>
-                        <td><span class="tag tag-success">0921387221</span></td>
-                      </tr>
-                      <tr>
-                        <td><a href="" ng-click="admin.InforProfile()">#183</a></td>
-                        <td>john76@gmail.com</td>
-                        <td><span class="tag tag-success">0921387221</span></td>
-                      </tr>
-                      <tr>
-                        <td><a href="" ng-click="admin.InforProfile()">#183</a></td>
-                        <td>john76@gmail.com</td>
-                        <td><span class="tag tag-success">0921387221</span></td>
-                      </tr>
-                      <tr>
-                        <td><a href="" ng-click="admin.InforProfile()">#183</a></td>
-                        <td>john76@gmail.com</td>
-                        <td><span class="tag tag-success">0921387221</span></td>
+                        <td><a href="" ng-click="admin.InforProfile()">{{shortenUid(account.uid)}}</a></td>
+                        <td>{{account.email}}</td>
+                        <td><span class="tag tag-success">{{account.name}}</span></td>
                       </tr>
                     </tbody>
                   </table>

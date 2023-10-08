@@ -118,6 +118,7 @@ app.directive("dashBoard", () => {
   return {
     restrict: "E",
     templateUrl: "./views/admin/components/dashboard.html",
+    controller: 'DashboardController'
   };
 });
 

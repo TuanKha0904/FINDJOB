@@ -406,4 +406,55 @@ app.controller('ProfileEmployerController', function ($scope, $http, $sce, Emplo
 
 });
 
+app.controller('PostController', function ($scope, $http) {
+    
+});
+
+app.controller('DashboardController', function ($scope, $http) {
+    // get quantity account
+    $http({
+        method: 'GET',
+        url: url + 'Account/QuantityAccount'
+    })
+    .then(function (response) {
+        $scope.quantityAccount = response.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    // get quantity job
+    $http({
+        method: 'GET',
+        url: url + 'Job/CountJob'
+    })
+    .then(function (response) {
+        $scope.quantityJob = response.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    // get account
+    $http({
+        method: 'GET',
+        url: url + 'Account/All?pageSize=20&sortDateCreate=false'
+    })
+    .then(function (response) {
+        $scope.accounts = response.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    // shorten uid
+    $scope.shortenUid = function(uid) {
+        if (uid.length > 5) {
+          return uid.substring(0, 5) + '...';
+        } else {
+          return uid;
+        }
+      };
+});
+
 

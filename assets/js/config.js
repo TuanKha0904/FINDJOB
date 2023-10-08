@@ -45,7 +45,7 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when('/post', {
             templateUrl: 'views/employer/post.html',
-            controller: 'HomeController'
+            controller: 'PostController'
         })
         .when('/postmanagement', {
             templateUrl: 'views/employer/post_management.html',
