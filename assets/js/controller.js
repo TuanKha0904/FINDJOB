@@ -469,4 +469,74 @@ app.controller('DashboardController', function ($scope, $http) {
     });
 });
 
+app.controller('TypeAndIndustryController', function ($scope, $http) { 
+    // Fill type
+    function getType()
+    {
+        $http({
+            method: 'GET',
+            url: url + 'Type/Get-all'
+        })
+        .then(function (response) {
+            $scope.types = response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    };
+    getType();
+
+    // Fill industry
+    function getIndustry()
+    {
+        $http({
+            method: 'GET',
+            url: url + 'Industry/Get-all'
+        })
+        .then(function (response) {
+            $scope.industries = response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    };
+    getIndustry();
+
+    // create type
+    $scope.createType = function(type_name)
+    {
+        $http({
+            method: 'POST',
+            url: url + 'Type/Create',
+            data:{
+                "type_name": type_name
+            }
+        })
+        .then(function () {
+            getType();
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    };
+
+    // create type
+    $scope.createIndustry = function(industry)
+    {
+        $http({
+            method: 'POST',
+            url: url + 'Industry/Create',
+            data:{
+                "industry": industry
+            }
+        })
+        .then(function () {
+            getIndustry();
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    };
+});
+
 

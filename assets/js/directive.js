@@ -193,6 +193,7 @@ app.directive("typeIndustry", () => {
   return {
     restrict: "E",
     templateUrl: "./views/admin/components/type_industry.html",
+    controller: 'TypeAndIndustryController'
   };
 });
 

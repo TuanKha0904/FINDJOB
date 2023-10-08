@@ -13,14 +13,14 @@
                 <div class="tile">
                     <div class="tile-body">
                         <div class="search">
-                            <input type="text" class="search-box" placeholder="Please enter search keyword..." />
+                            <input type="text" class="search-box" placeholder="Please enter search keyword..."/>
                             <a class="btn btn-search btn-sm" type="button" title="search">
                                 <i class="fas fa-search"></i> Search
                             </a>
                         </div>
                         <div class="search mt-20">
-                            <input type="text" placeholder="Enter Type" />
-                            <a class="btn btn-search btn-sm" type="button" title="search">
+                            <input type="text" placeholder="Enter Type" ng-model="type_name"/>
+                            <a class="btn btn-search btn-sm" type="button" title="search" ng-click="createType(type_name)">
                                 <i class="fas fa-plus"></i> Create
                             </a>
                         </div>
@@ -28,33 +28,13 @@
                             border="0" id="sampleTable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th class="col-md-10">Type</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody ng-repeat="type in types">
                                 <tr>
-                                    <td>#183</td>
-                                    <td>Full time</td>
-                                    <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm trash" type="button">
-                                            <i class="fas fa-close"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#183</td>
-                                    <td>Part time</td>
-                                    <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm trash" type="button">
-                                            <i class="fas fa-close"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#183</td>
-                                    <td>Remote</td>
+                                    <td>{{type.type_name}}</td>
                                     <td class="table-td-center">
                                         <button class="btn btn-primary btn-sm trash" type="button">
                                             <i class="fas fa-close"></i>
@@ -76,8 +56,8 @@
                             </a>
                         </div>
                         <div class="search mt-20">
-                            <input type="text" placeholder="Enter Industry" />
-                            <a class="btn btn-search btn-sm" type="button" title="search">
+                            <input type="text" placeholder="Enter Industry" ng-model="industry"/>
+                            <a class="btn btn-search btn-sm" type="button" title="search" ng-click="createIndustry(industry)">
                                 <i class="fas fa-plus"></i> Create
                             </a>
                         </div>
@@ -85,33 +65,13 @@
                             border="0" id="sampleTable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th class="col-md-10">Industry</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody ng-repeat="industry in industries">
                                 <tr>
-                                    <td>#183</td>
-                                    <td>Information Technology</td>
-                                    <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm trash" type="button">
-                                            <i class="fas fa-close"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#183</td>
-                                    <td>Content Writter</td>
-                                    <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm trash" type="button">
-                                            <i class="fas fa-close"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#183</td>
-                                    <td>Design</td>
+                                    <td>{{industry.industry}}</td>
                                     <td class="table-td-center">
                                         <button class="btn btn-primary btn-sm trash" type="button">
                                             <i class="fas fa-close"></i>
