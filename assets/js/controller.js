@@ -133,7 +133,7 @@ app.controller('LoginAdminController', function ($scope, $http, $location, $root
             .then(function (response) {
                 $scope.adminLogin = response.data;
                 if ($scope.adminLogin.idToken == null)
-                    console.log("Đăng nhập thất bại");
+                    alert("Sai tài khoản hoặc mật khẩu");
                 else {
                     $http.defaults.headers.common['Authorization'] = 'Bearer ' + $scope.adminLogin.idToken;
                     $http({
@@ -455,6 +455,18 @@ app.controller('DashboardController', function ($scope, $http) {
           return uid;
         }
       };
+
+    // get job
+    $http({
+        method: 'GET',
+        url: url + 'Job/GetAll'
+    })
+    .then(function (response) {
+        $scope.jobs = response.data;
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 });
 
 
