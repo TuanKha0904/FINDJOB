@@ -20,56 +20,59 @@ app.controller('ProfileController', function ($scope, $http, $sce, ProfileServic
     };
 
     //Get infor seeker 
-    $http({
-        method: 'GET',
-        url: url + 'Seeker/CV',
-    }).then(function (response) {
-        $scope.seeker = response.data;
-        // Cập nhật dữ liệu vào CKEditor
-        CKEDITOR.instances.experienceEditor.setData($scope.seeker.experience);
-        CKEDITOR.instances.skillsEditor.setData($scope.seeker.skills);
-        $scope.seeker.experience = $sce.trustAsHtml(response.data.experience);
-        $scope.seeker.skills = $sce.trustAsHtml(response.data.skills);
-    })
-        .catch(function (error) {
-            console.log(error);
-        });
+    function getInfor() {
+        $http({
+            method: 'GET',
+            url: url + 'Seeker/CV',
+        }).then(function (response) {
+            $scope.seeker = response.data;
+            // Cập nhật dữ liệu vào CKEditor
+            CKEDITOR.instances.experienceEditor.setData($scope.seeker.experience);
+            CKEDITOR.instances.skillsEditor.setData($scope.seeker.skills);
+            $scope.seeker.experience = $sce.trustAsHtml(response.data.experience);
+            $scope.seeker.skills = $sce.trustAsHtml(response.data.skills);
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
 
-    // Upload image
-    $scope.uploadImage = function () {
-        document.getElementById('filePicker').click();
-        document.getElementById('filePicker').onchange = function () {
-            var image = document.getElementById('filePicker').files[0];
-            if (image) {
-                // Tạo một FormData object và thêm dữ liệu ảnh vào đó
-                var formdata = new FormData();
-                formdata.append("image", image);
+        // Upload image
+        $scope.uploadImage = function () {
+            document.getElementById('filePicker').click();
+            document.getElementById('filePicker').onchange = function () {
+                var image = document.getElementById('filePicker').files[0];
+                if (image) {
+                    // Tạo một FormData object và thêm dữ liệu ảnh vào đó
+                    var formdata = new FormData();
+                    formdata.append("image", image);
 
-                var requestOptions = {
-                    method: 'POST',
-                    body: formdata,
-                };
+                    var requestOptions = {
+                        method: 'POST',
+                        body: formdata,
+                    };
 
-                fetch("https://api.imgbb.com/1/upload?key=b6781f912986eb6e6973af895b680cd0", requestOptions)
-                    .then(function (response) {
-                        response.json().then(function (result) {
-                            var urlImage = result.data.url;
-                            UserService.setUser($scope.user.id, $scope.user.name, $scope.user.email, urlImage, $scope.user.phoneNumber) // Dữ liệu trả về từ API
-                            $http({
-                                method: 'PUT',
-                                url: url + 'Account/Photo',
-                                data: { "photoUrl": urlImage }
-                            })
-                                .catch(function (error) {
-                                    alert(error.message);
+                    fetch("https://api.imgbb.com/1/upload?key=b6781f912986eb6e6973af895b680cd0", requestOptions)
+                        .then(function (response) {
+                            response.json().then(function (result) {
+                                var urlImage = result.data.url;
+                                UserService.setUser($scope.user.id, $scope.user.name, $scope.user.email, urlImage, $scope.user.phoneNumber) // Dữ liệu trả về từ API
+                                $http({
+                                    method: 'PUT',
+                                    url: url + 'Account/Photo',
+                                    data: { "photoUrl": urlImage }
                                 })
+                                    .catch(function (error) {
+                                        alert(error.message);
+                                    })
+                            });
+                        }).catch(function (error) {
+                            console.log(error);
                         });
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-            }
+                }
+            };
         };
     };
+    getInfor();
 
     //Edit profile seeker
     $scope.EditProfile = function (name, email, phone_Number, birthday, address, education, major) {
@@ -92,6 +95,7 @@ app.controller('ProfileController', function ($scope, $http, $sce, ProfileServic
         })
             .then(function (response) {
                 alert(response.data);
+                getInfor();
             })
             .catch(function (error) {
                 console.log(error);
@@ -111,6 +115,7 @@ app.controller('ProfileController', function ($scope, $http, $sce, ProfileServic
             })
                 .then(function (response) {
                     alert(response.data);
+                    getInfor();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -287,23 +292,25 @@ app.controller('ProfileEmployerController', function ($scope, $http, $sce, Emplo
         image_cover: '',
         employer_image: ''
     };
-    $http({
-        method: 'GET',
-        url: url + 'Employer/Get',
-    })
-        .then(function (response) {
-            $scope.employer = response.data;
-            if ($scope.employer.image_cover == null)
-                $scope.employer.image_cover = 'https://i.ibb.co/d0mPWbw/Untitled-design.png';
-            if ($scope.employer.employer_image == null)
-                $scope.employer.employer_image = 'https://i.ibb.co/qdz9N2N/FJ.png';
-            CKEDITOR.instances.aboutEmployer.setData($scope.employer.employer_about);
-            $scope.employer.employer_about = $sce.trustAsHtml(response.data.employer_about);
+    function getInfor() {
+        $http({
+            method: 'GET',
+            url: url + 'Employer/Get',
         })
-        .catch(function (error) {
-            console.log(error);
-        });
-
+            .then(function (response) {
+                $scope.employer = response.data;
+                if ($scope.employer.image_cover == null)
+                    $scope.employer.image_cover = 'https://i.ibb.co/d0mPWbw/Untitled-design.png';
+                if ($scope.employer.employer_image == null)
+                    $scope.employer.employer_image = 'https://i.ibb.co/qdz9N2N/FJ.png';
+                CKEDITOR.instances.aboutEmployer.setData($scope.employer.employer_about);
+                $scope.employer.employer_about = $sce.trustAsHtml(response.data.employer_about);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    getInfor();
     $scope.updateEmployerProfile = function (employer_name, email, contact_phone, employer_website, employer_address) {
         var about = CKEDITOR.instances.aboutEmployer.getData();
         $http({
@@ -321,6 +328,7 @@ app.controller('ProfileEmployerController', function ($scope, $http, $sce, Emplo
             .then(function (response) {
                 EmployerService.editProfile = false;
                 alert(response.data);
+                getInfor();
             })
             .catch(function (error) {
                 console.log(error);
@@ -350,10 +358,11 @@ app.controller('ProfileEmployerController', function ($scope, $http, $sce, Emplo
                                 url: url + 'Employer/Image',
                                 data: { "image": urlImage }
                             })
-                            .then(function (response) {
-                                $scope.employer.employer_image = urlImage;
-                                alert(response.data);
-                            })
+                                .then(function (response) {
+                                    $scope.employer.employer_image = urlImage;
+                                    alert(response.data);
+                                    getInfor();
+                                })
                                 .catch(function (error) {
                                     alert(error.message);
                                 })
@@ -388,10 +397,11 @@ app.controller('ProfileEmployerController', function ($scope, $http, $sce, Emplo
                                 url: url + 'Employer/ImageCover',
                                 data: { "imageCover": urlImage }
                             })
-                            .then(function (response) {
-                                $scope.employer.image_cover = urlImage;
-                                alert(response.data);
-                            })
+                                .then(function (response) {
+                                    $scope.employer.image_cover = urlImage;
+                                    alert(response.data);
+                                    getInfor();
+                                })
                                 .catch(function (error) {
                                     alert(error.message);
                                 })
@@ -407,7 +417,82 @@ app.controller('ProfileEmployerController', function ($scope, $http, $sce, Emplo
 });
 
 app.controller('PostController', function ($scope, $http) {
-    
+    // get location
+    async function getLocation() {
+        var requestOptions = {
+            method: 'GET',
+        };
+        await fetch('https://provinces.open-api.vn/api/?depth=1', requestOptions)
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                response.json().then(function (result) {
+                    $scope.locations = result; // Gán dữ liệu JSON vào $scope.locations
+                })
+                .catch(function (error) {
+                    console.log('Fetch error:', error);
+                });; // Chuyển đổi phản hồi sang JSON
+            });
+    };
+    getLocation();
+
+    //get type
+    function getType() {
+        $http({
+            method: 'GET',
+            url: url + 'Type/Get-all'
+        })
+            .then(function (response) {
+                $scope.types = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    getType();
+
+    //get industry
+    function getIndustry(){
+        $http({
+            method: 'GET',
+            url: url + 'Industry/Get-all'
+        })
+            .then(function (response) {
+                $scope.industries = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    getIndustry();
+
+    //post job
+    $scope.Post = function(tittle, location, minsalary, maxsalary, type, industry, deadline){
+        var description = CKEDITOR.instances.descriptionEditor.getData();
+        var requirement = CKEDITOR.instances.requirementEditor.getData();
+        $http({
+            method: 'POST',
+            url: url + 'Job/Create',
+            data: {
+                "jobTitle": tittle,
+                "location": location,
+                "minimum_Salary": minsalary,
+                "maximum_Salary": maxsalary,
+                "jobDescription": description,
+                "type_id": type,
+                "industry_id": industry,
+                "deadline": deadline,
+                "requirement": requirement
+            }
+        })
+        .then(function (response) {
+            alert(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    };
 });
 
 app.controller('DashboardController', function ($scope, $http) {
@@ -416,127 +501,124 @@ app.controller('DashboardController', function ($scope, $http) {
         method: 'GET',
         url: url + 'Account/QuantityAccount'
     })
-    .then(function (response) {
-        $scope.quantityAccount = response.data;
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+        .then(function (response) {
+            $scope.quantityAccount = response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
     // get quantity job
     $http({
         method: 'GET',
         url: url + 'Job/CountJob'
     })
-    .then(function (response) {
-        $scope.quantityJob = response.data;
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+        .then(function (response) {
+            $scope.quantityJob = response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
     // get account
     $http({
         method: 'GET',
         url: url + 'Account/All?pageSize=20&sortDateCreate=false'
     })
-    .then(function (response) {
-        $scope.accounts = response.data;
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+        .then(function (response) {
+            $scope.accounts = response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
     // shorten uid
-    $scope.shortenUid = function(uid) {
+    $scope.shortenUid = function (uid) {
         if (uid.length > 5) {
-          return uid.substring(0, 5) + '...';
+            return uid.substring(0, 5) + '...';
         } else {
-          return uid;
+            return uid;
         }
-      };
+    };
 
     // get job
     $http({
         method: 'GET',
         url: url + 'Job/GetAll'
     })
-    .then(function (response) {
-        $scope.jobs = response.data;
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+        .then(function (response) {
+            $scope.jobs = response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 });
 
-app.controller('TypeAndIndustryController', function ($scope, $http) { 
+app.controller('TypeAndIndustryController', function ($scope, $http) {
     // Fill type
-    function getType()
-    {
+    function getType() {
         $http({
             method: 'GET',
             url: url + 'Type/Get-all'
         })
-        .then(function (response) {
-            $scope.types = response.data;
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                $scope.types = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
     getType();
 
     // Fill industry
-    function getIndustry()
-    {
+    function getIndustry() {
         $http({
             method: 'GET',
             url: url + 'Industry/Get-all'
         })
-        .then(function (response) {
-            $scope.industries = response.data;
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                $scope.industries = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
     getIndustry();
 
     // create type
-    $scope.createType = function(type_name)
-    {
+    $scope.createType = function (type_name) {
         $http({
             method: 'POST',
             url: url + 'Type/Create',
-            data:{
+            data: {
                 "type_name": type_name
             }
         })
-        .then(function () {
-            getType();
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function () {
+                getType();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
     // create type
-    $scope.createIndustry = function(industry)
-    {
+    $scope.createIndustry = function (industry) {
         $http({
             method: 'POST',
             url: url + 'Industry/Create',
-            data:{
+            data: {
                 "industry": industry
             }
         })
-        .then(function () {
-            getIndustry();
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function () {
+                getIndustry();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 });
+
 
 
