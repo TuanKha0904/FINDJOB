@@ -317,7 +317,6 @@ app.directive("nselect", () => {
       if (nice_Select.length) {
         nice_Select.niceSelect();
       };
-      element.niceSelect();
     }
   };
 });
