@@ -551,6 +551,7 @@ app.controller('DashboardController', function ($scope, $http) {
     })
         .then(function (response) {
             $scope.jobs = response.data;
+            console.log($scope.jobs);
         })
         .catch(function (error) {
             console.log(error);
