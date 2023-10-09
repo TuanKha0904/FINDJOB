@@ -12,106 +12,30 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-xl-10">
+                <div class="col-xl-10"  ng-repeat="job in waitingJobs">
                     <!-- single-job-content -->
                     <div class="single-job-items mb-30">
                         <div class="job-items">
                             <div class="company-img">
-                                <a href="#!job_details"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                <a href="#!job_details"><img ng-src="{{job.logo}}" alt=""></a>
                             </div>
                             <div class="job-tittle">
                                 <a href="#!job_detail">
-                                    <h4>Digital Marketer</h4>
+                                    <h4>{{job.jobTitle}}</h4>
                                 </a>
                                 <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                    <li><span class="badge bg-info">Waiting</span></li>
+                                    <li>{{job.industry}}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
+                                    <li>{{job.minimum_salary}} VNĐ - {{job.maximum_salary}} VNĐ</li>
+                                    <li><span class="badge bg-info">{{job.status}}</span></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="items-link f-right job-link">
-                            <a href="#!job_detail">Fulltime</a>
-                            <span>7 hours ago </span>
-                            <a class="badge edit-info" href="#!edit_job"><i class="fas fa-edit"></i></a>
+                        <div class="items-link f-right" id="change_button_post">
+                            <a href="#!job_detail">{{job.type}}</a>
+                            <span>{{job.deadline}}</span>
                         </div>
                         <span class="exit_job"><i class="fas fa-times"></i></span>
-                    </div>
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"><img src="assets/img/icon/job-list2.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html">
-                                    <h4>Digital Marketer</h4>
-                                </a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                    <li><span class="badge bg-info">Waiting</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right job-link">
-                            <a href="#!job_detail">Fulltime</a>
-                            <span>7 hours ago</span>
-                            <a class="badge edit-info" href="#!edit_job"><i class="fas fa-edit"></i></a>
-                        </div>
-                        <span class="exit_job"><i class="fas fa-times"></i></span>
-                    </div>
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"><img src="assets/img/icon/job-list3.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html">
-                                    <h4>Digital Marketer</h4>
-                                </a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                    <li><span class="badge bg-info">Waiting</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right job-link">
-                            <a href="#!job_detail">Fulltime</a>
-                            <span>7 hours ago</span>
-                            <a class="badge edit-info" href="#!edit_job"><i class="fas fa-edit"></i></a>
-                        </div>
-                        <span class="exit_job"><i class="fas fa-times"></i></span>
-                    </div>
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"><img src="assets/img/icon/job-list4.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html">
-                                    <h4>Digital Marketer</h4>
-                                </a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                    <li><span class="badge bg-info">Waiting</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right job-link">
-                            <a href="#!job_detail">Fulltime</a>
-                            <span>7 hours ago</span>
-                            <a class="badge edit-info" href="#!edit_job"><i class="fas fa-edit"></i></a>
-                        </div>
-                        <span class="exit_job" ><i class="fas fa-times"></i></span>
                     </div>
                 </div>
             </div>

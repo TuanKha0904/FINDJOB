@@ -1,5 +1,5 @@
 const url = 'http://www.findjobapi.somee.com/api/';
-// https://findjob.zeabur.app/api/
+// const url = 'https://findjob.zeabur.app/api/';
 
 app.controller('HomeController', function () { });
 
@@ -622,6 +622,55 @@ app.controller('TypeAndIndustryController', function ($scope, $http) {
                 console.log(error);
             });
     };
+});
+
+app.controller('PostManagementController', function($scope, $http, EmployerService){
+    $scope.employer = EmployerService;
+
+    // get all job
+    function GetAllJob() {
+        $http({
+            method: 'GET',
+            url: url + 'Job/AllJob'
+        })
+            .then(function (response) {
+                $scope.allJobs = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    GetAllJob();
+
+    // get job approved
+    function ApprovedJob () {
+        $http({
+            method: 'GET',
+            url: url + 'Job/JobPostList'
+        })
+            .then(function (response) {
+                $scope.approvedJobs = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    ApprovedJob();
+
+    // get waiting job
+    function waitingJob () {
+        $http({
+            method: 'GET',
+            url: url + 'Job/JobWaitList'
+        })
+            .then(function (response) {
+                $scope.waitingJobs = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    waitingJob();
 });
 
 

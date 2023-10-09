@@ -55,6 +55,7 @@ app.directive("approvedPost", () => {
   return {
     restrict: "E",
     templateUrl: "./views/employer/components/approved_post.html",
+    controller: 'PostManagementController'
   };
 });
 
@@ -62,6 +63,7 @@ app.directive("allPosts", () => {
   return {
     restrict: "E",
     templateUrl: "./views/employer/components/all_posts.html",
+    controller: 'PostManagementController'
   };
 });
 
@@ -69,6 +71,7 @@ app.directive("waitingPost", () => {
   return {
     restrict: "E",
     templateUrl: "./views/employer/components/waiting_post.html",
+    controller: 'PostManagementController'
   };
 });
 

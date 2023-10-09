@@ -49,7 +49,7 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when('/postmanagement', {
             templateUrl: 'views/employer/post_management.html',
-            controller: 'EmployerController'
+            controller: 'PostManagementController'
         })
         .when('/profile', {
             templateUrl: 'views/seeker/profile.html',
