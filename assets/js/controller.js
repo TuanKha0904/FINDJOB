@@ -1,4 +1,5 @@
-const url = 'https://findjob.zeabur.app/api/';
+const url = 'http://www.findjobapi.somee.com/api/';
+// https://findjob.zeabur.app/api/
 
 app.controller('HomeController', function () { });
 
@@ -471,23 +472,25 @@ app.controller('PostController', function ($scope, $http) {
     $scope.Post = function(tittle, location, minsalary, maxsalary, type, industry, deadline){
         var description = CKEDITOR.instances.descriptionEditor.getData();
         var requirement = CKEDITOR.instances.requirementEditor.getData();
+        var data = {
+            "jobTitle": tittle,
+            "location": location.name,
+            "minimum_Salary": minsalary,
+            "maximum_Salary": maxsalary,
+            "jobDescription": description,
+            "type_id": type.type_id,
+            "industry_id": industry.industry_id,
+            "deadline": deadline,
+            "requirement": requirement    
+        };
+        console.log(data);
         $http({
             method: 'POST',
-            url: url + 'Job/Create',
-            data: {
-                "jobTitle": tittle,
-                "location": location,
-                "minimum_Salary": minsalary,
-                "maximum_Salary": maxsalary,
-                "jobDescription": description,
-                "type_id": type,
-                "industry_id": industry,
-                "deadline": deadline,
-                "requirement": requirement
-            }
+            url: url + 'Job/Post',
+            data: data
         })
         .then(function (response) {
-            alert(response.data);
+            alert('Tạo thành công');
         })
         .catch(function (error) {
             console.log(error);
