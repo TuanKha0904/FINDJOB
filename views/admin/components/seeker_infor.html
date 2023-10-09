@@ -3,38 +3,26 @@
         <table class="col-xl-8 col-lg-8 col-md-8 information_profile">
             <tr class="profile_output">
                 <td>Full name:</td>
-                <td>Nguyễn Chí Nhiên</td>
+                <td>{{account.name}}</td>
             </tr>
             <tr class="profile_output">
                 <td>Address:</td>
-                <td>27c/2 Thi Sách, Phường 6, Đà Lạt, Lâm Đồng, Việt Nam</td>
+                <td>{{account.address}}</td>
             </tr>
             <tr class="profile_output">
                 <td>Birthday:</td>
-                <td>09/04/2003</td>
+                <td>{{account.birthday}}</td>
             </tr>
             <tr class="profile_output">
                 <td>Phone number:</td>
-                <td>0123456789</td>
-            </tr>
-            <tr class="profile_output">
-                <td>Academic level:</td>
-                <td> Đại học </td>
-            </tr>
-            <tr class="profile_output">
-                <td>Personal CV:</td>
-                <td>https://</td>
-            </tr>
-            <tr class="profile_output">
-                <td>Personal Website:</td>
-                <td>https://</td>
+                <td>{{account.phoneNumber}}</td>
             </tr>
         </table>
         <div class="col-xl-4 col-lg-4 col-md-4 custom_button_Profile">
             <div class="text-center">
-                <img src="assets/img/logo/testimonial.png" alt="">
+                <img ng-src="{{account.photo}}" alt="" class="image_infor">
             </div>
-            <div class="custom_profile_email"> NCN@gmail.com </div>
+            <div class="custom_profile_email">{{account.email}}</div>
         </div>
     </div>
 </section>

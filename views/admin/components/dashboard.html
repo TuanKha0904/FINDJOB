@@ -57,7 +57,7 @@
                     </thead>
                     <tbody ng-repeat="account in accounts">
                       <tr>
-                        <td><a href="" ng-click="admin.InforProfile()">{{shortenUid(account.uid)}}</a></td>
+                        <td><a href="" ng-click="admin.InforProfile(); getAccount(account.uid);" ng-model="account.uid">{{shortenUid(account.uid)}}</a></td>
                         <td>{{account.email}}</td>
                         <td><span class="tag tag-success">{{account.name}}</span></td>
                       </tr>
@@ -89,7 +89,7 @@
                     </thead>
                     <tbody ng-repeat="job in jobs">
                       <tr>
-                        <td><a href="" ng-click="admin.InforPostJob()">{{job.id}}</a></td>
+                        <td><a href="" ng-click="admin.InforPostJob()" ng-model="job.id">{{job.id}}</a></td>
                         <td>{{job.employer_name}}</td>
                         <td>{{job.title}}</td>
                         <td>{{job.posted_date}}</td>

@@ -7059,6 +7059,9 @@ form.search-box .search-form a:hover {
 .single-job-items .company-img img {
     overflow: hidden;
     float: left;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
     margin-right: 32px;
     z-index: 999;
 }
@@ -7132,6 +7135,13 @@ form.search-box .search-form a:hover {
 .single-job-items .job-items {
     display: flex;
     flex-wrap: wrap
+}
+
+.image_infor{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {

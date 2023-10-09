@@ -93,6 +93,7 @@ app.directive("profileInfor", () => {
   return {
     restrict: "E",
     templateUrl: "./views/admin/profile_infor.html",
+    controller: 'DashboardController'
   };
 });
 
@@ -100,6 +101,7 @@ app.directive("showPostJob", () => {
   return {
     restrict: "E",
     templateUrl: "./views/admin/components/post_job.html",
+    controller: 'DashboardController'
   };
 });
 

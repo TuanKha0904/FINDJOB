@@ -1,5 +1,5 @@
-const url = 'http://www.findjobapi.somee.com/api/';
-// const url = 'https://findjob.zeabur.app/api/';
+// const url = 'http://www.findjobapi.somee.com/api/';
+const url = 'https://findjob.zeabur.app/api/';
 
 app.controller('HomeController', function () { });
 
@@ -500,40 +500,50 @@ app.controller('PostController', function ($scope, $http) {
 
 app.controller('DashboardController', function ($scope, $http) {
     // get quantity account
-    $http({
-        method: 'GET',
-        url: url + 'Account/QuantityAccount'
-    })
-        .then(function (response) {
-            $scope.quantityAccount = response.data;
+    function getQuantityAccount() {
+        $http({
+            method: 'GET',
+            url: url + 'Account/QuantityAccount'
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                $scope.quantityAccount = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });    
+    };
+    getQuantityAccount();
 
     // get quantity job
-    $http({
-        method: 'GET',
-        url: url + 'Job/CountJob'
-    })
-        .then(function (response) {
-            $scope.quantityJob = response.data;
+    function getQuantityJob() {
+        $http({
+            method: 'GET',
+            url: url + 'Job/CountJob'
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                $scope.quantityJob = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    
+    };
+    getQuantityJob();
 
     // get account
-    $http({
-        method: 'GET',
-        url: url + 'Account/All?pageSize=20&sortDateCreate=false'
-    })
-        .then(function (response) {
-            $scope.accounts = response.data;
+    function getAccount() {
+        $http({
+            method: 'GET',
+            url: url + 'Account/All?pageSize=20&sortDateCreate=false'
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                $scope.accounts = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });    
+    };
+    getAccount();
 
     // shorten uid
     $scope.shortenUid = function (uid) {
@@ -545,18 +555,37 @@ app.controller('DashboardController', function ($scope, $http) {
     };
 
     // get job
-    $http({
-        method: 'GET',
-        url: url + 'Job/GetAll'
-    })
-        .then(function (response) {
-            $scope.jobs = response.data;
-            console.log($scope.jobs);
+    function getJob() {
+        $http({
+            method: 'GET',
+            url: url + 'Job/GetAll'
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                $scope.jobs = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });    
+    };
+    getJob();
+
+    // get Infor account
+    $scope.getAccount = function (id) {
+        console.log(id);
+        $http({
+            method: 'GET',
+            url: url + 'Seeker/Infor?userId=' + id,
+        })
+            .then(function (response) {
+                $scope.account = response.data;
+                console.log($scope.account);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 });
+
 
 app.controller('TypeAndIndustryController', function ($scope, $http) {
     // Fill type
