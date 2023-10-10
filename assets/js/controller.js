@@ -202,6 +202,7 @@ app.controller(
         .then(function (result) {
           var user = result.user;
           localStorage.setItem("user", JSON.stringify(user.displayName));
+          console.log(user);
           return user.getIdToken();
         })
         .then(function (accessToken) {
@@ -310,8 +311,42 @@ app.controller(
   }
 );
 
-app.controller("JobDetailController", function ($scope, ApplyService) {
+app.controller("JobDetailController", function ($scope, ApplyService, $http) {
   $scope.apply = ApplyService;
+
+  $scope.applyjob = function postRecruitmentNoAccount(
+    name,
+    email,
+    phone,
+    birthday,
+    address,
+    major,
+    experience,
+    education,
+    skills
+  ) {
+    $http({
+      method: "POST",
+      url: url + "RecruitmentNoAccount/Post",
+      data: {
+        name: name,
+        email: email,
+        phone: phone,
+        birthday: birthday,
+        address: address,
+        major: major,
+        experience: experience,
+        education: education,
+        skills: skills,
+      },
+    })
+      .then(function (response) {
+        $scope.recruitmentNoAccount = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });
 
 app.controller(
@@ -822,7 +857,7 @@ app.controller("FindAJobsController", function ($scope, $http) {
       response
         .json()
         .then(function (result) {
-          $scope.locations = result; // Gán dữ liệu JSON vào $scope.locations
+          $scope.locations = result;
         })
         .catch(function (error) {
           console.log("Fetch error:", error);
