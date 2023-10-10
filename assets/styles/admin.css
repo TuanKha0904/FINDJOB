@@ -1958,6 +1958,12 @@ pre code {
   height: 100%;
 }
 
+.logo_company{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
 .name_employer{
   margin: 20px 0;
   color: #d20000;

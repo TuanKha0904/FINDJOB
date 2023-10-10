@@ -3,7 +3,7 @@
         <div class="single-job-items mb-30">
             <div class="job-items">
                 <div>
-                    <a href=""><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    <a href=""><img src="{{jobDetail.logo}}" alt="" class="logo_company"></a>
                 </div>
                 <div class="job-tittle job-tittle2">
                     <a href="">
@@ -12,7 +12,7 @@
                     <ul>
                         <li>{{jobDetail.industry}}</li>
                         <li><i class="fas fa-map-marker-alt"></i>{{jobDetail.location}}</li>
-                        <li>{{jobDetail.minimum_salary}} VNĐ - {{jobDetail.maximum_salary}} VNĐ</li>
+                        <li>{{jobDetail.minimum_salary | currencyFormat}} - {{jobDetail.maximum_salary | currencyFormat}}</li>
                     </ul>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         <li>Posted date : <span>{{jobDetail.posted_date}}</span></li>
                         <li>Location : <span>{{jobDetail.location}}</span></li>
                         <li>Job type : <span>{{jobDetail.type}}</span></li>
-                        <li>Up to : <span>{{jobDetail.maximum_salary}} VNĐ</span></li>
+                        <li>Up to : <span>{{jobDetail.maximum_salary | currencyFormat}} VNĐ</span></li>
                         <li>Deadline : <span>{{jobDetail.deadline}}</span></li>
                         <li>Industry : <span>{{jobDetail.industry}}</span></li>
                     </ul>
@@ -60,7 +60,7 @@
                     </div>
                     <span>{{jobDetail.employer_name}}</span>
                     <ul>
-                        <li>Web : <a href="{{jobDetail.website}}" class="link_website">{{jobDetail.website}}</a></li>
+                        <li>Web : <a href="{{jobDetail.website}}" class="link_website" target="_blank">{{jobDetail.website}}</a></li>
                         <li>Email: <span>{{jobDetail.email}}</span></li>
                     </ul>
                 </div>
