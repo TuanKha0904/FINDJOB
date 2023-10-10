@@ -702,5 +702,40 @@ app.controller('PostManagementController', function($scope, $http, EmployerServi
     waitingJob();
 });
 
+app.controller('PostAdminController', function($scope, $http){
+    //get post wait
+    function getPostWait() {
+        $http({
+            method: 'GET',
+            url: url + 'Job/AllJobWait'
+        })
+            .then(function (response) {
+                $scope.jobs = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    getPostWait();
+});
+
+app.controller('JobAdminController', function($scope, $http){
+    //get post wait
+    function getPostJob() {
+        $http({
+            method: 'GET',
+            url: url + 'Job/AllJobPost'
+        })
+            .then(function (response) {
+                $scope.jobs = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    getPostJob();
+});
+
+
 
 

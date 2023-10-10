@@ -25,54 +25,20 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th class="col-md-4">Name</th>
-                                    <th>Address</th>
-                                    <th>Requirement</th>
+                                    <th class="col-md-4">Tittle</th>    
+                                    <th>Location</th>
                                     <th>Minimum salary</th>
                                     <th>Maximum salary</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody ng-repeat="job in jobs">
                                 <tr>
-                                    <td><a href="" ng-click="admin.InforPostJob()">#183</a></td>
-                                    <td>Job1</td>
-                                    <td>Da Lat</td>
-                                    <td>Dai hoc</td>
-                                    <td>4.000.000</td>
-                                    <td>10.000.000</td>
-                                    <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm edit" type="button">
-                                            <i class="fas fa-check"></i>
-                                        </button>
-                                        <button class="btn btn-primary btn-sm trash" type="button">
-                                            <i class="fas fa-close"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="" ng-click="admin.InforPostJob()">#183</a></td>
-                                    <td>Job1</td>
-                                    <td>Da Lat</td>
-                                    <td>Dai hoc</td>
-                                    <td>4.000.000</td>
-                                    <td>10.000.000</td>
-                                    <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm edit" type="button">
-                                            <i class="fas fa-check"></i>
-                                        </button>
-                                        <button class="btn btn-primary btn-sm trash" type="button">
-                                            <i class="fas fa-close"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="" ng-click="admin.InforPostJob()">#183</a></td>
-                                    <td>Job1</td>
-                                    <td>Da Lat</td>
-                                    <td>Dai hoc</td>
-                                    <td>4.000.000</td>
-                                    <td>10.000.000</td>
+                                    <td><a href="" ng-click="admin.InforPostJob()">{{job.id}}</a></td>
+                                    <td>{{job.jobTitle}}</td>
+                                    <td>{{job.location}}</td>
+                                    <td>{{job.minimum_Salary}}</td>
+                                    <td>{{job.maximum_Salary}}</td>
                                     <td class="table-td-center">
                                         <button class="btn btn-primary btn-sm edit" type="button">
                                             <i class="fas fa-check"></i>

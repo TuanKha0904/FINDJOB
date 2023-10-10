@@ -138,6 +138,7 @@ app.directive("jobManagement", () => {
   return {
     restrict: "E",
     templateUrl: "./views/admin/components/job_management.html",
+    controller: 'JobAdminController'
   };
 });
 
@@ -145,6 +146,7 @@ app.directive("postManagement", () => {
   return {
     restrict: "E",
     templateUrl: "./views/admin/components/post_management.html",
+    controller: 'PostAdminController'
   };
 });
 
