@@ -202,6 +202,7 @@ app.controller(
         .then(function (result) {
           var user = result.user;
           localStorage.setItem("user", JSON.stringify(user.displayName));
+          console.log(user);
           return user.getIdToken();
         })
         .then(function (accessToken) {
@@ -310,8 +311,42 @@ app.controller(
   }
 );
 
-app.controller("JobDetailController", function ($scope, ApplyService) {
+app.controller("JobDetailController", function ($scope, ApplyService, $http) {
   $scope.apply = ApplyService;
+
+  $scope.applyjob = function postRecruitmentNoAccount(
+    name,
+    email,
+    phone,
+    birthday,
+    address,
+    major,
+    experience,
+    education,
+    skills
+  ) {
+    $http({
+      method: "POST",
+      url: url + "RecruitmentNoAccount/Post",
+      data: {
+        name: name,
+        email: email,
+        phone: phone,
+        birthday: birthday,
+        address: address,
+        major: major,
+        experience: experience,
+        education: education,
+        skills: skills,
+      },
+    })
+      .then(function (response) {
+        $scope.recruitmentNoAccount = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });
 
 app.controller(
@@ -773,7 +808,61 @@ app.controller(
         });
     }
     waitingJob();
+  }
+);
+
+app.controller("FindAJobsController", function ($scope, $http) {
+  // Filter jobs type
+  function getType() {
+    $http({
+      method: "GET",
+      url: url + "Type/Get-all",
+    })
+      .then(function (response) {
+        $scope.types = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  getType();
+
+  // Filter jobs industry
+  function getIndustry() {
+    $http({
+      method: "GET",
+      url: url + "Industry/Get-all",
+    })
+      .then(function (response) {
+        $scope.industries = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  getIndustry();
+
+  //Filter jobs location
+  async function getLocation() {
+    var requestOptions = {
+      method: "GET",
+    };
+    await fetch(
+      "https://provinces.open-api.vn/api/?depth=1",
+      requestOptions
+    ).then(function (response) {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      response
+        .json()
+        .then(function (result) {
+          $scope.locations = result; // Gán dữ liệu JSON vào $scope.locations
+        })
+        .catch(function (error) {
+          console.log("Fetch error:", error);
+        });
+    });
+  }
+  getLocation();
 });
-
-
-
