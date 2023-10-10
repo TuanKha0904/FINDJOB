@@ -684,7 +684,6 @@ app.controller("DashboardController", function ($scope, $http) {
     })
       .then(function (response) {
         $scope.account = response.data;
-        console.log($scope.account);
       })
       .catch(function (error) {
         console.log(error);
@@ -924,4 +923,72 @@ app.controller('JobAdminController', function($scope, $http){
           });
   };
   getPostJob();
+});
+
+app.controller('AccountManagementController', function($scope, $http){
+    // get account
+    function getAccount() {
+      $http({
+        method: "GET",
+        url: url + "Account/All",
+      })
+        .then(function (response) {
+          $scope.accounts = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    getAccount();
+  
+    // shorten uid
+    $scope.shortenUid = function (uid) {
+      if (uid.length > 5) {
+        return uid.substring(0, 5) + "...";
+      } else {
+        return uid;
+      }
+    };
+
+      // get Infor account
+  $scope.getAccount = function (id) {
+    $http({
+      method: "GET",
+      url: url + "Seeker/Infor?userId=" + id,
+    })
+      .then(function (response) {
+        $scope.account = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  // get infor employer
+  $scope.getEmployer = function (id) {
+    $http({
+      method: "GET",
+      url: url + "Employer/Profile?userId=" + id,
+    })
+      .then(function (response) {
+        $scope.employer = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  $scope.deleteAccount = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Account/Delete?userId=" + id,
+    })
+      .then(function () {
+        alert("Xóa tài khoản thành công");
+        getAccount();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });

@@ -131,6 +131,7 @@ app.directive("accountManagement", () => {
   return {
     restrict: "E",
     templateUrl: "./views/admin/components/account_management.html",
+    controller: 'AccountManagementController'
   };
 });
 
