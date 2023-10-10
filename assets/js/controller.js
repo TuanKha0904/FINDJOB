@@ -1,7 +1,7 @@
 // const url = 'http://www.findjobapi.somee.com/api/';
 const url = "https://findjob.zeabur.app/api/";
 
-app.controller("HomeController", function () {});
+app.controller("HomeController", function () { });
 
 app.controller(
   "ProfileController",
@@ -759,9 +759,7 @@ app.controller("TypeAndIndustryController", function ($scope, $http) {
   };
 });
 
-app.controller(
-  "PostManagementController",
-  function ($scope, $http, EmployerService) {
+app.controller("PostManagementController",function ($scope, $http, EmployerService) {
     $scope.employer = EmployerService;
 
     // get all job
@@ -865,4 +863,38 @@ app.controller("FindAJobsController", function ($scope, $http) {
     });
   }
   getLocation();
+});
+
+app.controller('PostAdminController', function($scope, $http){
+  //get post wait
+  function getPostWait() {
+      $http({
+          method: 'GET',
+          url: url + 'Job/AllJobWait'
+      })
+          .then(function (response) {
+              $scope.jobs = response.data;
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+  };
+  getPostWait();
+});
+
+app.controller('JobAdminController', function($scope, $http){
+  //get post wait
+  function getPostJob() {
+      $http({
+          method: 'GET',
+          url: url + 'Job/AllJobPost'
+      })
+          .then(function (response) {
+              $scope.jobs = response.data;
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+  };
+  getPostJob();
 });
