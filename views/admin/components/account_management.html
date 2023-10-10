@@ -25,48 +25,22 @@
                                 <tr>
                                     <th>Account ID</th>
                                     <th class="col-md-4">Email</th>
-                                    <th class="col-md-4">Password</th>
+                                    <th class="col-md-4">Name</th>
                                     <th>Date_create</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody ng-repeat="account in accounts">
                                 <tr>
-                                    <td><a href="" ng-click="admin.InforProfile()">#CD12837</a></td>
-                                    <td>John@gmail.com</td>
-                                    <td>123456B</td>
-                                    <td>15/08/2023</td>
+                                    <td><a href="" ng-click="admin.InforProfile(); getAccount(account.uid); getEmployer(account.uid);" ng-model="account.uid">{{shortenUid(account.uid)}}</a></td>
+                                    <td>{{account.email}}</td>
+                                    <td>{{account.name}}</td>
+                                    <td>{{account.dateCreate}}</td>
                                     <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                            onclick="myFunction(this)">
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"  ng-click="deleteAccount(account.uid)">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="" ng-click="admin.InforProfile()">#CD12837</a></td>
-                                    <td>John@gmail.com</td>
-                                    <td>123456A</td>
-                                    <td>15/08/2023</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                            onclick="myFunction(this)">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="" ng-click="admin.InforProfile()">#CD12837</a></td>
-                                    <td>John@gmail.com</td>
-                                    <td>123456D</td>
-                                    <td>15/08/2023</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                            onclick="myFunction()">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
