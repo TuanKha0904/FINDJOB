@@ -7,62 +7,35 @@
                 </div>
                 <div class="job-tittle job-tittle2">
                     <a href="">
-                        <h4>Digital Marketer</h4>
+                        <h4>{{jobDetail.jobTitle}}</h4>
                     </a>
                     <ul>
-                        <li>Creative Agency</li>
-                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                        <li>$3500 - $4000</li>
+                        <li>{{jobDetail.industry}}</li>
+                        <li><i class="fas fa-map-marker-alt"></i>{{jobDetail.location}}</li>
+                        <li>{{jobDetail.minimum_salary}} VNĐ - {{jobDetail.maximum_salary}} VNĐ</li>
                     </ul>
                 </div>
             </div>
             <div class="items-link items-link2 f-right">
-                <a href="">Full Time</a>
-                <span>7 hours ago</span>
+                <a href="">{{jobDetail.type}}</a>
+                <span>{{jobDetail.deadline}}</span>
             </div>
         </div>
         <div class="job-post-details">
-            <div class="post-details1 mb-50">
+            <div class="post-details1 mb-50 pl-30 pr-30">
                 <!-- Small Section Tittle -->
                 <div class="small-section-tittle">
                     <h4>Job Description</h4>
                 </div>
-                <p>
-                    It is a long established fact that a reader will beff distracted
-                    by vbthe creadable content of a page when looking at its layout.
-                    The pointf of using Lorem Ipsum is that it has ahf mcore
-                    or-lgess normal distribution of letters, as opposed to using,
-                    Content here content here making it look like readable.
-                </p>
+                <div ng-bind-html="jobDetail.jobDescription"></div>
             </div>
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 post-details2 mb-50">
+                <div class="post-details2 mb-50 pl-30 pr-30">
                     <!-- Small Section Tittle -->
                     <div class="small-section-tittle">
-                        <h4>Required Knowledge, Skills, and Abilities</h4>
+                        <h4>Requirement + Education + Experience</h4>
                     </div>
-                    <ul>
-                        <li>System Software Development</li>
-                        <li>
-                            Mobile Applicationin iOS/Android/Tizen or other platform
-                        </li>
-                        <li>Research and code , libraries, APIs and frameworks</li>
-                        <li>Strong knowledge on software development life cycle</li>
-                        <li>Strong problem solving and debugging skills</li>
-                    </ul>
-                </div>
-                <div class=" col-xl-6 col-lg-6 col-md-6 post-details2 mb-50">
-                    <!-- Small Section Tittle -->
-                    <div class="small-section-tittle">
-                        <h4>Education + Experience</h4>
-                    </div>
-                    <ul>
-                        <li>3 or more years of professional design experience</li>
-                        <li>Direct response email experience</li>
-                        <li>Ecommerce website design experience</li>
-                        <li>Familiarity with mobile and web apps preferred</li>
-                        <li>Experience using Invision a plus</li>
-                    </ul>
+                   <div ng-bind-html="jobDetail.requirement"></div>
                 </div>
             </div>
             <div class="row">
@@ -72,13 +45,12 @@
                         <h4>Job Overview</h4>
                     </div>
                     <ul>
-                        <li>Posted date : <span>12 Aug 2019</span></li>
-                        <li>Location : <span>New York</span></li>
-                        <li>Vacancy : <span>02</span></li>
-                        <li>Job type : <span>Full time</span></li>
-                        <li>Up to : <span>$7,800</span></li>
-                        <li>Deadline : <span>12 Sep 2020</span></li>
-                        <li>Industry : <span>Information Technology</span></li>
+                        <li>Posted date : <span>{{jobDetail.posted_date}}</span></li>
+                        <li>Location : <span>{{jobDetail.location}}</span></li>
+                        <li>Job type : <span>{{jobDetail.type}}</span></li>
+                        <li>Up to : <span>{{jobDetail.maximum_salary}} VNĐ</span></li>
+                        <li>Deadline : <span>{{jobDetail.deadline}}</span></li>
+                        <li>Industry : <span>{{jobDetail.industry}}</span></li>
                     </ul>
                 </div>
                 <div class=" col-xl-6 col-lg-6 col-md-6 post-details4 mb-50">
@@ -86,14 +58,10 @@
                     <div class="small-section-tittle">
                         <h4>Company Information</h4>
                     </div>
-                    <span>Công ty VNG</span>
-                    <p>
-                        It is a long established fact that a reader will be distracted by
-                        the readable content of a page when looking at its layout.
-                    </p>
+                    <span>{{jobDetail.employer_name}}</span>
                     <ul>
-                        <li>Web : <a href="">http://vng.com.vn</a></li>
-                        <li>Email: <span>vng@gmail.com</span></li>
+                        <li>Web : <a href="{{jobDetail.website}}" class="link_website">{{jobDetail.website}}</a></li>
+                        <li>Email: <span>{{jobDetail.email}}</span></li>
                     </ul>
                 </div>
             </div>

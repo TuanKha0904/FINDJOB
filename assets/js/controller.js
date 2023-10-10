@@ -703,6 +703,20 @@ app.controller("DashboardController", function ($scope, $http) {
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  // get job detail
+  $scope.getJobDetail = function (id) {
+    $http({
+      method: "GET",
+      url: url + "Job/JobDetail?jobId=" + id,
+    })
+      .then(function (response) {
+        $scope.jobDetail = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 });
 
