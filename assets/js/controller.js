@@ -678,7 +678,6 @@ app.controller("DashboardController", function ($scope, $http) {
 
   // get Infor account
   $scope.getAccount = function (id) {
-    console.log(id);
     $http({
       method: "GET",
       url: url + "Seeker/Infor?userId=" + id,
@@ -691,6 +690,20 @@ app.controller("DashboardController", function ($scope, $http) {
         console.log(error);
       });
   };
+
+  // get infor employer
+  $scope.getEmployer = function (id) {
+    $http({
+      method: "GET",
+      url: url + "Employer/Profile?userId=" + id,
+    })
+      .then(function (response) {
+        $scope.employer = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 });
 
 app.controller("TypeAndIndustryController", function ($scope, $http) {

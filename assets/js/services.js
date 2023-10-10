@@ -17,7 +17,6 @@ app.service('ApplyService', function() {
   };
 });
 
-
 app.service('ProfileService', function() {
   var service = this;
   
@@ -161,19 +160,13 @@ app.service('UserService', function () {
   var user = {};
 
  // Trong UserService
-this.setUser = function (uid, name, email, photo, phoneNumber) {
-  user.Uid = uid;
-  user.Name = name;
-  user.Email = email;
-  
-  // Kiểm tra nếu user.Photo là null, gán đường dẫn ảnh mặc định
-  if (photo == null) {
-    user.Photo = 'https://i.ibb.co/9NVr67G/user.jpg';
-  } else {
+  this.setUser = function (uid, name, email, photo, phoneNumber) {
+    user.Uid = uid;
+    user.Name = name;
+    user.Email = email;
     user.Photo = photo;
-  }
-  user.PhoneNumber = phoneNumber;
-};
+    user.PhoneNumber = phoneNumber;
+  };
   this.getUser = function () {
       return user;
   };

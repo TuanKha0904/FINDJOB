@@ -7138,10 +7138,19 @@ form.search-box .search-form a:hover {
 }
 
 .image_infor{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.link_website{
+    color: #1871ca;
+    text-decoration: underline;
+}
+
+.link_website:hover{
+    color: #da2461;
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {

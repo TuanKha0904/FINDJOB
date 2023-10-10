@@ -1,37 +1,21 @@
-<section>
+<section class = "scroll">
     <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="col-xl-12 col-lg-12 col-md-12 company-img">
-            <<img src="assets/img/hero/h1hero.jpg" alt="">
+            <img ng-src="{{employer.image_cover}}" alt="">
         </div>
-        <h1 class="col-xl-12 col-lg-12 name_employer">Công ty VNG</h1>
+        <h1 class="col-xl-12 col-lg-12 name_employer">{{employer.employer_name}}</h1>
         <table class="col-xl-12 col-lg-12 col-md-12 information_profile">
             <tr class="profile_output">
-                <td colspan="2"> <pre>
-                    VNG Corporation, based in Vietnam, is a prominent technology company 
-                    known for its diverse range of digital products and services. Established in 2004, 
-                    VNG has played a significant role in shaping the country's tech landscape.
-
-                    With a strong focus on innovation, VNG has developed popular offerings such as Zalo 
-                    (a messaging and social media platform), Vinagame (online gaming), and Zing MP3 (music streaming).
-                     The company is dedicated to providing users with high-quality digital experiences and continues 
-                     to expand its presence in Southeast Asia.
-                    
-                    VNG's commitment to technology, creativity, and user satisfaction has made it a key player 
-                    in the Vietnamese and regional tech industry.
-                </pre></td>
-               
-            </tr>
-            <tr class="profile_output">
                 <td>Address:</td>
-                <td>27c/2 Thi Sách, Phường 6, Đà Lạt, Lâm Đồng, Việt Nam</td>
+                <td>{{employer.employer_address}}</td>
             </tr>
             <tr class="profile_output">
                 <td>Phone number:</td>
-                <td>0123456789</td>
+                <td>{{employer.contact_phone}}</td>
             </tr>
             <tr class="profile_output">
                 <td>Website:</td>
-                <td>https://</td>
+                <td><a href="{{employer.employer_website}}" target="_blank" class="link_website">{{employer.employer_website}}</a></td>
             </tr>
         </table>
     </div>
