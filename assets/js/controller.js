@@ -811,6 +811,21 @@ app.controller('PostAdminController', function($scope, $http){
           });
   };
   getPostWait();
+
+  // update post status
+  $scope.updatePostStatus = function(id){
+      $http({
+          method: 'PUT',
+          url: url + 'Job/Status?jobId=' + id
+      })
+          .then(function () {
+              alert('Đã cập nhật trạng thái');
+              getPostWait();
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+  };
 });
 
 app.controller('JobAdminController', function($scope, $http){
@@ -828,6 +843,19 @@ app.controller('JobAdminController', function($scope, $http){
           });
   };
   getPostJob();
+    // get job detail
+    $scope.getJobDetail = function (id) {
+      $http({
+        method: "GET",
+        url: url + "Job/JobDetail?jobId=" + id,
+      })
+        .then(function (response) {
+          $scope.jobDetail = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };  
 });
 
 app.controller('AccountManagementController', function($scope, $http){

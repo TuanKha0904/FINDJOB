@@ -27,7 +27,12 @@
                                     <li>{{job.industry}}</li>
                                     <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
                                     <li>{{job.minimum_salary}} VNĐ - {{job.maximum_salary}} VNĐ</li>
-                                    <li><span class="badge bg-info">{{job.status}}</span></li>
+                                    <li>
+                                        <span
+                                            ng-class="{'badge bg-success': job.status === 'Approved', 'badge bg-info': job.status === 'Waiting'}">
+                                            {{job.status}}
+                                        </span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

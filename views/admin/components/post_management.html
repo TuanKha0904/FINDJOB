@@ -34,13 +34,13 @@
                             </thead>
                             <tbody ng-repeat="job in jobs">
                                 <tr>
-                                    <td><a href="" ng-click="admin.InforPostJob()">{{job.id}}</a></td>
+                                    <td><a href="" ng-click="admin.InforPostJob()" ng-model="job.id">{{job.id}}</a></td>
                                     <td>{{job.jobTitle}}</td>
                                     <td>{{job.location}}</td>
                                     <td>{{job.minimum_Salary}}</td>
                                     <td>{{job.maximum_Salary}}</td>
                                     <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm edit" type="button">
+                                        <button class="btn btn-primary btn-sm edit" type="button" ng-click="updatePostStatus(job.id)">
                                             <i class="fas fa-check"></i>
                                         </button>
                                         <button class="btn btn-primary btn-sm trash" type="button">
