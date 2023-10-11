@@ -786,59 +786,14 @@ app.controller("PostManagementController",function ($scope, $http, EmployerServi
 );
 
 app.controller("FindAJobsController", function ($scope, $http) {
-  // Filter jobs type
-  function getType() {
-    $http({
-      method: "GET",
-      url: url + "Type/Get-all",
-    })
-      .then(function (response) {
-        $scope.types = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  getType();
+  // get location
+  getLocation($scope);
 
-  // Filter jobs industry
-  function getIndustry() {
-    $http({
-      method: "GET",
-      url: url + "Industry/Get-all",
-    })
-      .then(function (response) {
-        $scope.industries = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  getIndustry();
+  //get type
+  getType($http, $scope);
 
-  //Filter jobs location
-  async function getLocation() {
-    var requestOptions = {
-      method: "GET",
-    };
-    await fetch(
-      "https://provinces.open-api.vn/api/?depth=1",
-      requestOptions
-    ).then(function (response) {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      response
-        .json()
-        .then(function (result) {
-          $scope.locations = result; // Gán dữ liệu JSON vào $scope.locations
-        })
-        .catch(function (error) {
-          console.log("Fetch error:", error);
-        });
-    });
-  }
-  getLocation();
+  //get industry
+  getIndustry($http, $scope);
 });
 
 app.controller('PostAdminController', function($scope, $http){
