@@ -122,10 +122,10 @@
               <div class="single-job-items mb-30" ng-repeat="job in jobs">
                 <div class="job-items">
                   <div class="company-img">
-                    <a href="#!job_details"><img ng-src="{{job.logo}}" alt="" class="logo_company" /></a>
+                    <a href="#!job_details/{{job.id}}"><img ng-src="{{job.logo}}" alt="" class="logo_company" /></a>
                   </div>
                   <div class="job-tittle job-tittle2">
-                    <a href="#!job_details">
+                    <a href="#!job_details/{{job.id}}">
                       <h4>{{job.jobTitle}}</h4>
                     </a>
                     <ul>
@@ -137,7 +137,7 @@
                   </div>
                 </div>
                 <div class="items-link items-link2 f-right">
-                  <a href="#!job_details">{{job.type}}</a>
+                  <a href="#!job_details/{{job.id}}">{{job.type}}</a>
                   <span>{{job.deadline}}</span>
                 </div>
               </div>

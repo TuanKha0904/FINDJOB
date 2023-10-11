@@ -52,7 +52,7 @@ app.config(function ($routeProvider, $httpProvider) {
       templateUrl: "views/seeker/profile.html",
       controller: "ProfileController",
     })
-    .when("/job_details", {
+    .when("/job_details/:jobId", {
       templateUrl: "views/seeker/job_details.html",
       controller: "JobDetailController",
     })
