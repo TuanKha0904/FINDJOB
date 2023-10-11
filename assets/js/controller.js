@@ -155,7 +155,7 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
     })
       .then(function (response) {
         $scope.adminLogin = response.data;
-        if ($scope.adminLogin.idToken == null)
+        if ($scope.adminLogin.isAdmin == false || $scope.adminLogin.idToken == null)
           alert("Sai tài khoản hoặc mật khẩu");
         else {
           $http.defaults.headers.common["Authorization"] =
@@ -170,7 +170,7 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
         }
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.data);
       });
   };
 }
@@ -276,7 +276,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
         }
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.data);
       });
   };
 }
