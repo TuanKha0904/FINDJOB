@@ -378,11 +378,6 @@ app.controller(
       })
         .then(function (response) {
           $scope.employer = response.data;
-          if ($scope.employer.image_cover == null)
-            $scope.employer.image_cover =
-              "https://i.ibb.co/d0mPWbw/Untitled-design.png";
-          if ($scope.employer.employer_image == null)
-            $scope.employer.employer_image = "https://i.ibb.co/qdz9N2N/FJ.png";
           CKEDITOR.instances.aboutEmployer.setData(
             $scope.employer.employer_about
           );
@@ -515,58 +510,13 @@ app.controller(
 
 app.controller("PostController", function ($scope, $http) {
   // get location
-  async function getLocation() {
-    var requestOptions = {
-      method: "GET",
-    };
-    await fetch(
-      "https://provinces.open-api.vn/api/?depth=1",
-      requestOptions
-    ).then(function (response) {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      response
-        .json()
-        .then(function (result) {
-          $scope.locations = result; // Gán dữ liệu JSON vào $scope.locations
-        })
-        .catch(function (error) {
-          console.log("Fetch error:", error);
-        }); // Chuyển đổi phản hồi sang JSON
-    });
-  }
-  getLocation();
+  getLocation($scope);
 
   //get type
-  function getType() {
-    $http({
-      method: "GET",
-      url: url + "Type/Get-all",
-    })
-      .then(function (response) {
-        $scope.types = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  getType();
+  getType($http, $scope);
 
   //get industry
-  function getIndustry() {
-    $http({
-      method: "GET",
-      url: url + "Industry/Get-all",
-    })
-      .then(function (response) {
-        $scope.industries = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  getIndustry();
+  getIndustry($http, $scope);
 
   //post job
   $scope.Post = function (
@@ -582,12 +532,12 @@ app.controller("PostController", function ($scope, $http) {
     var requirement = CKEDITOR.instances.requirementEditor.getData();
     var data = {
       jobTitle: tittle,
-      location: location.name,
+      location: location["name"],
       minimum_Salary: minsalary,
       maximum_Salary: maxsalary,
       jobDescription: description,
-      type_id: type.type_id,
-      industry_id: industry.industry_id,
+      type_id: type["type_id"],
+      industry_id: industry["industry_id"],
       deadline: deadline,
       requirement: requirement,
     };
