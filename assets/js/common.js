@@ -49,3 +49,17 @@ async function getLocation($scope) {
       });
   }
 
+  // get all job
+  function GetAllJob($http, $scope) {
+    $http({
+      method: "GET",
+      url: url + "Job/FindAJob",
+    })
+      .then(function (response) {
+        $scope.jobs = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+

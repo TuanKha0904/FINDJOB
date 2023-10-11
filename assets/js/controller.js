@@ -794,6 +794,9 @@ app.controller("FindAJobsController", function ($scope, $http) {
 
   //get industry
   getIndustry($http, $scope);
+
+  //get all job
+  GetAllJob($http, $scope);
 });
 
 app.controller('PostAdminController', function($scope, $http){
