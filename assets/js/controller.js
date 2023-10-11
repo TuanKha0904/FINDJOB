@@ -947,3 +947,37 @@ app.controller('AccountManagementController', function ($scope, $http) {
       });
   };
 });
+
+
+app.controller('TypeManagementController', function ($scope, $http) { 
+  $scope.createType = function (type_name) {
+    $http({
+      method: "POST",
+      url: url + "Type/Create",
+      data: {
+        type_name: type_name,
+      },
+    })
+      .then(function () {
+        getType();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  
+  $scope.deleteType = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Type/Delete?id=" + id,
+    })
+      .then(function () {
+        alert("Xóa Type thành công");
+        getType();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+});

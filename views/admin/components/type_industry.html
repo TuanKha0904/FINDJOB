@@ -1,4 +1,4 @@
-<section>
+<section ng-app="MyApp" ng-controller="TypeManagementController">
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
@@ -36,7 +36,7 @@
                                 <tr>
                                     <td>{{type.type_name}}</td>
                                     <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm trash" type="button">
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"  ng-click="deleteType(type.type_id)">
                                             <i class="fas fa-close"></i>
                                         </button>
                                     </td>
