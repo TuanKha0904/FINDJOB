@@ -1,7 +1,19 @@
 // const url = 'http://www.findjobapi.somee.com/api/';
 const url = "https://findjob.zeabur.app/api/";
 
-app.controller("HomeController", function () { });
+app.controller("HomeController", function ($scope, $http) { 
+  // get location
+  getLocation($scope);
+
+  //get type
+  getType($http, $scope);
+
+  //get industry
+  getIndustry($http, $scope);
+
+  //get all job
+  GetAllJob($http, $scope);
+});
 
 app.controller("ProfileController", function ($scope, $http, $sce, ProfileService, UserService) {
   $scope.profile = ProfileService;
