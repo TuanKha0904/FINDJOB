@@ -93,7 +93,7 @@
                         <td>{{job.employer_name}}</td>
                         <td>{{job.title}}</td>
                         <td>{{job.posted_date}}</td>
-                        <td><span class="badge bg-info">{{job.status}}</span></td>
+                        <td><span ng-class="{'badge bg-success': job.status === 'Approved', 'badge bg-info': job.status === 'Waiting'}">{{job.status}}</span></td>
                       </tr>
                     </tbody>
                   </table>

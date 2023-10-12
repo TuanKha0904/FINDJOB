@@ -242,7 +242,6 @@ app.directive("databg", () => {
   };
 });
 
-
 app.directive("ckeditor", function() {
   return {
     restrict: "A ",

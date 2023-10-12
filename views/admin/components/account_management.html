@@ -13,7 +13,7 @@
                 <div class="tile">
                     <div class="tile-body">
                         <div class="search">
-                            <input type="text" class="search-box" placeholder="Please enter search keyword..." />
+                            <input type="text" class="search-box" placeholder="Please enter search keyword..." ng-model="searchAccount" />
                             <a class="btn btn-search btn-sm" type="button" title="search">
                                 <i class="fas fa-search"></i> Search
                             </a>
@@ -30,7 +30,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody ng-repeat="account in accounts">
+                            <tbody ng-repeat="account in accounts | filter: searchAccount">
                                 <tr>
                                     <td><a href="" ng-click="admin.InforProfile(); getAccount(account.uid); getEmployer(account.uid);" ng-model="account.uid">{{shortenUid(account.uid)}}</a></td>
                                     <td>{{account.email}}</td>

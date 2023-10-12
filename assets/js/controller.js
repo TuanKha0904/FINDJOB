@@ -576,6 +576,7 @@ app.controller("PostController", function ($scope, $http) {
 });
 
 app.controller("DashboardController", function ($scope, $http) {
+
   // get quantity account
   function getQuantityAccount() {
     $http({

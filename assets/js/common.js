@@ -63,3 +63,10 @@ async function getLocation($scope) {
       });
   };
 
+var searchAccount = "";
+var searchJob = "";
+var searchPost = "";
+var searchType = "";
+var searchIndustry = "";
+
+

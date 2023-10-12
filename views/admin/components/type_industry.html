@@ -13,7 +13,7 @@
                 <div class="tile">
                     <div class="tile-body">
                         <div class="search">
-                            <input type="text" class="search-box" placeholder="Please enter search keyword..."/>
+                            <input type="text" class="search-box" placeholder="Please enter search keyword..." ng-model="searchType"/>
                             <a class="btn btn-search btn-sm" type="button" title="search">
                                 <i class="fas fa-search"></i> Search
                             </a>
@@ -32,7 +32,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody ng-repeat="type in types">
+                            <tbody ng-repeat="type in types | filter: searchType">
                                 <tr>
                                     <td>{{type.type_name}}</td>
                                     <td class="table-td-center">
@@ -50,7 +50,7 @@
                 <div class="tile">
                     <div class="tile-body">
                         <div class="search">
-                            <input type="text" class="search-box" placeholder="Please enter search keyword..." />
+                            <input type="text" class="search-box" placeholder="Please enter search keyword..." ng-model="searchIndustry"/>
                             <a class="btn btn-search btn-sm" type="button" title="search">
                                 <i class="fas fa-search"></i> Search
                             </a>
@@ -69,7 +69,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody ng-repeat="industry in industries">
+                            <tbody ng-repeat="industry in industries | filter: searchIndustry">
                                 <tr>
                                     <td>{{industry.industry}}</td>
                                     <td class="table-td-center">
