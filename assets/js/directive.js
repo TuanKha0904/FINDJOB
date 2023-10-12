@@ -251,8 +251,8 @@ app.directive("range", () => {
         $inputTo = $(".js-input-to"),
         instance,
         min = 0,
-        max = 5000,
-        from = 10,
+        max = 100000000,
+        from = 0,
         to = 1000;
 
       $range.ionRangeSlider({
@@ -260,7 +260,7 @@ app.directive("range", () => {
         min: min,
         max: max,
         from: 0,
-        to: 5000,
+        to: 100000000,
         prefix: '',
         onStart: updateInputs,
         onChange: updateInputs,

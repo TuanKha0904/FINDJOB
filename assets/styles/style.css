@@ -6108,7 +6108,7 @@ form.search-box .select-form .nice-select::after {
 }
 
 form.search-box .search-form {
-    width: 30%
+    width: 100%
 }
 
 @media (max-width: 767px) {
@@ -6144,6 +6144,48 @@ form.search-box .search-form a:hover {
     background-color: #fb246a;
     cursor: pointer;
 }
+
+.custom_select{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    color: #da2461;
+    border: 1px solid #da2461;
+    outline: none;
+}
+
+.custom_select option{
+    color: #da2461;
+}
+
+.custom_select option:hover{
+    color: #fff !important;
+    background-color: #da2461 !important;
+}
+
+.custom_input input{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #da2461;
+}
+
+.single-listing button{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #d44877;
+    border: none;
+}
+
+.single-listing button:hover{
+    background-color: #da2461;
+    cursor: pointer;
+}
+
+
+
 
 .team-profile {
     background: #f6f9fe

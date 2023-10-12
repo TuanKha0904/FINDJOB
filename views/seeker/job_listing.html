@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-xl-12">
             <div class="hero-cap text-center">
-              <h2>Get your job</h2>
+              <h2>GET YOUR JOB</h2>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="col-xl-3 col-lg-3 col-md-4">
           <div class="row">
             <div class="col-12">
-              <div class="small-section-tittle2 mb-45">
+              <div class="small-section-tittle2 mb-30">
                 <div class="ion">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px"
                     height="12px">
@@ -44,7 +44,7 @@
               </div>
               <!-- Select job items start -->
               <div class="select-job-items2">
-                <select name="select" ng-model="industry.industry.id"
+                <select name="select" class="custom_select" ng-model="industry.industry.id"
                   ng-options="industry.industry for industry in industries">
                   <option value="">All Category</option>
                 </select>
@@ -64,13 +64,13 @@
               <!-- select-Categories End -->
             </div>
             <!-- single two -->
-            <div class="single-listing">
+            <div class="single-listing pb-50">
               <div class="small-section-tittle2">
                 <h4>Job Location</h4>
               </div>
               <!-- Select job items start -->
               <div class="select-job-items2">
-                <select name="select" ng-model="location.name" ng-options="location.name for location in locations">
+                <select name="select"  class="custom_select" ng-model="location.name" ng-options="location.name for location in locations">
                   <option value="">Anywhere</option>
                 </select>
               </div>
@@ -80,27 +80,18 @@
               <!-- Range Slider Start -->
               <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                 <div class="small-section-tittle2">
-                  <h4 class="salary">Filter Salary</h4>
+                  <h4 class="salary">Desired salary</h4>
                 </div>
-                <div class="widgets_inner" range>
-                  <div class="range_item">
-                    <!-- <div id="slider-range"></div> -->
-                    <input type="text" class="js-range-slider" value="" />
-                    <div class="d-flex align-items-center">
-                      <div class="price_text">
-                        <p>Price :</p>
-                      </div>
-                      <div class="price_value d-flex justify-content-center">
-                        <input type="text" class="js-input-from" id="amount" readonly />
-                        <span>to</span>
-                        <input type="text" class="js-input-to" id="amount" readonly />
-                      </div>
-                    </div>
-                  </div>
+                <div class="mt-30 custom_input">
+                    <input type="number" min="0" value="0">
                 </div>
               </aside>
               <!-- Range Slider End -->
             </div>
+            <div class="single-listing mt-50 row justify-content-center">
+              <button>Search</button>
+            </div>
+
           </div>
           <!-- Job Category Listing End -->
         </div>
