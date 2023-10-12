@@ -6108,7 +6108,7 @@ form.search-box .select-form .nice-select::after {
 }
 
 form.search-box .search-form {
-    width: 20%
+    width: 30%
 }
 
 @media (max-width: 767px) {
@@ -6121,10 +6121,12 @@ form.search-box .search-form a {
     width: 100%;
     height: 70px;
     background: #fff;
+    font-weight: bold;
     font-size: 20px;
     line-height: 1;
     text-align: center;
     color: #fb246a;
+    border: 1px solid #da2461;
     display: block;
     padding: 15px;
     border-radius: 10px;
@@ -6135,6 +6137,7 @@ form.search-box .search-form a {
     line-height: 38px;
     font-size: 14px
 }
+
 
 form.search-box .search-form a:hover {
     color: #fff;
