@@ -186,6 +186,7 @@ app.directive("inforJob", () => {
   return {
     restrict: "E",
     templateUrl: "./views/seeker/components/infor_job.html",
+    controler: "HistoryController"
   };
 });
 

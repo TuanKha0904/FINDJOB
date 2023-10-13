@@ -389,7 +389,6 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, App
 }
 historyApply();
 $scope.delete = function(id){
-    console.log(id);
     $http({
         method: 'DELETE',
         url: url+ 'Recruitment/Delete?job_id=' + id
@@ -400,6 +399,16 @@ $scope.delete = function(id){
         console.log(error);
     })
 
+}
+$scope.jobDetail = function(id){
+    $http({
+        method: 'GET',
+        url: url+ 'Job/JobDetail?jobId=' + id
+    }).then(function(response){
+        $scope.job =  response.data; 
+    }).catch(function(error){
+        console.log(error);
+    })
 }
 }
 );
