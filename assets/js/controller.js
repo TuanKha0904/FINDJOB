@@ -864,6 +864,30 @@ app.controller("FindAJobsController", function ($scope, $http) {
 
   //get all job
   GetAllJob($http, $scope);
+
+  //search job
+  $scope.searchJobs = function (industry, type, location, salary) {
+    var industryId = industry != null ? industry.industry_id : 0;
+    var typeId = type != null ? type.type_id : 0;
+    var locationName = location != null ? location.name : null;
+    var salaryValue = salary != null ? salary : 0;    
+    $http({
+      method: 'POST',
+      url: url + 'Job/Search',
+      data: {
+        industry_id: industryId,
+        type_id: typeId,
+        location: locationName,
+        salary: salaryValue
+      }
+    })
+    .then(function (response) {
+      $scope.jobs = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 });
 
 app.controller('PostAdminController', function ($scope, $http) {

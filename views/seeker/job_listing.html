@@ -44,9 +44,9 @@
               </div>
               <!-- Select job items start -->
               <div class="select-job-items2">
-                <select name="select" class="custom_select" ng-model="industry.industry.id"
+                <select name="select" class="custom_select" ng-model="industry_id"
                   ng-options="industry.industry for industry in industries">
-                  <option value="">All Category</option>
+                  <option value="">All Industry</option>
                 </select>
               </div>
               <!--  Select job items End-->
@@ -55,11 +55,11 @@
                 <div class="small-section-tittle2">
                   <h4>Job Type</h4>
                 </div>
-                <label class="container" ng-repeat="t in types">
-                  {{t.type_name}}
-                  <input type="checkbox" />
-                  <span class="checkmark"></span>
-                </label>
+                <select name="select" class="custom_select" ng-model="type_id"
+                ng-options="type.type_name for type in types">
+                <option value="">All Type</option>
+              </select>
+
               </div>
               <!-- select-Categories End -->
             </div>
@@ -70,7 +70,7 @@
               </div>
               <!-- Select job items start -->
               <div class="select-job-items2">
-                <select name="select"  class="custom_select" ng-model="location.name" ng-options="location.name for location in locations">
+                <select name="select"  class="custom_select" ng-model="location_name" ng-options="location.name for location in locations">
                   <option value="">Anywhere</option>
                 </select>
               </div>
@@ -83,15 +83,14 @@
                   <h4 class="salary">Desired salary</h4>
                 </div>
                 <div class="mt-30 custom_input">
-                    <input type="number" min="0" value="0">
+                    <input type="number" min="0" value="0" ng-model="salary">
                 </div>
               </aside>
               <!-- Range Slider End -->
             </div>
             <div class="single-listing mt-50 row justify-content-center">
-              <button>Search</button>
+              <button ng-click="searchJobs(industry_id, type_id, location_name, salary)">Search</button>
             </div>
-
           </div>
           <!-- Job Category Listing End -->
         </div>
