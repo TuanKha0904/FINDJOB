@@ -43,8 +43,8 @@
               </div>
               <!-- Count of Job list End -->
               <!-- single-job-content -->
-              <div class="single-job-items mb-30" >
-                <div class="job-items" ng-repeat="job in jobs">
+              <div class="single-job-items mb-30" ng-repeat="job in jobs">
+                <div class="job-items" >
                   <div class="company-img">
                     <img ng-src="{{job.logo}}" alt="">
                   </div>
@@ -62,7 +62,7 @@
                   <a href="" ng-click="history.showInforJob()">View</a>
                   <span class="badge edit-info" ng-click="apply.showApply()"><i class="fas fa-edit"></i></span>
                 </div>
-                <span class="exit_job"><i class="fas fa-times"></i></span>
+                <span class="exit_job"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
               </div>
             </div>
           </section>
