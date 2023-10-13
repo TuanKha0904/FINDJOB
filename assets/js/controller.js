@@ -410,6 +410,7 @@ $scope.jobDetail = function(id){
         console.log(error);
     })
 }
+
 }
 );
 
@@ -837,6 +838,17 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
       });
   }
   waitingJob();
+  $scope.delete = function(id){
+    $http({
+        method: 'DELETE',
+        url: url+ 'Job/Delete?jobId=' + id
+    }).then(function(response){
+        alert(response.data);
+    }).catch(function(error){
+        console.log(error);
+    })
+
+}
 }
 );
 
