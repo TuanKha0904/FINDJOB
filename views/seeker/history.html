@@ -20,7 +20,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <!-- Right content -->
-        <div class="col-xl-10 col-lg-10 col-md-10">
+        <div class="col-xl-12 col-lg-12 col-md-12">
           <!-- Featured_job_start -->
           <section class="featured-job-area">
             <div class="container">
@@ -43,106 +43,18 @@
               </div>
               <!-- Count of Job list End -->
               <!-- single-job-content -->
-              <div class="single-job-items mb-30">
-                <div class="job-items">
+              <div class="single-job-items mb-30" >
+                <div class="job-items" ng-repeat="job in jobs">
                   <div class="company-img">
-                    <img src="assets/img/icon/job-list1.png" alt="">
+                    <img ng-src="{{job.logo}}" alt="">
                   </div>
                   <div class="job-tittle">
-                    <h4>Digital Marketer</h4>
+                    <h4>{{job.job_title}}</h4>
                     <ul>
-                      <li>Creative Agency</li>
-                      <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                      <li>$3500 - $4000</li>
-                      <li><span class="badge bg-info">Fulltime</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="items-link f-right job-link">
-                  <a href="" ng-click="history.showInforJob()">View</a>
-                  <span class="badge edit-info" ng-click="apply.showApply()"><i class="fas fa-edit"></i></span>
-                </div>
-                <span class="exit_job"><i class="fas fa-times"></i></span>
-              </div>
-              <!-- single-job-content -->
-              <div class="single-job-items mb-30">
-                <div class="job-items">
-                  <div class="company-img">
-                    <img src="assets/img/icon/job-list1.png" alt="">
-                  </div>
-                  <div class="job-tittle">
-                      <h4>Digital Marketer</h4>
-                    <ul>
-                      <li>Creative Agency</li>
-                      <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                      <li>$3500 - $4000</li>
-                      <li><span class="badge bg-info">Fulltime</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="items-link f-right job-link">
-                  <a href="" ng-click="history.showInforJob()">View</a>
-                  <span class="badge edit-info" ng-click="apply.showApply()"><i class="fas fa-edit"></i></span>
-                </div>
-                <span class="exit_job"><i class="fas fa-times"></i></span>
-              </div>
-              <!-- single-job-content -->
-              <div class="single-job-items mb-30">
-                <div class="job-items">
-                  <div class="company-img">
-                    <img src="assets/img/icon/job-list1.png" alt="">
-                  </div>
-                  <div class="job-tittle">
-                      <h4>Digital Marketer</h4>
-                    <ul>
-                      <li>Creative Agency</li>
-                      <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                      <li>$3500 - $4000</li>
-                      <li><span class="badge bg-info">Fulltime</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="items-link f-right job-link">
-                  <a href="" ng-click="history.showInforJob()">View</a>
-                  <span class="badge edit-info" ng-click="apply.showApply()"><i class="fas fa-edit"></i></span>
-                </div>
-                <span class="exit_job"><i class="fas fa-times"></i></span>
-              </div>
-              <!-- single-job-content -->
-              <div class="single-job-items mb-30">
-                <div class="job-items">
-                  <div class="company-img">
-                    <img src="assets/img/icon/job-list1.png" alt="">
-                  </div>
-                  <div class="job-tittle">
-                      <h4>Digital Marketer</h4>
-                    <ul>
-                      <li>Creative Agency</li>
-                      <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                      <li>$3500 - $4000</li>
-                      <li><span class="badge bg-info">Fulltime</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="items-link f-right job-link">
-                  <a href="" ng-click="history.showInforJob()">View</a>
-                  <span class="badge edit-info" ng-click="apply.showApply()"><i class="fas fa-edit"></i></span>
-                </div>
-                <span class="exit_job"><i class="fas fa-times"></i></span>
-              </div>
-              <!-- single-job-content -->
-              <div class="single-job-items mb-30">
-                <div class="job-items">
-                  <div class="company-img">
-                    <img src="assets/img/icon/job-list1.png" alt="">
-                  </div>
-                  <div class="job-tittle">
-                      <h4>Digital Marketer</h4>
-                    <ul>
-                      <li>Creative Agency</li>
-                      <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                      <li>$3500 - $4000</li>
-                      <li><span class="badge bg-info">Fulltime</span></li>
+                      <li>{{job.industry}}</li>
+                      <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
+                      <li>{{job.minimum_salary | currencyFormat}} VNĐ - {{job.maximum_salary | currencyFormat}} VNĐ</li>
+                      <li><span class="badge bg-info">{{job.type}}</span></li>
                     </ul>
                   </div>
                 </div>

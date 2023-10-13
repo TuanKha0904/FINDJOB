@@ -372,9 +372,22 @@ app.controller("JobDetailController", function ($scope, ApplyService, $http, $ro
 
 });
 
-app.controller("HistoryController", function ($scope, HistoryService, ApplyService) {
+app.controller("HistoryController", function ($scope, $http, HistoryService, ApplyService) {
   $scope.history = HistoryService;
   $scope.apply = ApplyService;
+
+  //get job history apply
+  function historyApply(){
+    $http({
+        method: 'GET',
+        url: url + 'Recruitment/Seeker?pageNumber=1&pageSize=5'
+    }).then(function(response){
+        $scope.jobs = response.data;
+    }).catch(function(error){
+        console.log(error);
+    })      
+}
+historyApply();
 }
 );
 
