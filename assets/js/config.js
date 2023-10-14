@@ -63,7 +63,7 @@ app.config(function ($routeProvider, $httpProvider) {
     .when("/post_management_admin", {
       templateUrl: "Views/post_management_admin.html",
     })
-    .when("/job_detail", {
+    .when("/job_detail/:jobId", {
       templateUrl: "views/employer/job_detail.html",
       controller: "EmployerController",
     })

@@ -193,8 +193,23 @@ app.controller("AdminController", function ($scope, AdminService, $rootScope) {
   $scope.Infor = $rootScope.adminInfor;
 });
 
-app.controller("EmployerController", function ($scope, EmployerService) {
+app.controller("EmployerController", function ($scope, EmployerService,$http,$routeParams) {
   $scope.employer = EmployerService;
+  $scope.jobId = $routeParams.jobId
+
+   // get job detail
+   function getJobDetail(id) {
+    $http({
+      method: "GET",
+      url: url + "Job/JobDetail?jobId=" + id,
+    }).then(function (response) {
+      $scope.job = response.data;
+    })
+      .catch(function (error) {
+        console.log(error);
+      })
+  };
+  getJobDetail($scope.jobId);
 });
 
 app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService) {

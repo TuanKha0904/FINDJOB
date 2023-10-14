@@ -17,10 +17,10 @@
                     <div class="single-job-items mb-30">
                         <div class="job-items">
                             <div class="company-img">
-                                <a href="#!job_details"><img ng-src="{{job.logo}}" alt=""></a>
+                                <a href="#!job_detail/{{job.id}}"><img ng-src="{{job.logo}}" alt=""></a>
                             </div>
                             <div class="job-tittle">
-                                <a href="#!job_detail">
+                                <a href="#!job_detail/{{job.id}}">
                                     <h4>{{job.jobTitle}}</h4>
                                 </a>
                                 <ul>
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="items-link f-right" id="change_button_post">
-                            <a href="#!job_detail">{{job.type}}</a>
+                            <a href="#!job_detail/{{job.id}}">{{job.type}}</a>
                             <span>{{job.deadline}}</span>
                         </div>
                         <span class="exit_job"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
