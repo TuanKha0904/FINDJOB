@@ -1006,6 +1006,20 @@ app.controller("JobAdminController", function ($scope, $http) {
         console.log(error);
       });
   };
+  //delete job
+  $scope.deleteJob = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Job/Delete?jobId=" + id,
+    })
+      .then(function (response) {
+        alert("Xóa thành công");
+        getPostJob();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });
 
 app.controller("AccountManagementController", function ($scope, $http) {
