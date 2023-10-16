@@ -57,6 +57,7 @@ async function getLocation($scope) {
     })
       .then(function (response) {
         $scope.jobs = response.data;
+        $scope.totalJob = response.data.length;
       })
       .catch(function (error) {
         console.log(error);

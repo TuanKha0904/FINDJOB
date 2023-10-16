@@ -898,6 +898,7 @@ app.controller("FindAJobsController", function ($scope, $http, notificationServi
     })
     .then(function (response) {
       $scope.jobs = response.data;
+      $scope.totalJob = response.data.length;
     })
     .catch(function (error) {
       console.log(error);
