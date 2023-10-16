@@ -15,7 +15,7 @@ app.controller("HomeController", function ($scope, $http) {
   GetAllJob($http, $scope);
 });
 
-app.controller("ProfileController", function ($scope, $http, $sce, ProfileService, UserService) {
+app.controller("ProfileController", function ($scope, $http, $sce, ProfileService, UserService, notificationService) {
   $scope.profile = ProfileService;
   $scope.user = UserService.getUser();
 
@@ -84,7 +84,7 @@ app.controller("ProfileController", function ($scope, $http, $sce, ProfileServic
                   url: url + "Account/Photo",
                   data: { photoUrl: urlImage },
                 }).catch(function (error) {
-                  alert(error.message);
+                  notificationService.displayError(error.message);
                 });
               });
             })
@@ -125,7 +125,7 @@ app.controller("ProfileController", function ($scope, $http, $sce, ProfileServic
       },
     })
       .then(function (response) {
-        alert(response.data);
+        notificationService.displaySuccess(response.data);
         getInfor();
       })
       .catch(function (error) {
@@ -144,18 +144,18 @@ app.controller("ProfileController", function ($scope, $http, $sce, ProfileServic
         },
       })
         .then(function (response) {
-          alert(response.data);
+          notificationService.displaySuccess(response.data);
           getInfor();
         })
         .catch(function (error) {
           console.log(error);
         });
-    else alert("Passwords do not match");
+    else notificationService.displayWarning("Passwords do not match");
   };
 }
 );
 
-app.controller("LoginAdminController", function ($scope, $http, $location, $rootScope) {
+app.controller("LoginAdminController", function ($scope, $http, $location, $rootScope, notificationService) {
   $scope.login = function (email, password) {
     $http({
       method: "POST",
@@ -168,7 +168,7 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
       .then(function (response) {
         $scope.adminLogin = response.data;
         if ($scope.adminLogin.isAdmin == false || $scope.adminLogin.idToken == null)
-          alert("Sai tài khoản hoặc mật khẩu");
+          notificationService.displayWarning("Sai tài khoản hoặc mật khẩu");
         else {
           $http.defaults.headers.common["Authorization"] =
             "Bearer " + $scope.adminLogin.idToken;
@@ -182,18 +182,18 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
         }
       })
       .catch(function (error) {
-        alert(error.data);
+        notificationService.displayError(error.data);
       });
   };
 }
 );
 
-app.controller("AdminController", function ($scope, AdminService, $rootScope) {
+app.controller("AdminController", function ($scope, AdminService, $rootScope, notificationService) {
   $scope.admin = AdminService;
   $scope.Infor = $rootScope.adminInfor;
 });
 
-app.controller("EmployerController", function ($scope, EmployerService,$http,$routeParams) {
+app.controller("EmployerController", function ($scope, EmployerService,$http,$routeParams, notificationService) {
   $scope.employer = EmployerService;
   $scope.jobId = $routeParams.jobId
 
@@ -212,7 +212,7 @@ app.controller("EmployerController", function ($scope, EmployerService,$http,$ro
   getJobDetail($scope.jobId);
 });
 
-app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService) {
+app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService, notificationService) {
   $scope.header = HeaderService;
   // Login with Google
   $scope.loginWithGoogle = function () {
@@ -238,7 +238,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
           .then(function (response) {
             $scope.result = response.data;
             var user = $scope.result;
-            if (user == null) alert("Login failed");
+            if (user == null) notificationService.displayError("Login failed");
             else {
               UserService.setUser(
                 user.uid,
@@ -248,13 +248,13 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
                 user.phoneNumber
               );
               $scope.header.isUserLoggedIn = true;
-              alert("Login success");
+              notificationService.displaySuccess("Login success");
               // Go back to previous page
               $window.history.back();
             }
           })
           .catch(function (error) {
-            alert(error);
+            notificationService.displayError(error);
           });
       })
       .catch(function (error) {
@@ -274,7 +274,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
     })
       .then(function (response) {
         $scope.result = response.data;
-        if ($scope.result.idToken == null) alert("Wrong email or password");
+        if ($scope.result.idToken == null) notificationService.displayWarning("Wrong email or password");
         else {
           $http.defaults.headers.common["Authorization"] =
             "Bearer " + $scope.result.idToken;
@@ -285,7 +285,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
           }).then(function (response) {
             $scope.result = response.data;
             var user = $scope.result;
-            if (user == null) alert("Login failed");
+            if (user == null) notificationService.displayError("Login failed");
             else {
               UserService.setUser(
                 user.uid,
@@ -295,7 +295,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
                 user.phoneNumber
               );
               $scope.header.isUserLoggedIn = true;
-              alert("Login success");
+              notificationService.displaySuccess("Login success");
               // Go back to previous page
               $window.history.back();
             }
@@ -303,13 +303,13 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
         }
       })
       .catch(function (error) {
-        alert(error.data);
+        notificationService.displayError(error.data);
       });
   };
 }
 );
 
-app.controller("HeaderController", function ($scope, UserService, $location, HeaderService) {
+app.controller("HeaderController", function ($scope, UserService, $location, HeaderService, notificationService) {
   $scope.header = HeaderService;
   $scope.user = UserService;
 
@@ -330,7 +330,7 @@ app.controller("HeaderController", function ($scope, UserService, $location, Hea
 }
 );
 
-app.controller("JobDetailController", function ($scope, ApplyService, $http, $routeParams) {
+app.controller("JobDetailController", function ($scope, ApplyService, $http, $routeParams, notificationService) {
   $scope.apply = ApplyService;
   $scope.jobId = $routeParams.jobId;
 
@@ -387,7 +387,7 @@ app.controller("JobDetailController", function ($scope, ApplyService, $http, $ro
 
 });
 
-app.controller("HistoryController", function ($scope, $http, HistoryService, ApplyService) {
+app.controller("HistoryController", function ($scope, $http, HistoryService, ApplyService, notificationService) {
   $scope.history = HistoryService;
   $scope.apply = ApplyService;
 
@@ -408,7 +408,7 @@ $scope.delete = function(id){
         method: 'DELETE',
         url: url+ 'Recruitment/Delete?job_id=' + id
     }).then(function(response){
-        alert(response.data);
+        notificationService.displaySuccess(response.data);
         historyApply();
     }).catch(function(error){
         console.log(error);
@@ -429,7 +429,7 @@ $scope.jobDetail = function(id){
 }
 );
 
-app.controller("ProfileEmployerController", function ($scope, $http, $sce, EmployerService) {
+app.controller("ProfileEmployerController", function ($scope, $http, $sce, EmployerService, notificationService) {
   $scope.employerService = EmployerService;
   $scope.employer = {
     contact_phone: "",
@@ -482,7 +482,7 @@ app.controller("ProfileEmployerController", function ($scope, $http, $sce, Emplo
     })
       .then(function (response) {
         EmployerService.editProfile = false;
-        alert(response.data);
+        notificationService.displaySuccess(response.data);
         getInfor();
       })
       .catch(function (error) {
@@ -518,11 +518,11 @@ app.controller("ProfileEmployerController", function ($scope, $http, $sce, Emplo
               })
                 .then(function (response) {
                   $scope.employer.employer_image = urlImage;
-                  alert(response.data);
+                  notificationService.displaySuccess(response.data);
                   getInfor();
                 })
                 .catch(function (error) {
-                  alert(error.message);
+                  notificationService.displayError(error.message);
                 });
             });
           })
@@ -561,11 +561,11 @@ app.controller("ProfileEmployerController", function ($scope, $http, $sce, Emplo
               })
                 .then(function (response) {
                   $scope.employer.image_cover = urlImage;
-                  alert(response.data);
+                  notificationService.displaySuccess(response.data);
                   getInfor();
                 })
                 .catch(function (error) {
-                  alert(error.message);
+                  notificationService.displayError(error.message);
                 });
             });
           })
@@ -578,7 +578,7 @@ app.controller("ProfileEmployerController", function ($scope, $http, $sce, Emplo
 }
 );
 
-app.controller("PostController", function ($scope, $http) {
+app.controller("PostController", function ($scope, $http, notificationService) {
   // get location
   getLocation($scope);
 
@@ -618,7 +618,7 @@ app.controller("PostController", function ($scope, $http) {
       data: data,
     })
       .then(function (response) {
-        alert("Tạo thành công");
+        notificationService.displaySuccess("Tạo thành công");
       })
       .catch(function (error) {
         console.log(error);
@@ -626,7 +626,7 @@ app.controller("PostController", function ($scope, $http) {
   };
 });
 
-app.controller("DashboardController", function ($scope, $http) {
+app.controller("DashboardController", function ($scope, $http, notificationService) {
 
   // get quantity account
   function getQuantityAccount() {
@@ -740,7 +740,7 @@ app.controller("DashboardController", function ($scope, $http) {
   }
 });
 
-app.controller("TypeAndIndustryController", function ($scope, $http) {
+app.controller("TypeAndIndustryController", function ($scope, $http, notificationService) {
   // Fill type
   function getType() {
     $http({
@@ -806,7 +806,7 @@ app.controller("TypeAndIndustryController", function ($scope, $http) {
   };
 });
 
-app.controller("PostManagementController", function ($scope, $http, EmployerService) {
+app.controller("PostManagementController", function ($scope, $http, EmployerService, notificationService) {
   $scope.employer = EmployerService;
 
   // get all job
@@ -858,7 +858,7 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
         method: 'DELETE',
         url: url+ 'Job/Delete?jobId=' + id
     }).then(function(response){
-        alert(response.data);
+        notificationService.displaySuccess(response.data);
     }).catch(function(error){
         console.log(error);
     })
@@ -867,7 +867,7 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
 }
 );
 
-app.controller("FindAJobsController", function ($scope, $http) {
+app.controller("FindAJobsController", function ($scope, $http, notificationService) {
   // get location
   getLocation($scope);
 
@@ -905,7 +905,7 @@ app.controller("FindAJobsController", function ($scope, $http) {
   }
 });
 
-app.controller('PostAdminController', function ($scope, $http) {
+app.controller('PostAdminController', function ($scope, $http, notificationService) {
   //get post wait
   function getPostWait() {
     $http({
@@ -928,7 +928,7 @@ app.controller('PostAdminController', function ($scope, $http) {
       url: url + 'Job/Status?jobId=' + id
     })
       .then(function () {
-        alert('Đã cập nhật trạng thái');
+        notificationService.displaySuccess('Đã cập nhật trạng thái');
         getPostWait();
       })
       .catch(function (error) {
@@ -937,7 +937,7 @@ app.controller('PostAdminController', function ($scope, $http) {
   };
 });
 
-app.controller('JobAdminController', function ($scope, $http) {
+app.controller('JobAdminController', function ($scope, $http, notificationService) {
   //get post wait
   function getPostJob() {
     $http({
@@ -967,7 +967,7 @@ app.controller('JobAdminController', function ($scope, $http) {
   };
 });
 
-app.controller('AccountManagementController', function ($scope, $http) {
+app.controller('AccountManagementController', function ($scope, $http, notificationService) {
   // get account
   function getAccount() {
     $http({
@@ -1026,7 +1026,7 @@ app.controller('AccountManagementController', function ($scope, $http) {
       url: url + "Account/Delete?userId=" + id,
     })
       .then(function () {
-        alert("Xóa tài khoản thành công");
+        notificationService.displaySuccess("Xóa tài khoản thành công");
         getAccount();
       })
       .catch(function (error) {

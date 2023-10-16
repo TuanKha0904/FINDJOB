@@ -1,3 +1,4 @@
+
 app.service('HistoryService', function() {
   var service = this;
   
@@ -188,6 +189,49 @@ app.service('authService', function () {
   this.getToken = function () {
     return token;
   };
+});
+
+app.service('notificationService', function () {
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "timeOut": "2000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
+
+  return{
+    displaySuccess: displaySuccess,
+    displayError: displayError,
+    displayWarning: displayWarning,
+    displayInfo: displayInfo
+  };
+  function displaySuccess(message) {
+    toastr.success(message);
+  }
+  function displayError(error) {
+    if(Array.isArray(error)){
+      error.forEach(function (err) {
+        toastr.error(err);
+      })
+    }
+    else{
+      toastr.error(error);
+    }
+  }
+  function displayWarning(message) {
+    toastr.warning(message);
+  }
+  function displayInfo(message) {
+    toastr.info(message);
+  }
 });
 
 
