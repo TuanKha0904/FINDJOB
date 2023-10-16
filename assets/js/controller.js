@@ -188,12 +188,17 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
 }
 );
 
-app.controller("AdminController", function ($scope, AdminService, $rootScope, notificationService) {
+app.controller("AdminController", function ($scope, AdminService, $rootScope, $http, $location) {
   $scope.admin = AdminService;
   $scope.Infor = $rootScope.adminInfor;
+  $scope.logout = function(){
+    $rootScope.adminInfor = null;
+    delete $http.defaults.headers.common["Authorization"];
+    $location.path("/admin");
+  }
 });
 
-app.controller("EmployerController", function ($scope, EmployerService,$http,$routeParams, notificationService) {
+app.controller("EmployerController", function ($scope, EmployerService,$http,$routeParams) {
   $scope.employer = EmployerService;
   $scope.jobId = $routeParams.jobId
 
@@ -309,7 +314,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
 }
 );
 
-app.controller("HeaderController", function ($scope, UserService, $location, HeaderService, notificationService) {
+app.controller("HeaderController", function ($scope, UserService, $location, HeaderService) {
   $scope.header = HeaderService;
   $scope.user = UserService;
 
@@ -330,7 +335,7 @@ app.controller("HeaderController", function ($scope, UserService, $location, Hea
 }
 );
 
-app.controller("JobDetailController", function ($scope, ApplyService, $http, $routeParams, notificationService) {
+app.controller("JobDetailController", function ($scope, ApplyService, $http, $routeParams) {
   $scope.apply = ApplyService;
   $scope.jobId = $routeParams.jobId;
 
@@ -626,7 +631,7 @@ app.controller("PostController", function ($scope, $http, notificationService) {
   };
 });
 
-app.controller("DashboardController", function ($scope, $http, notificationService) {
+app.controller("DashboardController", function ($scope, $http) {
 
   // get quantity account
   function getQuantityAccount() {
@@ -740,7 +745,7 @@ app.controller("DashboardController", function ($scope, $http, notificationServi
   }
 });
 
-app.controller("TypeAndIndustryController", function ($scope, $http, notificationService) {
+app.controller("TypeAndIndustryController", function ($scope, $http) {
   // Fill type
   function getType() {
     $http({
@@ -867,7 +872,7 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
 }
 );
 
-app.controller("FindAJobsController", function ($scope, $http, notificationService) {
+app.controller("FindAJobsController", function ($scope, $http) {
   // get location
   getLocation($scope);
 
@@ -938,7 +943,7 @@ app.controller('PostAdminController', function ($scope, $http, notificationServi
   };
 });
 
-app.controller('JobAdminController', function ($scope, $http, notificationService) {
+app.controller('JobAdminController', function ($scope, $http) {
   //get post wait
   function getPostJob() {
     $http({
