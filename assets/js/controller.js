@@ -1066,6 +1066,7 @@ app.controller('TypeManagementController', function ($scope, $http, notification
       },
     })
       .then(function () {
+        notificationService.displaySuccess("Created!");
         getType();
       })
       .catch(function (error) {
@@ -1079,7 +1080,7 @@ app.controller('TypeManagementController', function ($scope, $http, notification
       url: url + "Type/Delete?id=" + id,
     })
       .then(function () {
-        notificationService.displaySuccess("Xóa tài khoản thành công");
+        notificationService.displaySuccess("Deleted!");
         getType();
       })
       .catch(function (error) {
