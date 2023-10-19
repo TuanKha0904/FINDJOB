@@ -249,7 +249,12 @@ app.directive("ckeditor", function() {
     link: function(scope, element, attrs, ngModel) {
       // Tạo CKEditor cho element
       var editor = CKEDITOR.replace(element[0]);
-      
+      editor.on("instanceReady", function() {
+        // Thiết lập kích thước cho CKEditor container
+        var editorContainer = editor.container;
+        editorContainer.setStyle("width", "70%"); // Thiết lập chiều rộng theo ý muốn
+        editorContainer.setStyle("height", "50%"); // Thiết lập chiều cao theo ý muốn
+      });
     }
   };
 });

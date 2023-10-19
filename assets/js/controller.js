@@ -335,7 +335,7 @@ app.controller("HeaderController", function ($scope, UserService, $location, Hea
 }
 );
 
-app.controller("JobDetailController", function ($scope, ApplyService, $http, $routeParams) {
+app.controller("JobDetailController", function ($scope, ApplyService, $http, $routeParams, $location, notificationService) {
   $scope.apply = ApplyService;
   $scope.jobId = $routeParams.jobId;
 
@@ -361,35 +361,55 @@ app.controller("JobDetailController", function ($scope, ApplyService, $http, $ro
     birthday,
     address,
     major,
-    experience,
     education,
-    skills
   ) {
-    $http({
-      method: "POST",
-      url: url + "RecruitmentNoAccount/Post",
-      data: {
-        job_id: $scope.jobId,
-        name: name,
-        email: email,
-        phone: phone,
-        birthday: birthday,
-        address: address,
-        major: major,
-        experience: experience,
-        education: education,
-        skills: skills,
-      },
-    })
-      .then(function (response) {
-        $scope.recruitmentNoAccount = response.data;
+    var skills = CKEDITOR.instances.skillsEditor.getData();
+    var experience = CKEDITOR.instances.experienceEditor.getData();
+    console.log(name, email, phone, birthday, address, major, experience, education, skills);
+    if (!name || !email || !phone || !birthday || !address || !major || !experience || !education || !skills)
+      notificationService.displayWarning("Vui lòng điền đầy đủ thông tin");
+    else {
+      $http({
+        method: "POST",
+        url: url + "RecruitmentNoAccount/Post",
+        data: {
+          job_id: $scope.jobId,
+          name: name,
+          email: email,
+          phone: phone,
+          birthday: birthday,
+          address: address,
+          major: major,
+          experience: experience,
+          education: education,
+          skills: skills,
+        },
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+        .then(function (response) {
+          notificationService.displaySuccess(response.data);
+        })
+        .catch(function (error) {
+          notificationService.displayError(error.data);
+          console.log(error.data);
+        });
+    }
   };
 
-
+  $scope.apply = function () {
+    $http({
+      method: "POST",
+      url: url + "Recruitment/Post?job_id=" + $scope.jobId,
+    })
+      .then(function (response) {
+        notificationService.displaySuccess(response.data);
+      })
+      .catch(function (error) {
+        if (error.data == "Hãy cập nhật thông tin trước khi xin việc!") {
+          notificationService.displayError(error.data);
+          $location.path("profile");
+        }
+      });
+  }
 });
 
 app.controller("HistoryController", function ($scope, $http, HistoryService, ApplyService, notificationService) {
@@ -1072,8 +1092,7 @@ app.controller('AccountManagementController', function ($scope, $http, notificat
   };
 });
 
-
-app.controller('TypeManagementController', function ($scope, $http, notificationService) { 
+app.controller('TypeManagementController', function ($scope, $http, notificationService) {
   function getType() {
     $http({
       method: "GET",
