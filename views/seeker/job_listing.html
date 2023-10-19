@@ -147,13 +147,14 @@
           <div class="single-wrap d-flex justify-content-center">
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-start">
-                <li class="page-item active">
-                  <a class="page-link" href="#">01</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">02</a></li>
-                <li class="page-item"><a class="page-link" href="#">03</a></li>
                 <li class="page-item">
-                  <a class="page-link" href="#"><span class="ti-angle-right"></span></a>
+                  <a class="page-link" href="" ng-click="previousPage()" ng-if="showPreviousButton"><span class="ti-angle-left"></span></a>
+                </li>
+                <li ng-class="{ 'page-item active': page === currentPage }" ng-repeat="page in pageNumber | limitTo:5">
+                  <a class="page-link" href="" ng-model = "page" ng-click="changePage(page)">{{page}}</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="" ng-click="nextPage()"><span class="ti-angle-right"></span></a>
                 </li>
               </ul>
             </nav>

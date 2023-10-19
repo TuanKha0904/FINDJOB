@@ -1,7 +1,7 @@
 // const url = 'http://www.findjobapi.somee.com/api/';
 const url = "https://findjob.zeabur.app/api/";
 
-app.controller("HomeController", function ($scope, $http) { 
+app.controller("HomeController", function ($scope, $http) {
   // get location
   getLocation($scope);
 
@@ -12,7 +12,7 @@ app.controller("HomeController", function ($scope, $http) {
   getIndustry($http, $scope);
 
   //get all job
-  GetAllJob($http, $scope);
+  GetAllJob($http, $scope, 1);
 });
 
 app.controller("ProfileController", function ($scope, $http, $sce, ProfileService, UserService, notificationService) {
@@ -191,19 +191,19 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
 app.controller("AdminController", function ($scope, AdminService, $rootScope, $http, $location) {
   $scope.admin = AdminService;
   $scope.Infor = $rootScope.adminInfor;
-  $scope.logout = function(){
+  $scope.logout = function () {
     $rootScope.adminInfor = null;
     delete $http.defaults.headers.common["Authorization"];
     $location.path("/admin");
   }
 });
 
-app.controller("EmployerController", function ($scope, EmployerService,$http,$routeParams) {
+app.controller("EmployerController", function ($scope, EmployerService, $http, $routeParams) {
   $scope.employer = EmployerService;
   $scope.jobId = $routeParams.jobId
 
-   // get job detail
-   function getJobDetail(id) {
+  // get job detail
+  function getJobDetail(id) {
     $http({
       method: "GET",
       url: url + "Job/JobDetail?jobId=" + id,
@@ -352,7 +352,7 @@ app.controller("JobDetailController", function ($scope, ApplyService, $http, $ro
       })
   };
   getJobDetail($scope.jobId);
-  
+
   // apply job no account
   $scope.applyjob = function postRecruitmentNoAccount(
     name,
@@ -397,39 +397,39 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, App
   $scope.apply = ApplyService;
 
   //get job history apply
-  function historyApply(){
+  function historyApply() {
     $http({
-        method: 'GET',
-        url: url + 'Recruitment/Seeker?pageNumber=1&pageSize=5'
-    }).then(function(response){
-        $scope.jobs = response.data;
-    }).catch(function(error){
-        console.log(error);
-    })      
-}
-historyApply();
-$scope.delete = function(id){
+      method: 'GET',
+      url: url + 'Recruitment/Seeker?pageNumber=1&pageSize=5'
+    }).then(function (response) {
+      $scope.jobs = response.data;
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
+  historyApply();
+  $scope.delete = function (id) {
     $http({
-        method: 'DELETE',
-        url: url+ 'Recruitment/Delete?job_id=' + id
-    }).then(function(response){
-        notificationService.displaySuccess(response.data);
-        historyApply();
-    }).catch(function(error){
-        console.log(error);
+      method: 'DELETE',
+      url: url + 'Recruitment/Delete?job_id=' + id
+    }).then(function (response) {
+      notificationService.displaySuccess(response.data);
+      historyApply();
+    }).catch(function (error) {
+      console.log(error);
     })
 
-}
-$scope.jobDetail = function(id){
+  }
+  $scope.jobDetail = function (id) {
     $http({
-        method: 'GET',
-        url: url+ 'Job/JobDetail?jobId=' + id
-    }).then(function(response){
-        $scope.job =  response.data; 
-    }).catch(function(error){
-        console.log(error);
+      method: 'GET',
+      url: url + 'Job/JobDetail?jobId=' + id
+    }).then(function (response) {
+      $scope.job = response.data;
+    }).catch(function (error) {
+      console.log(error);
     })
-}
+  }
 
 }
 );
@@ -858,17 +858,17 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
       });
   }
   waitingJob();
-  $scope.delete = function(id){
+  $scope.delete = function (id) {
     $http({
-        method: 'DELETE',
-        url: url+ 'Job/Delete?jobId=' + id
-    }).then(function(response){
-        notificationService.displaySuccess(response.data);
-    }).catch(function(error){
-        console.log(error);
+      method: 'DELETE',
+      url: url + 'Job/Delete?jobId=' + id
+    }).then(function (response) {
+      notificationService.displaySuccess(response.data);
+    }).catch(function (error) {
+      console.log(error);
     })
 
-}
+  }
 }
 );
 
@@ -883,14 +883,14 @@ app.controller("FindAJobsController", function ($scope, $http) {
   getIndustry($http, $scope);
 
   //get all job
-  GetAllJob($http, $scope);
+  GetAllJob($http, $scope, pageNumber = 1);
 
   //search job
   $scope.searchJobs = function (industry, type, location, salary) {
     var industryId = industry != null ? industry.industry_id : 0;
     var typeId = type != null ? type.type_id : 0;
     var locationName = location != null ? location.name : null;
-    var salaryValue = salary != null ? salary : 0;    
+    var salaryValue = salary != null ? salary : 0;
     $http({
       method: 'POST',
       url: url + 'Job/Search',
@@ -901,14 +901,45 @@ app.controller("FindAJobsController", function ($scope, $http) {
         salary: salaryValue
       }
     })
-    .then(function (response) {
-      $scope.jobs = response.data;
-      $scope.totalJob = response.data.length;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        $scope.jobs = response.data;
+        $scope.totalJob = response.data.length;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
+
+  //pagination
+  $scope.currentPage = 1;
+  $scope.totalPage = 100;
+  $scope.pageNumber = [];
+  $scope.changePage = function (newPage) {
+    $scope.currentPage = newPage;
+    GetAllJob($http, $scope, $scope.currentPage);
+  };
+  function updatePageNumber(startPage) {
+    var endPage = Math.min(startPage + 4, $scope.totalPage);
+    $scope.pageNumber = [];
+    for (var i = startPage; i <= endPage; i++) {
+      $scope.pageNumber.push(i);
+    }
+    $scope.showPreviousButton = startPage > 1;
+  }
+
+  updatePageNumber(1);
+  $scope.nextPage = function () {
+    var lastPage = $scope.pageNumber[$scope.pageNumber.length - 1];
+    if (lastPage + 5 <= $scope.totalPage) {
+      updatePageNumber(lastPage + 1);
+    }
+  };
+  $scope.previousPage = function () {
+    var firstPage = $scope.pageNumber[0];
+    if (firstPage - 5 > 0) {
+      updatePageNumber(firstPage - 5);
+    }
+  };
 });
 
 app.controller('PostAdminController', function ($scope, $http, notificationService) {
