@@ -1071,3 +1071,52 @@ app.controller('AccountManagementController', function ($scope, $http, notificat
       });
   };
 });
+
+
+app.controller('TypeManagementController', function ($scope, $http, notificationService) { 
+  function getType() {
+    $http({
+      method: "GET",
+      url: url + "Type/Get-all",
+    })
+      .then(function (response) {
+        $scope.types = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  getType();
+
+  $scope.createType = function (type_name) {
+    $http({
+      method: "POST",
+      url: url + "Type/Create",
+      data: {
+        type_name: type_name,
+      },
+    })
+      .then(function () {
+        notificationService.displaySuccess("Created!");
+        getType();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  $scope.deleteType = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Type/Delete?id=" + id,
+    })
+      .then(function () {
+        notificationService.displaySuccess("Deleted!");
+        getType();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+});
