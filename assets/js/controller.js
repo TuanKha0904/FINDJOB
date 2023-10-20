@@ -687,7 +687,7 @@ app.controller("DashboardController", function ($scope, $http) {
   function getAccount() {
     $http({
       method: "GET",
-      url: url + "Account/All?pageSize=20&sortDateCreate=false",
+      url: url + "Account/All?pageSize=5&sortDateCreate=false",
     })
       .then(function (response) {
         $scope.accounts = response.data;
@@ -1022,6 +1022,20 @@ app.controller('JobAdminController', function ($scope, $http) {
         console.log(error);
       });
   };
+
+  $scope.deleteJob = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Job/Delete?jobId=" + id,
+    })
+      .then(function () {
+        notificationService.displaySuccess("Xóa thành công!");
+        getPostJob();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 });
 
 app.controller('AccountManagementController', function ($scope, $http, notificationService) {

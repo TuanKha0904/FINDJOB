@@ -19,20 +19,20 @@
                             </a>
                         </div>
                         <div class="search mt-20">
-                            <input type="text" placeholder="Enter Type" ng-model="type_name"/>
+                            <input type="text" class="enter-box" placeholder="Enter Type" ng-model="type_name"/>
                             <a class="btn btn-search btn-sm" type="button" title="search" ng-click="createType(type_name)">
                                 <i class="fas fa-plus"></i> Create
                             </a>
                         </div>
-                        <table class="table table-hover table-bordered js-copytextarea mt-20" cellpadding="0" cellspacing="0"
+                        <table class="table table-hover table-borderless js-copytextarea mt-20" cellpadding="0" cellspacing="0"
                             border="0" id="sampleTable">
                             <thead>
                                 <tr>
-                                    <th class="col-md-10">Type</th>
-                                    <th></th>
+                                    <th class="col-md-10 bg-danger">Type</th>
+                                    <th class="bg-danger"></th>
                                 </tr>
                             </thead>
-                            <tbody ng-repeat="type in types | filter: searchType">
+                            <tbody ng-repeat="type in types | filter: searchType" ng-class-odd="'odd-class'" ng-class-even="'even-class'">
                                 <tr>
                                     <td>{{type.type_name}}</td>
                                     <td class="table-td-center">
@@ -56,20 +56,20 @@
                             </a>
                         </div>
                         <div class="search mt-20">
-                            <input type="text" placeholder="Enter Industry" ng-model="industry"/>
+                            <input type="text" class="enter-box" placeholder="Enter Industry" ng-model="industry"/>
                             <a class="btn btn-search btn-sm" type="button" title="search" ng-click="createIndustry(industry)">
                                 <i class="fas fa-plus"></i> Create
                             </a>
                         </div>
-                        <table class="table table-hover table-bordered js-copytextarea mt-20" cellpadding="0" cellspacing="0"
+                        <table class="table table-hover table-borderless js-copytextarea mt-20" cellpadding="0" cellspacing="0"
                             border="0" id="sampleTable">
                             <thead>
                                 <tr>
-                                    <th class="col-md-10">Industry</th>
-                                    <th></th>
+                                    <th class="col-md-10 bg-danger">Industry</th>
+                                    <th class="bg-danger"></th>
                                 </tr>
                             </thead>
-                            <tbody ng-repeat="industry in industries | filter: searchIndustry">
+                            <tbody ng-repeat="industry in industries | filter: searchIndustry" ng-class-odd="'odd-class'" ng-class-even="'even-class'">
                                 <tr>
                                     <td>{{industry.industry}}</td>
                                     <td class="table-td-center">

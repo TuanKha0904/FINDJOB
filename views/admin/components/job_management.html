@@ -19,19 +19,19 @@
                             </a>
                         </div>
 
-                        <table class="table table-hover table-bordered js-copytextarea mt-20" cellpadding="0" cellspacing="0"
+                        <table class="table table-hover table-borderless js-copytextarea mt-20" cellpadding="0" cellspacing="0"
                             border="0" id="sampleTable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th class="col-md-4">Title</th>
-                                    <th>Location</th>
-                                    <th>Minimum salary</th>
-                                    <th>Maximum salary</th>
-                                    <th></th>
+                                    <th class="bg-danger">ID</th>
+                                    <th class="col-md-4 bg-danger" >Title</th>
+                                    <th class="bg-danger">Location</th>
+                                    <th class="bg-danger">Minimum salary</th>
+                                    <th class="bg-danger">Maximum salary</th>
+                                    <th class="bg-danger"></th>
                                 </tr>
                             </thead>
-                            <tbody ng-repeat="job in jobs | filter: searchJob">
+                            <tbody ng-repeat="job in jobs | filter: searchJob" ng-class-odd="'odd-class'" ng-class-even="'even-class'">
                                 <tr>
                                     <td><a href="" ng-click="admin.InforPostJob(); getJobDetail(job.id)"">{{job.id}}</a></td>
                                     <td>{{job.jobTitle}}</td>
@@ -40,7 +40,7 @@
                                     <td>{{job.maximum_Salary}}</td>
                                     <td>
                                         <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                            onclick="myFunction(this)">
+                                            ng-click="deleteJob(job.id)">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>

@@ -12,7 +12,8 @@
                     <ul>
                         <li>{{jobDetail.industry}}</li>
                         <li><i class="fas fa-map-marker-alt"></i>{{jobDetail.location}}</li>
-                        <li>{{jobDetail.minimum_salary | currencyFormat}} - {{jobDetail.maximum_salary | currencyFormat}}</li>
+                        <li>{{jobDetail.minimum_salary | currencyFormat}} VNĐ - {{jobDetail.maximum_salary |
+                            currencyFormat}} VNĐ</li>
                     </ul>
                 </div>
             </div>
@@ -29,14 +30,12 @@
                 </div>
                 <div ng-bind-html="jobDetail.jobDescription"></div>
             </div>
-            <div class="row">
-                <div class="post-details2 mb-50 pl-30 pr-30">
-                    <!-- Small Section Tittle -->
-                    <div class="small-section-tittle">
-                        <h4>Requirement + Education + Experience</h4>
-                    </div>
-                   <div ng-bind-html="jobDetail.requirement"></div>
+            <div class="post-details1 mb-50 pl-30 pr-30">
+                <!-- Small Section Tittle -->
+                <div class="small-section-tittle">
+                    <h4>Requirement + Education + Experience</h4>
                 </div>
+                <div ng-bind-html="jobDetail.requirement"></div>
             </div>
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 post-details3 mb-50">
@@ -60,7 +59,8 @@
                     </div>
                     <span>{{jobDetail.employer_name}}</span>
                     <ul>
-                        <li>Web : <a href="{{jobDetail.website}}" class="link_website" target="_blank">{{jobDetail.website}}</a></li>
+                        <li>Web : <a href="{{jobDetail.website}}" class="link_website"
+                                target="_blank">{{jobDetail.website}}</a></li>
                         <li>Email: <span>{{jobDetail.email}}</span></li>
                     </ul>
                 </div>

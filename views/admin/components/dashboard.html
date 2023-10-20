@@ -47,15 +47,15 @@
               <div class="tile">
                 <h3 class="tile-title">Latest account</h3>
                 <div>
-                  <table class="table table-hover">
+                  <table class="table table-hover table-borderless">
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Name</th>
+                        <th class="bg-danger">ID</th>
+                        <th class="bg-danger">Email</th>
+                        <th class="bg-danger">Name</th>
                       </tr>
                     </thead>
-                    <tbody ng-repeat="account in accounts">
+                    <tbody ng-repeat="account in accounts" ng-class-odd="'odd-class'" ng-class-even="'even-class'">
                       <tr>
                         <td><a href="" ng-click="admin.InforProfile(); getAccount(account.uid); getEmployer(account.uid);" ng-model="account.uid">{{shortenUid(account.uid)}}</a></td>
                         <td>{{account.email}}</td>
@@ -77,17 +77,17 @@
               <div class="tile">
                 <h3 class="tile-title">Latest recruitment post</h3>
                 <div>
-                  <table class="table table-bordered table-hover">
+                  <table class="table table-borderless table-hover">
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Employer Name</th>
-                        <th>Job title</th>
-                        <th>Posted date</th>
-                        <th>Status</th>
+                        <th class="bg-danger">ID</th>
+                        <th class="bg-danger">Employer Name</th>
+                        <th class="bg-danger">Job title</th>
+                        <th class="bg-danger">Posted date</th>
+                        <th class="bg-danger">Status</th>
                       </tr>
                     </thead>
-                    <tbody ng-repeat="job in jobs">
+                    <tbody ng-repeat="job in jobs" ng-class-odd="'odd-class'" ng-class-even="'even-class'">
                       <tr>
                         <td><a href="" ng-click="admin.InforPostJob(); getJobDetail(job.id)" ng-model="job.id">{{job.id}}</a></td>
                         <td>{{job.employer_name}}</td>

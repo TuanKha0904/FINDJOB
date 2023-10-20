@@ -437,13 +437,25 @@ h6,
   font-weight: 300;
   line-height: 1.2;
 }
-.search-box {
+.search-box, .enter-box {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 50px; /* Đặt giá trị border-radius để bo tròn viền */
   height: 30px;
   width: 300px;
 }
+
+.search-box:focus, .enter-box:focus {
+  border: 1px solid #da2461;
+}
+
+.tile-body{
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
+
 .display-2 {
   font-size: 5.5rem;
   font-weight: 300;
@@ -15082,6 +15094,9 @@ be a descendant of the grid when it is being dragged.
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  overflow-x:auto;
 }
 
 @media print {
@@ -15116,6 +15131,14 @@ be a descendant of the grid when it is being dragged.
   flex-direction: row;
   color: #555;
   border-radius: 0.357rem;
+}
+
+.odd-class {
+  background-color: #f0f0f0;
+}
+
+.even-class {
+  background-color: #fff;
 }
 
 .tile .overlay .l-text {
