@@ -206,28 +206,6 @@ app.directive("typeIndustry", () => {
   };
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.directive("databg", () => {
   /* 9. data-background */
   return {
@@ -298,51 +276,18 @@ app.directive('togglePasswordVisibility', function() {
   };
 });
 
-app.directive('clock', ['$timeout', function($timeout) {
+app.directive('clock', function($interval, $filter) {
   return {
-      restrict: 'A',
-      link: function(scope, element) {
-          function updateTime() {
-              var today = new Date();
-              var weekday = new Array(7);
-              weekday[0] = "Sunday";
-              weekday[1] = "Monday";
-              weekday[2] = "Tuesday";
-              weekday[3] = "Wednesday";
-              weekday[4] = "Thursday";
-              weekday[5] = "Friday";
-              weekday[6] = "Saturday";
-              var day = weekday[today.getDay()];
-              var dd = today.getDate();
-              var mm = today.getMonth() + 1;
-              var yyyy = today.getFullYear();
-              var h = today.getHours();
-              var m = today.getMinutes();
-              var s = today.getSeconds();
-              m = checkTime(m);
-              s = checkTime(s);
-              nowTime = h + " : " + m + " : " + s;
-              if (dd < 10) {
-                  dd = "0" + dd;
-              }
-              if (mm < 10) {
-                  mm = "0" + mm;
-              }
-              today = day + ", " + dd + "/" + mm + "/" + yyyy;
-              tmp = '<span class="date"> ' + today + " - " + nowTime + "</span>";
-              element.html(tmp);
-              clocktime = $timeout(updateTime, 1000);
-          }
+    restrict: 'E',
+    template: '<div>{{ currentTime | date: "dd/MM/yyyy - hh:mm:ss a" }}</div>',
+    link: function(scope, element, attrs) {
+      scope.currentTime = new Date();
 
-          function checkTime(i) {
-              if (i < 10) {
-                  i = "0" + i;
-              }
-              return i;
-          }
+      var updateClock = function() {
+        scope.currentTime = new Date();
+      };
 
-          updateTime();
-      }
+      $interval(updateClock, 1000);
+    }
   };
-}]);
-
+});
