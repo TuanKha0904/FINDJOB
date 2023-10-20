@@ -452,37 +452,37 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, App
   }
 
   //pagination
-    //pagination
-    $scope.currentPage = 1;
-    $scope.totalPage = 100;
+  //pagination
+  $scope.currentPage = 1;
+  $scope.totalPage = 100;
+  $scope.pageNumber = [];
+  $scope.changePage = function (newPage) {
+    $scope.currentPage = newPage;
+    historyApply($scope.currentPage);
+  };
+  function updatePageNumber(startPage) {
+    var endPage = Math.min(startPage + 2, $scope.totalPage);
     $scope.pageNumber = [];
-    $scope.changePage = function (newPage) {
-      $scope.currentPage = newPage;
-      historyApply($scope.currentPage);
-    };
-    function updatePageNumber(startPage) {
-      var endPage = Math.min(startPage + 2, $scope.totalPage);
-      $scope.pageNumber = [];
-      for (var i = startPage; i <= endPage; i++) {
-        $scope.pageNumber.push(i);
-      }
-      $scope.showPreviousButton = startPage > 1;
+    for (var i = startPage; i <= endPage; i++) {
+      $scope.pageNumber.push(i);
     }
-  
-    updatePageNumber(1);
-    $scope.nextPage = function () {
-      var lastPage = $scope.pageNumber[$scope.pageNumber.length - 1];
-      if (lastPage + 3 <= $scope.totalPage) {
-        updatePageNumber(lastPage + 1);
-      }
-    };
-    $scope.previousPage = function () {
-      var firstPage = $scope.pageNumber[0];
-      if (firstPage - 3 > 0) {
-        updatePageNumber(firstPage - 3);
-      }
-    };
-  
+    $scope.showPreviousButton = startPage > 1;
+  }
+
+  updatePageNumber(1);
+  $scope.nextPage = function () {
+    var lastPage = $scope.pageNumber[$scope.pageNumber.length - 1];
+    if (lastPage + 3 <= $scope.totalPage) {
+      updatePageNumber(lastPage + 1);
+    }
+  };
+  $scope.previousPage = function () {
+    var firstPage = $scope.pageNumber[0];
+    if (firstPage - 3 > 0) {
+      updatePageNumber(firstPage - 3);
+    }
+  };
+
 
 }
 );
@@ -798,7 +798,7 @@ app.controller("DashboardController", function ($scope, $http) {
   }
 });
 
-app.controller("TypeAndIndustryController", function ($scope, $http) {
+app.controller("TypeAndIndustryController", function ($scope, $http, notificationService) {
   // Fill type
   function getType() {
     $http({
@@ -839,6 +839,7 @@ app.controller("TypeAndIndustryController", function ($scope, $http) {
       },
     })
       .then(function () {
+        notificationService.displaySuccess("Thêm thành công!");
         getType();
       })
       .catch(function (error) {
@@ -856,6 +857,37 @@ app.controller("TypeAndIndustryController", function ($scope, $http) {
       },
     })
       .then(function () {
+        notificationService.displaySuccess("Thêm thành công!");
+        getIndustry();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  //delete type
+  $scope.deleteType = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Type/Delete?id=" + id,
+    })
+      .then(function (response) {
+        notificationService.displaySuccess("Xóa thành công!");
+        getType();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  //delete industry
+  $scope.deleteIndustry = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Industry/Delete?id=" + id,
+    })
+      .then(function (response) {
+        notificationService.displaySuccess("Xóa thành công!");
         getIndustry();
       })
       .catch(function (error) {
@@ -922,8 +954,7 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
     })
 
   }
-}
-);
+});
 
 app.controller("FindAJobsController", function ($scope, $http) {
   // get location
@@ -1025,9 +1056,24 @@ app.controller('PostAdminController', function ($scope, $http, notificationServi
         console.log(error);
       });
   };
+
+  $scope.deleteJob = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Job/Delete?jobId=" + id,
+    })
+      .then(function (response) {
+        notificationService.displaySuccess(response.data);
+        getPostWait();
+      })
+      .catch(function (error) {
+        notificationService.displayError(error);
+      });
+  }
+
 });
 
-app.controller('JobAdminController', function ($scope, $http) {
+app.controller('JobAdminController', function ($scope, $http, notificationService) {
   //get post wait
   function getPostJob() {
     $http({
@@ -1061,12 +1107,12 @@ app.controller('JobAdminController', function ($scope, $http) {
       method: "DELETE",
       url: url + "Job/Delete?jobId=" + id,
     })
-      .then(function () {
-        notificationService.displaySuccess("Xóa thành công!");
+      .then(function (response) {
+        notificationService.displaySuccess(response.data);
         getPostJob();
       })
       .catch(function (error) {
-        console.log(error);
+        notificationService.displayError(error);
       });
   }
 });
@@ -1137,52 +1183,4 @@ app.controller('AccountManagementController', function ($scope, $http, notificat
         console.log(error);
       });
   };
-});
-
-app.controller('TypeManagementController', function ($scope, $http, notificationService) {
-  function getType() {
-    $http({
-      method: "GET",
-      url: url + "Type/Get-all",
-    })
-      .then(function (response) {
-        $scope.types = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  getType();
-
-  $scope.createType = function (type_name) {
-    $http({
-      method: "POST",
-      url: url + "Type/Create",
-      data: {
-        type_name: type_name,
-      },
-    })
-      .then(function () {
-        notificationService.displaySuccess("Created!");
-        getType();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  $scope.deleteType = function (id) {
-    $http({
-      method: "DELETE",
-      url: url + "Type/Delete?id=" + id,
-    })
-      .then(function () {
-        notificationService.displaySuccess("Deleted!");
-        getType();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
 });

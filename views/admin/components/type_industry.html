@@ -1,4 +1,4 @@
-<section ng-app="MyApp" ng-controller="TypeManagementController">
+<section>
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
@@ -73,7 +73,8 @@
                                 <tr>
                                     <td>{{industry.industry}}</td>
                                     <td class="table-td-center">
-                                        <button class="btn btn-primary btn-sm trash" type="button">
+                                        <button class="btn btn-primary btn-sm trash" type="button"
+                                            ng-click="deleteIndustry(industry.industry_id)">
                                             <i class="fas fa-close"></i>
                                         </button>
                                     </td>

@@ -1983,7 +1983,7 @@ pre code {
 }
 
 .single-job-items{
-  padding: 36px 30px;
+  padding: 10px 10px;
     display: flex;
     justify-content: space-between;
     box-shadow: 5px 22px 57px 0px rgba(68, 82, 147, 0.05);
