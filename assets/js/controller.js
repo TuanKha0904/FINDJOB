@@ -417,17 +417,17 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, App
   $scope.apply = ApplyService;
 
   //get job history apply
-  function historyApply() {
+  function historyApply(pageNumber) {
     $http({
       method: 'GET',
-      url: url + 'Recruitment/Seeker?pageNumber=1&pageSize=5'
+      url: url + 'Recruitment/Seeker?pageSize=5&pageNumber=' + pageNumber
     }).then(function (response) {
       $scope.jobs = response.data;
     }).catch(function (error) {
       console.log(error);
     })
   }
-  historyApply();
+  historyApply(1);
   $scope.delete = function (id) {
     $http({
       method: 'DELETE',
@@ -450,6 +450,39 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, App
       console.log(error);
     })
   }
+
+  //pagination
+    //pagination
+    $scope.currentPage = 1;
+    $scope.totalPage = 100;
+    $scope.pageNumber = [];
+    $scope.changePage = function (newPage) {
+      $scope.currentPage = newPage;
+      historyApply($scope.currentPage);
+    };
+    function updatePageNumber(startPage) {
+      var endPage = Math.min(startPage + 2, $scope.totalPage);
+      $scope.pageNumber = [];
+      for (var i = startPage; i <= endPage; i++) {
+        $scope.pageNumber.push(i);
+      }
+      $scope.showPreviousButton = startPage > 1;
+    }
+  
+    updatePageNumber(1);
+    $scope.nextPage = function () {
+      var lastPage = $scope.pageNumber[$scope.pageNumber.length - 1];
+      if (lastPage + 3 <= $scope.totalPage) {
+        updatePageNumber(lastPage + 1);
+      }
+    };
+    $scope.previousPage = function () {
+      var firstPage = $scope.pageNumber[0];
+      if (firstPage - 3 > 0) {
+        updatePageNumber(firstPage - 3);
+      }
+    };
+  
 
 }
 );

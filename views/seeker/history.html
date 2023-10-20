@@ -55,14 +55,13 @@
                       <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
                       <li>{{job.minimum_salary | currencyFormat}} VNĐ - {{job.maximum_salary | currencyFormat}} VNĐ</li>
                       <li><span class="badge bg-info">{{job.type}}</span></li>
+                      <li class="items-link job-link">
+                        <a href="" ng-click="history.showInforJob(); jobDetail(job.id)">View</a>
+                      </li>
                     </ul>
                   </div>
                 </div>
-                <div class="items-link f-right job-link">
-                  <a href="" ng-click="history.showInforJob(); jobDetail(job.id)">View</a>
-                  <span class="badge edit-info" ng-click="apply.showApply()"><i class="fas fa-edit"></i></span>
-                </div>
-                <span class="exit_job"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
+                <span class="exit_job pr-30"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
               </div>
             </div>
           </section>
@@ -73,20 +72,21 @@
   </div>
   <!-- Job List Area End -->
   <!--Pagination Start  -->
-  <div class="pagination-area pb-115 text-center">
+  <div class="pagination-area pb-115 text-center"   ng-if="jobs.length > 0 && job.length <=10">
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
           <div class="single-wrap d-flex justify-content-center">
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-start">
-                <li class="page-item active">
-                  <a class="page-link" href="#">01</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">02</a></li>
-                <li class="page-item"><a class="page-link" href="#">03</a></li>
                 <li class="page-item">
-                  <a class="page-link" href="#"><span class="ti-angle-right"></span></a>
+                  <a class="page-link" href="" ng-click="previousPage()" ng-if="showPreviousButton"><span class="ti-angle-left"></span></a>
+                </li>
+                <li ng-class="{ 'page-item active': page === currentPage }" ng-repeat="page in pageNumber | limitTo:3">
+                  <a class="page-link" href="" ng-model = "page" ng-click="changePage(page)">{{page}}</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="" ng-click="nextPage()"><span class="ti-angle-right"></span></a>
                 </li>
               </ul>
             </nav>
@@ -96,6 +96,5 @@
     </div>
   </div>
   <!--Pagination End  -->
-  <apply-job ng-if="apply.apply"></apply-job>
   <infor-job ng-if="history.job"></infor-job>
 </section>
