@@ -28,6 +28,7 @@
       <li><a class="app-menu__item" href="" ng-click="admin.showAccount()"><span class="app-menu__label">Account Management</span></a></li>
       <li><a class="app-menu__item" href="" ng-click="admin.showJob()"><span class="app-menu__label">Job Management</span></a></li>
       <li><a class="app-menu__item" href="" ng-click="admin.showPost()"><span class="app-menu__label">Post Management</span></a></li>
+      <li><a class="app-menu__item" href="" ng-click="admin.showJobTimeout()"><span class="app-menu__label">Job Timeout</span></a></li>
       <li><a class="app-menu__item" href="" ng-click="admin.showTypeIndustry()"><span class="app-menu__label">Type and Industry</span></a></li>
       <li><a class="app-menu__item" href="" ng-click="logout()"><span class="app-menu__label">Exit</span></a></li>
     </ul>
@@ -37,6 +38,7 @@
   <job-management ng-if="admin.job"></job-management>
   <post-management ng-if="admin.post"></post-management>
   <type-industry ng-if="admin.type_industry"></type-industry>
+  <job-timeout ng-if="admin.jobTimeout"></job-timeout>
 </body>
 
 </html>

@@ -956,6 +956,51 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
   }
 });
 
+app.controller("JobTimeoutController", function ($scope, $http, notificationService) {
+    //get job timeout
+    function getJobTimeout() {
+      $http({
+        method: 'GET',
+        url: url + 'Job/AllJobTimeout'
+      })
+        .then(function (response) {
+          $scope.jobs = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    getJobTimeout();
+    // get job detail
+    $scope.getJobDetail = function (id) {
+      $http({
+        method: "GET",
+        url: url + "Job/JobDetail?jobId=" + id,
+      })
+        .then(function (response) {
+          $scope.jobDetail = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+  
+    $scope.deleteJob = function (id) {
+      $http({
+        method: "DELETE",
+        url: url + "Job/Delete?jobId=" + id,
+      })
+        .then(function (response) {
+          notificationService.displaySuccess(response.data);
+          getJobTimeout();
+        })
+        .catch(function (error) {
+          notificationService.displayError(error);
+        });
+    }
+  
+});
+
 app.controller("FindAJobsController", function ($scope, $http) {
   // get location
   getLocation($scope);

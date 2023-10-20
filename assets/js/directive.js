@@ -151,6 +151,14 @@ app.directive("postManagement", () => {
   };
 });
 
+app.directive("jobTimeout", () => {
+  return {
+    restrict: "E",
+    templateUrl: "./views/admin/components/job_timeout.html",
+    controller: 'JobTimeoutController'
+  };
+});
+
 app.directive("signup", () => {
   return {
     restrict: "E",

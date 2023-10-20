@@ -104,6 +104,7 @@ app.service('AdminService', function() {
   service.job = false;
   service.post = false;
   service.type_industry = false;
+  service.jobTimeout = false;
   service.InforProfile = function () {
       service.showProfile = !service.showProfile;
   };
@@ -125,6 +126,7 @@ app.service('AdminService', function() {
       service.job = false;
       service.post = false;
       service.type_industry = false;
+      service.jobTimeout = false;
   };
   service.showAccount = function(){
       service.dashboard = false;
@@ -132,6 +134,7 @@ app.service('AdminService', function() {
       service.job = false;
       service.post = false;
       service.type_industry = false;
+      service.jobTimeout = false;
   };
   service.showJob = function(){
       service.dashboard = false;
@@ -139,6 +142,7 @@ app.service('AdminService', function() {
       service.job = true;
       service.post = false;
       service.type_industry = false;
+      service.jobTimeout = false;
   };
   service.showPost = function(){
       service.dashboard = false;
@@ -146,6 +150,7 @@ app.service('AdminService', function() {
       service.job = false;
       service.post = true;
       service.type_industry = false;
+      service.jobTimeout = false;
   };
   service.showTypeIndustry = function(){
       service.dashboard = false;
@@ -153,8 +158,16 @@ app.service('AdminService', function() {
       service.job = false;
       service.post = false;
       service.type_industry = true;
-
-  }
+      service.jobTimeout = false;
+  };
+  service.showJobTimeout = function(){
+    service.dashboard = false;
+    service.account = false;
+    service.job = false;
+    service.post = false;
+    service.type_industry = false;
+    service.jobTimeout = true;
+  };
 });
 
 app.service('UserService', function () {
