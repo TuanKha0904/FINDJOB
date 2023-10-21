@@ -116,7 +116,7 @@
                   </div>
                   <div class="job-tittle job-tittle2">
                     <a href="#!job_details/{{job.id}}">
-                      <h5>{{job.jobTitle}}</h5>
+                      <h5 title="{{job.jobTitle}}">{{job.jobTitle | truncate: 50: '...'}}</h5>
                     </a>
                     <ul>
                       <li>
