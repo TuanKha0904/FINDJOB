@@ -7,3 +7,14 @@ app.filter('currencyFormat', ['$filter', function ($filter) {
         return formattedNumber.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Thêm dấu chấm
     };
 }]);
+
+app.filter('truncate', function () {
+    return function (text, length, end) {
+      if (text.length <= length || text.length - end.length <= length) {
+        return text;
+      } else {
+        return text.substring(0, length - end.length) + end;
+      }
+    };
+  });
+  

@@ -50,10 +50,10 @@ async function getLocation($scope) {
   }
 
   // get all job
-  function GetAllJob($http, $scope, pageNumber) {
+  function GetAllJob($http, $scope, pageNumber, pageSize) {
     $http({
       method: "GET",
-      url: url + "Job/FindAJob?pageNumber=" + pageNumber,
+      url: url + "Job/FindAJob?pageNumber=" + pageNumber + "&pageSize=" + pageSize,
     })
       .then(function (response) {
         $scope.jobs = response.data;

@@ -12,7 +12,7 @@ app.controller("HomeController", function ($scope, $http) {
   getIndustry($http, $scope);
 
   //get all job
-  GetAllJob($http, $scope, 1);
+  GetAllJob($http, $scope, 1, 5);
 });
 
 app.controller("ProfileController", function ($scope, $http, $sce, ProfileService, UserService, notificationService) {
@@ -1012,7 +1012,7 @@ app.controller("FindAJobsController", function ($scope, $http) {
   getIndustry($http, $scope);
 
   //get all job
-  GetAllJob($http, $scope, pageNumber = 1);
+  GetAllJob($http, $scope, 1, 5);
 
   //search job
   $scope.searchJobs = function (industry, type, location, salary) {
@@ -1022,7 +1022,7 @@ app.controller("FindAJobsController", function ($scope, $http) {
     var salaryValue = salary != null ? salary : 0;
     $http({
       method: 'POST',
-      url: url + 'Job/Search',
+      url: url + 'Job/Search/?pageSize=10',
       data: {
         industry_id: industryId,
         type_id: typeId,
@@ -1045,7 +1045,7 @@ app.controller("FindAJobsController", function ($scope, $http) {
   $scope.pageNumber = [];
   $scope.changePage = function (newPage) {
     $scope.currentPage = newPage;
-    GetAllJob($http, $scope, $scope.currentPage);
+    GetAllJob($http, $scope, $scope.currentPage, 5);
   };
   function updatePageNumber(startPage) {
     var endPage = Math.min(startPage + 4, $scope.totalPage);
