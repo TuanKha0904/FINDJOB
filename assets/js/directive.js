@@ -79,6 +79,7 @@ app.directive("inforEmployer", () => {
   return {
     restrict: "E",
     templateUrl: "./views/employer/components/infor_employer.html",
+    controller: 'EmployerController'
   };
 });
 

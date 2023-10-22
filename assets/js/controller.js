@@ -203,18 +203,7 @@ app.controller("EmployerController", function ($scope, EmployerService, $http, $
   $scope.jobId = $routeParams.jobId
 
   // get job detail
-  function getJobDetail(id) {
-    $http({
-      method: "GET",
-      url: url + "Job/JobDetail?jobId=" + id,
-    }).then(function (response) {
-      $scope.job = response.data;
-    })
-      .catch(function (error) {
-        console.log(error);
-      })
-  };
-  getJobDetail($scope.jobId);
+  getJobDetail($http, $scope, $scope.jobId);
 });
 
 app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService, notificationService) {
@@ -340,18 +329,7 @@ app.controller("JobDetailController", function ($scope, ApplyService, $http, $ro
   $scope.jobId = $routeParams.jobId;
 
   // get job detail
-  function getJobDetail(id) {
-    $http({
-      method: "GET",
-      url: url + "Job/JobDetail?jobId=" + id,
-    }).then(function (response) {
-      $scope.job = response.data;
-    })
-      .catch(function (error) {
-        console.log(error);
-      })
-  };
-  getJobDetail($scope.jobId);
+  getJobDetail($http, $scope, $scope.jobId);
 
   // apply job no account
   $scope.applyjob = function postRecruitmentNoAccount(

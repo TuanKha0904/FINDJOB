@@ -1,68 +1,83 @@
-  // get location
+// get location
 async function getLocation($scope) {
-    var requestOptions = {
-      method: "GET",
-    };
-    await fetch(
-      "https://provinces.open-api.vn/api/?depth=1",
-      requestOptions
-    ).then(function (response) {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      response
-        .json()
-        .then(function (result) {
-          $scope.locations = result; // Gán dữ liệu JSON vào $scope.locations
-        })
-        .catch(function (error) {
-          console.log("Fetch error:", error);
-        }); // Chuyển đổi phản hồi sang JSON
+  var requestOptions = {
+    method: "GET",
+  };
+  await fetch(
+    "https://provinces.open-api.vn/api/?depth=1",
+    requestOptions
+  ).then(function (response) {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    response
+      .json()
+      .then(function (result) {
+        $scope.locations = result; // Gán dữ liệu JSON vào $scope.locations
+      })
+      .catch(function (error) {
+        console.log("Fetch error:", error);
+      }); // Chuyển đổi phản hồi sang JSON
+  });
+};
+
+// get type
+function getType($http, $scope) {
+  $http({
+    method: "GET",
+    url: url + "Type/Get-all",
+  })
+    .then(function (response) {
+      $scope.types = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-  };
+};
 
-  // get type
-  function getType($http, $scope) {
-    $http({
-      method: "GET",
-      url: url + "Type/Get-all",
+// get industry
+function getIndustry($http, $scope) {
+  $http({
+    method: "GET",
+    url: url + "Industry/Get-all",
+  })
+    .then(function (response) {
+      $scope.industries = response.data;
     })
-      .then(function (response) {
-        $scope.types = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+    .catch(function (error) {
+      console.log(error);
+    });
+}
 
-  // get industry
-  function getIndustry($http, $scope) {
-    $http({
-      method: "GET",
-      url: url + "Industry/Get-all",
+// get all job
+function GetAllJob($http, $scope, pageNumber, pageSize) {
+  $http({
+    method: "GET",
+    url: url + "Job/FindAJob?pageNumber=" + pageNumber + "&pageSize=" + pageSize,
+  })
+    .then(function (response) {
+      $scope.jobs = response.data;
+      $scope.totalJob = response.data.length;
     })
-      .then(function (response) {
-        $scope.industries = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+    .catch(function (error) {
+      console.log(error);
+    });
+};
 
-  // get all job
-  function GetAllJob($http, $scope, pageNumber, pageSize) {
-    $http({
-      method: "GET",
-      url: url + "Job/FindAJob?pageNumber=" + pageNumber + "&pageSize=" + pageSize,
+// get job detail
+function getJobDetail($http, $scope, id) {
+  $http({
+    method: "GET",
+    url: url + "Job/JobDetail?jobId=" + id,
+  }).then(function (response) {
+    $scope.job = response.data;
+  })
+    .catch(function (error) {
+      console.log(error);
     })
-      .then(function (response) {
-        $scope.jobs = response.data;
-        $scope.totalJob = response.data.length;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+};
+
+
 
 var searchAccount = "";
 var searchJob = "";

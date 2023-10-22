@@ -70,11 +70,11 @@ app.config(function ($routeProvider, $httpProvider) {
     .when("/profile_detail", {
       templateUrl: "views/profile_detail.html",
     })
-    .when("/apply_list", {
+    .when("/apply_list/:jobId", {
       templateUrl: "views/employer/apply_list.html",
       controller: "EmployerController",
     })
-    .when("/edit_job", {
+    .when("/edit_job/:jobId", {
       templateUrl: "views/employer/edit_job.html",
       controller: "EmployerController",
     })

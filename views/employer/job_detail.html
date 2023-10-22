@@ -11,7 +11,6 @@
                 <img ng-src="{{job.logo}}" alt="" />
               </div>
               <div class="job-tittle">
-
                 <h4>{{job.jobTitle}}</h4>
                 <ul>
                   <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
@@ -19,7 +18,6 @@
                 </ul>
               </div>
             </div>
-            <span class="exit_job"><i class="fas fa-times" ng-click="Delete(job.id)"></i></span>
           </div>
           <!-- job single End -->
 
@@ -31,21 +29,6 @@
               </div>
               <div ng-bind-html="job.jobDescription"></div>
             </div>
-            <!-- <div class="post-details2 mb-50">
-                  Small Section Tittle 
-              <div class="small-section-tittle">
-                <h4>Required Knowledge, Skills, and Abilities</h4>
-              </div>
-              <ul>
-                <li>System Software Development</li>
-                <li>
-                  Mobile Applicationin iOS/Android/Tizen or other platform
-                </li>
-                <li>Research and code , libraries, APIs and frameworks</li>
-                <li>Strong knowledge on software development life cycle</li>
-                <li>Strong problem solving and debugging skills</li>
-              </ul>
-            </div> -->
             <div class="post-details2 mb-50">
               <!-- Small Section Tittle -->
               <div class="small-section-tittle">
@@ -73,11 +56,11 @@
             <div class="row">
               <div class="col-xl-6 col-lg-6">
                 <div class="apply-btn2 ">
-                  <a href="#!edit_job" class="btn">Edit</a>
+                  <a href="#!edit_job/{{jobId}}" class="btn" ng-if="job.status === 'Waiting'">Edit</a>
                 </div>
-              </div>
-              <div class="apply-btn2">
-                <a href="#!apply_list" class="btn">Apply List</a>
+                <div class="apply-btn2">
+                  <a href="#!apply_list/{{jobId}}" class="btn" ng-if="job.status === 'Approved'">Apply List</a>
+                </div>  
               </div>
             </div>
           </div>
@@ -96,5 +79,4 @@
       </div>
     </div>
   </div>
-  <edit-job ng-if="employer.editJob"></edit-job>
 </section>
