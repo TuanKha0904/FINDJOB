@@ -23,14 +23,12 @@
             </div>
             <div class="row justify-content-center edit_job_input">
                 <div class="col-xl-3 col-lg-3 col-md-3 edit_header">Job type: </div>
-                <select name="" class="col-xl-9 col-lg-9 col-md-9 edit_input" ng-model="type">
-                    <option ng-repeat="type in types">{{type.type_name}}</option>
+                <select name="" class="col-xl-9 col-lg-9 col-md-9 edit_input" ng-options="type.type_name for type in types track by type.type_id" ng-model="job.type">
                 </select>
             </div>
             <div class="row justify-content-center edit_job_input">
                 <div class="col-xl-3 col-lg-3 col-md-3 edit_header">Industry: </div>
-                <select name="" class="col-xl-9 col-lg-9 col-md-9 edit_input" ng-model="industry">
-                    <option ng-repeat="industry in industries">{{industry.industry}}</option>
+                <select name="" class="col-xl-9 col-lg-9 col-md-9 edit_input" ng-options="industry.industry for industry in industries track by industry.industry_id" ng-model="job.industry">
                 </select>
             </div>
             <div class="row justify-content-center edit_job_input">
@@ -47,7 +45,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="header-btn edit_job_button">
-                    <a href="" class="btn custom_btn" ng-click="editJob(job.jobTitle, selectedLocation, job.minimum_salary, job.maximum_salary, type, industry, deadline)">Save</a>
+                    <a href="" class="btn custom_btn" ng-click="editJob(job.jobTitle, job.minimum_salary, job.maximum_salary, selectedLocation, job.industry, job.type, deadline)">Save</a>
                 </div>
             </div>
         </div>
