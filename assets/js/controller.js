@@ -198,12 +198,52 @@ app.controller("AdminController", function ($scope, AdminService, $rootScope, $h
   }
 });
 
-app.controller("EmployerController", function ($scope, EmployerService, $http, $routeParams) {
+app.controller("EmployerController", function ($scope, $filter, $window, EmployerService, $http, $routeParams, notificationService) {
   $scope.employer = EmployerService;
   $scope.jobId = $routeParams.jobId
 
   // get job detail
   getJobDetail($http, $scope, $scope.jobId);
+
+  // get location
+  getLocation($scope);
+
+  //get type
+  getType($http, $scope);
+  
+  // get industry
+  getIndustry($http, $scope);
+
+  // edit job
+  $scope.editJob = function (jobTitle, minimum_Salary, maximum_Salary, location, industry_id, type_id, deadline) {
+    var description = CKEDITOR.instances.descriptionE.getData();
+    var requirement = CKEDITOR.instances.requirementE.getData();
+    var formattedDeadline = $filter('date')(deadline, 'yyyy-MM-dd');
+    var data = {
+      "jobTitle": jobTitle,
+      "minimum_Salary": minimum_Salary,
+      "maximum_Salary": maximum_Salary,
+      "location": location,
+      "industry_id": industry_id,
+      "type_id": type_id,
+      "deadline": formattedDeadline,
+      "jobDescription": description,
+      "requirement": requirement,
+    }
+    console.log(data);
+    $http({
+      method: "PUT",
+      url: url + "Job/Update?job_id=" + $scope.jobId,
+      data: data
+    })
+      .then(function (response) {
+        notificationService.displaySuccess(response.data);
+        $window.history.back();
+      })
+      .catch(function (error) {
+        console.log(error); 
+      });
+  };
 });
 
 app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService, notificationService) {
@@ -935,48 +975,48 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
 });
 
 app.controller("JobTimeoutController", function ($scope, $http, notificationService) {
-    //get job timeout
-    function getJobTimeout() {
-      $http({
-        method: 'GET',
-        url: url + 'Job/AllJobTimeout'
+  //get job timeout
+  function getJobTimeout() {
+    $http({
+      method: 'GET',
+      url: url + 'Job/AllJobTimeout'
+    })
+      .then(function (response) {
+        $scope.jobs = response.data;
       })
-        .then(function (response) {
-          $scope.jobs = response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-    getJobTimeout();
-    // get job detail
-    $scope.getJobDetail = function (id) {
-      $http({
-        method: "GET",
-        url: url + "Job/JobDetail?jobId=" + id,
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  getJobTimeout();
+  // get job detail
+  $scope.getJobDetail = function (id) {
+    $http({
+      method: "GET",
+      url: url + "Job/JobDetail?jobId=" + id,
+    })
+      .then(function (response) {
+        $scope.jobDetail = response.data;
       })
-        .then(function (response) {
-          $scope.jobDetail = response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-  
-    $scope.deleteJob = function (id) {
-      $http({
-        method: "DELETE",
-        url: url + "Job/Delete?jobId=" + id,
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  $scope.deleteJob = function (id) {
+    $http({
+      method: "DELETE",
+      url: url + "Job/Delete?jobId=" + id,
+    })
+      .then(function (response) {
+        notificationService.displaySuccess(response.data);
+        getJobTimeout();
       })
-        .then(function (response) {
-          notificationService.displaySuccess(response.data);
-          getJobTimeout();
-        })
-        .catch(function (error) {
-          notificationService.displayError(error);
-        });
-    }
-  
+      .catch(function (error) {
+        notificationService.displayError(error);
+      });
+  }
+
 });
 
 app.controller("FindAJobsController", function ($scope, $http) {

@@ -285,7 +285,7 @@ app.directive('togglePasswordVisibility', function() {
   };
 });
 
-app.directive('clock', function($interval, $filter) {
+app.directive('clock', function($interval) {
   return {
     restrict: 'E',
     template: '<div>{{ currentTime | date: "dd/MM/yyyy - hh:mm:ss a" }}</div>',
@@ -300,3 +300,5 @@ app.directive('clock', function($interval, $filter) {
     }
   };
 });
+
+

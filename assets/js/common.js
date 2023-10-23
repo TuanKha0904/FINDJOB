@@ -71,12 +71,26 @@ function getJobDetail($http, $scope, id) {
     url: url + "Job/JobDetail?jobId=" + id,
   }).then(function (response) {
     $scope.job = response.data;
+    CKEDITOR.instances.descriptionE.setData();
+    CKEDITOR.instances.requirementE.setData();
+    $scope.selectedLocation = $scope.job.location;
+    $scope.deadline = parseDate($scope.job.deadline);
   })
     .catch(function (error) {
       console.log(error);
     })
 };
 
+function parseDate(inputDate) {
+  var parts = inputDate.split('-');
+  if (parts.length === 3) {
+      var day = parseInt(parts[0]);
+      var month = parseInt(parts[1]) - 1; // Giảm đi 1 vì tháng bắt đầu từ 0 trong JavaScript
+      var year = parseInt(parts[2]);
+      return new Date(year, month, day);
+  }
+  return null; // Trả về null nếu định dạng không hợp lệ
+}
 
 
 var searchAccount = "";

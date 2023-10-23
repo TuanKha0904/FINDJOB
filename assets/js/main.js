@@ -221,9 +221,6 @@
     });
   }
 
-
-
-
 })(jQuery);
 
 var x = true;
@@ -277,6 +274,7 @@ function myfunction3() {
     x = true;
   }
 };
+
 
 
 
