@@ -244,6 +244,21 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
         console.log(error); 
       });
   };
+
+  // get apply list
+  function applyList(){
+    $http({
+      method: "GET",
+      url: url + "Job/ApplyList?pageNumber=1&pageSize=10&job_id=" + $scope.jobId,
+    })
+      .then(function (response) {
+        $scope.applyList = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  applyList();
 });
 
 app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService, notificationService) {
