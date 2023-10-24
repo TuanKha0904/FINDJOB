@@ -58,10 +58,20 @@ function GetAllJob($http, $scope, pageNumber, pageSize) {
     .then(function (response) {
       $scope.jobs = response.data.jobList;
       $scope.totalJob = response.data.jobQuantity;
+      $scope.totalPages = $scope.totalJob / pageSize;
+      $scope.pageNumbers = Range($scope.totalPages);
     })
     .catch(function (error) {
       console.log(error);
     });
+};
+
+ function Range (end) {
+  var result = [];
+  for (var i = 1; i <= end+1; i++) {
+      result.push(i);
+  }
+  return result;
 };
 
 // get job detail
