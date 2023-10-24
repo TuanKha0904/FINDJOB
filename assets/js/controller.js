@@ -1069,7 +1069,7 @@ app.controller("FindAJobsController", function ($scope, $http) {
     var salaryValue = salary != null ? salary : 0;
     $http({
       method: 'POST',
-      url: url + 'Job/Search/?pageSize=10',
+      url: url + 'Job/Search/?pageSize=5',
       data: {
         industry_id: industryId,
         type_id: typeId,

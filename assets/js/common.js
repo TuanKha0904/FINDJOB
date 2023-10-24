@@ -56,8 +56,8 @@ function GetAllJob($http, $scope, pageNumber, pageSize) {
     url: url + "Job/FindAJob?pageNumber=" + pageNumber + "&pageSize=" + pageSize,
   })
     .then(function (response) {
-      $scope.jobs = response.data;
-      $scope.totalJob = response.data.length;
+      $scope.jobs = response.data.jobList;
+      $scope.totalJob = response.data.jobQuantity;
     })
     .catch(function (error) {
       console.log(error);
