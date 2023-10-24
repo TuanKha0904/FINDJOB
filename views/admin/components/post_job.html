@@ -3,15 +3,14 @@
         <div class="single-job-items mb-30">
             <div class="job-items">
                 <div>
-                    <a href=""><img src="{{jobDetail.logo}}" alt="" class="logo_company"></a>
+                    <img ng-src="{{jobDetail.logo}}" alt="" class="logo_company">
                 </div>
                 <div class="job-tittle job-tittle2">
                     <a href="">
-                        <h4>{{jobDetail.jobTitle}}</h4>
+                        <h4 title="{{jobDetail.jobTitle}}">{{jobDetail.jobTitle | truncate: 30: '...'}}</h4>
                     </a>
                     <ul>
                         <li>{{jobDetail.industry.industry_name}}</li>
-                        <li><i class="fas fa-map-marker-alt"></i>{{jobDetail.location}}</li>
                         <li>{{jobDetail.minimum_salary | currencyFormat}} VNĐ - {{jobDetail.maximum_salary |
                             currencyFormat}} VNĐ</li>
                     </ul>

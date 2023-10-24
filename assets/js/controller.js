@@ -1134,6 +1134,20 @@ app.controller('PostAdminController', function ($scope, $http, notificationServi
   };
   getPostWait();
 
+  // get job detail
+  $scope.getJobDetail = function (id) {
+    $http({
+      method: "GET",
+      url: url + "Job/JobDetail?jobId=" + id,
+    })
+      .then(function (response) {
+        $scope.jobDetail = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   // update post status
   $scope.updatePostStatus = function (id) {
     $http({
