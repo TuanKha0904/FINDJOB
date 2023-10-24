@@ -87,6 +87,7 @@ app.directive("inforSeekerApply", () => {
   return {
     restrict: "E",
     templateUrl: "./views/employer/components/infor_seeker_apply.html",
+    controller: 'EmployerController'
   };
 });
 

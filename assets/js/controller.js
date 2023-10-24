@@ -259,6 +259,20 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
       });
   };
   applyList();
+
+  $scope.showApply = function(uid){
+    $http({
+      method: "GET",
+      url: url + "Seeker/CVInfor?userId=" + uid
+    })
+      .then(function (response) {
+        $scope.apply = response.data;
+        console.log($scope.apply);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });
 
 app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService, notificationService) {

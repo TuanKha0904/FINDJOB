@@ -12,12 +12,12 @@
                             <h4>{{apply.name}}</h4>
                             <ul>
                                 <li>Email: {{apply.email}}</li>
-                                <li>Phone: {{apply.phone_number}}</li>
+                                <li>Phone: {{apply.phoneNumber}}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="f-right apply-link">
-                        <a href="" ng-click="employer.showInforSeekerApply()">View</a>
+                        <a href="" ng-click="employer.showInforSeekerApply(); showApply(apply.uid)">View</a>
                         <div class="row justify-content-center">
                             <span class="icon_check" ng-click="employer.ShowEditJob()"><i class="fas fa-check-circle"></i></span>
                             <span class="icon_delete" ng-click="employer.ShowEditJob()"><i class="fas fa-times"></i></span>
