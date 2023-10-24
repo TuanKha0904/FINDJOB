@@ -10,7 +10,7 @@
                         <h4>{{jobDetail.jobTitle}}</h4>
                     </a>
                     <ul>
-                        <li>{{jobDetail.industry}}</li>
+                        <li>{{jobDetail.industry.industry_name}}</li>
                         <li><i class="fas fa-map-marker-alt"></i>{{jobDetail.location}}</li>
                         <li>{{jobDetail.minimum_salary | currencyFormat}} VNĐ - {{jobDetail.maximum_salary |
                             currencyFormat}} VNĐ</li>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="items-link items-link2 f-right">
-                <a href="">{{jobDetail.type}}</a>
+                <a href="">{{jobDetail.type.type_name}}</a>
                 <span>{{jobDetail.deadline}}</span>
             </div>
         </div>
@@ -46,10 +46,10 @@
                     <ul>
                         <li>Posted date : <span>{{jobDetail.posted_date}}</span></li>
                         <li>Location : <span>{{jobDetail.location}}</span></li>
-                        <li>Job type : <span>{{jobDetail.type}}</span></li>
+                        <li>Job type : <span>{{jobDetail.type.type_name}}</span></li>
                         <li>Up to : <span>{{jobDetail.maximum_salary | currencyFormat}} VNĐ</span></li>
                         <li>Deadline : <span>{{jobDetail.deadline}}</span></li>
-                        <li>Industry : <span>{{jobDetail.industry}}</span></li>
+                        <li>Industry : <span>{{jobDetail.industry.industry_name}}</span></li>
                     </ul>
                 </div>
                 <div class=" col-xl-6 col-lg-6 col-md-6 post-details4 mb-50 ml-30">
