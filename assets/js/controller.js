@@ -273,6 +273,36 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
         console.log(error);
       });
   };
+
+  // Receive apply for seeker
+  $scope.ReceiveApply = function (id) {
+    if(parseInt(id, 10)){
+      $http({
+        method: "PUT",
+        url: url + "RecruitmentNoAccount/Status?id=" + id + "&job_id=" + $scope.jobId,
+      })
+        .then(function () {
+          notificationService.displaySuccess("Đã nhận tuyển!");
+          applyList();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    else{
+      $http({
+        method: "PUT",
+        url: url + "Recruitment/Status?userId=" + id + "&job_id=" + $scope.jobId,
+      })
+        .then(function () {
+          notificationService.displaySuccess("Đã nhận tuyển!");
+          applyList();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }  
 });
 
 app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService, notificationService) {
