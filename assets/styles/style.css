@@ -2832,6 +2832,35 @@ input[type="radio"] {
     position: relative
 }
 
+.custom_selection_apply{
+    border: none;
+    margin: 0 20px;
+    background-color: transparent;
+    border-bottom: 5px solid transparent;
+    color: #02790c;
+    font-weight: bold;
+    transition: border-bottom 0.5s, background-size 0.5s;
+}
+
+.custom_selection_apply.active {
+    border-bottom: 5px solid #da2461;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.send-link a i{
+    padding: 10px;
+    background-color: #fff;
+    color: #da2461;
+}
+
+.send-link a i:hover{
+    background-color: #da2461;
+    color: #fff;
+    transition: 0.5s;
+}
+
+
 .full_image.single-blog .single-blog-content {
     position: absolute;
     left: 35px;

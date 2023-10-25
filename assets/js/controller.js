@@ -302,7 +302,21 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
           console.log(error);
         });
     }
-  }  
+  };
+
+  // show receive list apply
+  $scope.showReceiveApply = function(){
+    $http({
+      method: "GET",
+      url: url + "Job/Receive?job_id=" + $scope.jobId
+    })
+      .then(function (response) {
+        $scope.receiveList = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 });
 
 app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService, notificationService) {

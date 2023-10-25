@@ -302,4 +302,34 @@ app.directive('clock', function($interval) {
   };
 });
 
+app.directive("customButton", function () {
+  return {
+    restrict: "A",
+    link: function (scope, element, attrs) {
+      element.on("click", function () {
+        // Lấy giá trị thuộc tính 'id' của button
+        var buttonId = attrs.id;
+
+        // Lấy danh sách tất cả các button có directive 'custom-button'
+        var buttons = document.querySelectorAll("[custom-button]");
+
+        // Loại bỏ lớp "active" khỏi tất cả các button
+        buttons.forEach(function (btn) {
+          btn.classList.remove("active");
+        });
+
+        // Thêm lớp "active" cho button hiện tại
+        element.addClass("active");
+      });
+    }
+  };
+});
+
+
+
+
+
+
+
+
 

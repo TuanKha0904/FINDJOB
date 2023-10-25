@@ -5,39 +5,69 @@
                 <infor-employer ng-if="employer.inforEmployer"></infor-employer>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6">
-                <!-- single-job-content -->
-                <div class="single-job-items single-apply-item mb-20" ng-repeat="apply in applyList">
-                    <div class="job-items">
-                        <div class="job-tittle">
-                            <h4>{{apply.name}}</h4>
-                            <ul>
-                                <li>Email: {{apply.email}}</li>
-                                <li>Phone: {{apply.phoneNumber}}</li>
-                            </ul>
+                <div class="col-xl-12 mx-auto bg-success pt-20 pb-10 rounded">
+                    <div class="d-flex justify-content-center mb-30">
+                        <button class="col-lg-4 custom_selection_apply active" custom-button id="applyListButton"
+                            ng-click="employer.showApply()">Apply List</button>
+                        <button class="col-lg-4 custom_selection_apply" custom-button id="receiveListButton"
+                            ng-click="employer.showApply(); showReceiveApply()">Receive List</button>
+                    </div>
+                    <div class="single-job-items single-apply-item mb-20" ng-repeat="apply in applyList"
+                        ng-if="employer.apply">
+                        <div class="job-items">
+                            <div class="job-tittle">
+                                <h4>{{apply.name}}</h4>
+                                <ul>
+                                    <li>Email: {{apply.email}}</li>
+                                    <li>Phone: {{apply.phoneNumber}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="f-right apply-link">
+                            <a href="" ng-click="employer.showInforSeekerApply(); showApply(apply.uid)">View</a>
+                            <div class="row justify-content-center">
+                                <span class="icon_check" ng-click="ReceiveApply(apply.uid)"><i
+                                        class="fas fa-check-circle"></i></span>
+                                <span class="icon_delete" ng-click="employer.ShowEditJob()"><i
+                                        class="fas fa-times"></i></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="f-right apply-link">
-                        <a href="" ng-click="employer.showInforSeekerApply(); showApply(apply.uid)">View</a>
-                        <div class="row justify-content-center">
-                            <span class="icon_check" ng-click="ReceiveApply(apply.uid)"><i class="fas fa-check-circle"></i></span>
-                            <span class="icon_delete" ng-click="employer.ShowEditJob()"><i class="fas fa-times"></i></span>
+                    <div class="single-job-items single-apply-item mb-20" ng-repeat="receive in receiveList"
+                        ng-if="!employer.apply">
+                        <div class="job-items">
+                            <div class="job-tittle">
+                                <h4>{{receive.name}}</h4>
+                                <ul>
+                                    <li>Email: {{receive.email}}</li>
+                                    <li>Phone: {{receive.phoneNumber}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="f-right  justify-content-center align-items-center">
+                            <div class="apply-link">
+                                <a href="" ng-click="employer.showInforSeekerApply(); showApply(receive.uid)">View</a>
+                            </div>
+                            <div class="row send-link justify-content-center">
+                                <a href="" ng-click="sendMail()"><i class="fas fa-paper-plane"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pagination-area pb-10 text-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="single-wrap d-flex justify-content-center">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-start">
-                                            <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                            <li class="page-item"><a class="page-link" href="#"><span
-                                                        class="ti-angle-right"></span></a></li>
-                                        </ul>
-                                    </nav>
+                    <div class="pagination-area pb-10 text-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="single-wrap d-flex justify-content-center">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-start">
+                                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                                <li class="page-item"><a class="page-link" href="#"><span
+                                                            class="ti-angle-right"></span></a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
                             </div>
                         </div>

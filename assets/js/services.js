@@ -55,6 +55,7 @@ app.service('EmployerService', function() {
   service.editJob = false;
   service.inforEmployer = true;
   service.inforSeekerApply = false;
+  service.apply = true;
   service.ShowAllPosts = function () {
       service.AllPosts = true;
       service.ApprovedPost = false;
@@ -81,7 +82,9 @@ app.service('EmployerService', function() {
       service.inforSeekerApply = false;
       service.inforEmployer = true;
   };
-
+  service.showApply = function(){
+    service.apply = !service.apply;
+  };
 });
 
 app.service('HeaderService', function() {
