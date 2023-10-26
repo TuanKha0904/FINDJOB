@@ -525,7 +525,7 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, App
       url: url + 'Recruitment/Delete?job_id=' + id
     }).then(function (response) {
       notificationService.displaySuccess(response.data);
-      historyApply();
+      historyApply(1);
     }).catch(function (error) {
       console.log(error);
     })
@@ -1040,6 +1040,9 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
       url: url + 'Job/Delete?jobId=' + id
     }).then(function (response) {
       notificationService.displaySuccess(response.data);
+      GetAllJob();
+      ApprovedJob();
+      waitingJob();
     }).catch(function (error) {
       console.log(error);
     })
