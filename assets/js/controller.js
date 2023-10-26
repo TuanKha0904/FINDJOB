@@ -1,7 +1,8 @@
 // const url = 'http://www.findjobapi.somee.com/api/';
 const url = "https://findjob.zeabur.app/api/";
+var session = localStorage.getItem("session");
 
-app.controller("HomeController", function ($scope, $http) {
+app.controller("HomeController", function ($scope, $http, UserService, HeaderService) {
   // get location
   getLocation($scope);
 
@@ -13,6 +14,8 @@ app.controller("HomeController", function ($scope, $http) {
 
   //get all job
   GetAllJob($http, $scope, 1, 5);
+
+
 });
 
 app.controller("ProfileController", function ($scope, $http, $sce, ProfileService, UserService, notificationService) {
@@ -210,7 +213,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
 
   //get type
   getType($http, $scope);
-  
+
   // get industry
   getIndustry($http, $scope);
 
@@ -241,12 +244,12 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
         $window.history.back();
       })
       .catch(function (error) {
-        console.log(error); 
+        console.log(error);
       });
   };
 
   // get apply list
-  function applyList(){
+  function applyList() {
     $http({
       method: "GET",
       url: url + "Job/ApplyList?pageNumber=1&pageSize=10&job_id=" + $scope.jobId,
@@ -260,7 +263,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
   };
   applyList();
 
-  $scope.showApply = function(uid){
+  $scope.showApply = function (uid) {
     $http({
       method: "GET",
       url: url + "Seeker/CVInfor?userId=" + uid
@@ -276,7 +279,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
 
   // Receive apply for seeker
   $scope.ReceiveApply = function (id) {
-    if(parseInt(id, 10)){
+    if (parseInt(id, 10)) {
       $http({
         method: "PUT",
         url: url + "RecruitmentNoAccount/Status?id=" + id + "&job_id=" + $scope.jobId,
@@ -289,7 +292,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
           console.log(error);
         });
     }
-    else{
+    else {
       $http({
         method: "PUT",
         url: url + "Recruitment/Status?userId=" + id + "&job_id=" + $scope.jobId,
@@ -305,7 +308,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
   };
 
   // show receive list apply
-  $scope.showReceiveApply = function(){
+  $scope.showReceiveApply = function () {
     $http({
       method: "GET",
       url: url + "Job/Receive?job_id=" + $scope.jobId
@@ -329,8 +332,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
       .signInWithPopup(provider)
       .then(function (result) {
         var user = result.user;
-        localStorage.setItem("user", JSON.stringify(user.displayName));
-        console.log(user);
+        sessionStorage.setItem("user", JSON.parse(user));
         return user.getIdToken();
       })
       .then(function (accessToken) {
@@ -413,8 +415,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
         notificationService.displayError(error.data);
       });
   };
-}
-);
+});
 
 app.controller("HeaderController", function ($scope, UserService, $location, HeaderService) {
   $scope.header = HeaderService;

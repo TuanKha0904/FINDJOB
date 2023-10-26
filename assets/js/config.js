@@ -19,7 +19,6 @@ app.factory("authInterceptor", function ($injector) {
       if (!config.headers.Authorization && authService.getToken()) {
         config.headers.Authorization = "Bearer " + authService.getToken();
       }
-
       return config;
     },
   };
