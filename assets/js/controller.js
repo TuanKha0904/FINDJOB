@@ -1,8 +1,26 @@
 // const url = 'http://www.findjobapi.somee.com/api/';
 const url = "https://findjob.zeabur.app/api/";
-var session = localStorage.getItem("session");
 
-app.controller("HomeController", function ($scope, $http, UserService, HeaderService) {
+app.controller("HomeController", function ($scope, $http, HeaderService, UserService) {
+  // get user in sessionStorage
+  if(sessionStorage.getItem("user")) {
+    HeaderService.isUserLoggedIn = true;
+    var userString = sessionStorage.getItem("user")
+    var user = JSON.parse(userString);
+    $http.defaults.headers.common["Authorization"] =
+    "Bearer " + user.stsTokenManager.accessToken;  
+  }
+  if(sessionStorage.getItem("setUser")) {
+    var user = sessionStorage.getItem("setUser");
+    user = JSON.parse(user);
+    UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+  }
+  if(sessionStorage.getItem("token")) {
+    HeaderService.isUserLoggedIn = true;
+    var token = sessionStorage.getItem("token");
+    $http.defaults.headers.common["Authorization"] =
+    "Bearer " + token;  
+  }
   // get location
   getLocation($scope);
 
@@ -18,7 +36,27 @@ app.controller("HomeController", function ($scope, $http, UserService, HeaderSer
 
 });
 
-app.controller("ProfileController", function ($scope, $http, $sce, ProfileService, UserService, notificationService) {
+app.controller("ProfileController", function ($scope, $http, $sce, ProfileService, UserService, HeaderService, notificationService) {
+  // get user in sessionStorage
+  if(sessionStorage.getItem("user")) {
+    HeaderService.isUserLoggedIn = true;
+    var userString = sessionStorage.getItem("user")
+    var user = JSON.parse(userString);
+    $http.defaults.headers.common["Authorization"] =
+    "Bearer " + user.stsTokenManager.accessToken;  
+  }
+  if(sessionStorage.getItem("setUser")) {
+    var user = sessionStorage.getItem("setUser");
+    user = JSON.parse(user);
+    UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+  }
+  if(sessionStorage.getItem("token")) {
+    HeaderService.isUserLoggedIn = true;
+    var token = sessionStorage.getItem("token");
+    $http.defaults.headers.common["Authorization"] =
+    "Bearer " + token;  
+  }
+
   $scope.profile = ProfileService;
   $scope.user = UserService.getUser();
 
@@ -173,6 +211,7 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
         if ($scope.adminLogin.isAdmin == false || $scope.adminLogin.idToken == null)
           notificationService.displayWarning("Sai tài khoản hoặc mật khẩu");
         else {
+          sessionStorage.setItem("tokenAdmin", $scope.adminLogin.idToken);
           $http.defaults.headers.common["Authorization"] =
             "Bearer " + $scope.adminLogin.idToken;
           $http({
@@ -180,6 +219,7 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
             url: url + "Account",
           }).then(function (response) {
             $rootScope.adminInfor = response.data;
+            sessionStorage.setItem("admin", JSON.stringify($rootScope.adminInfor));
             $location.path("/admin_main");
           });
         }
@@ -191,17 +231,49 @@ app.controller("LoginAdminController", function ($scope, $http, $location, $root
 }
 );
 
-app.controller("AdminController", function ($scope, AdminService, $rootScope, $http, $location) {
+app.controller("AdminController", function ($scope, $rootScope, AdminService, $rootScope, $http, $location) {
+  if(sessionStorage.getItem("admin")) {
+    var admin = sessionStorage.getItem("admin");
+    admin = JSON.parse(admin);
+    $rootScope.adminInfor = admin;
+  }
+  if(sessionStorage.getItem("tokenAdmin")) {
+    var token = sessionStorage.getItem("tokenAdmin");
+    $http.defaults.headers.common["Authorization"] =
+    "Bearer " + token;  
+  }
+
   $scope.admin = AdminService;
   $scope.Infor = $rootScope.adminInfor;
   $scope.logout = function () {
+    sessionStorage.clear();
     $rootScope.adminInfor = null;
     delete $http.defaults.headers.common["Authorization"];
     $location.path("/admin");
   }
 });
 
-app.controller("EmployerController", function ($scope, $filter, $window, EmployerService, $http, $routeParams, notificationService) {
+app.controller("EmployerController", function ($scope, $filter, $window, EmployerService, UserService, HeaderService, $http, $routeParams, notificationService) {
+    // get user in sessionStorage
+    if(sessionStorage.getItem("user")) {
+      HeaderService.isUserLoggedIn = true;
+      var userString = sessionStorage.getItem("user")
+      var user = JSON.parse(userString);
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + user.stsTokenManager.accessToken;  
+    }
+    if(sessionStorage.getItem("setUser")) {
+      var user = sessionStorage.getItem("setUser");
+      user = JSON.parse(user);
+      UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+    }
+    if(sessionStorage.getItem("token")) {
+      HeaderService.isUserLoggedIn = true;
+      var token = sessionStorage.getItem("token");
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + token;  
+    }
+  
   $scope.employer = EmployerService;
   $scope.jobId = $routeParams.jobId
 
@@ -322,8 +394,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
   };
 });
 
-app.controller("SigninController", function ($scope, $http, $window, UserService, HeaderService, authService, notificationService) {
-  $scope.header = HeaderService;
+app.controller("SigninController", function ($scope, $http, $window, UserService, authService, notificationService) {
   // Login with Google
   $scope.loginWithGoogle = function () {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -332,7 +403,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
       .signInWithPopup(provider)
       .then(function (result) {
         var user = result.user;
-        sessionStorage.setItem("user", JSON.parse(user));
+        sessionStorage.setItem("user", JSON.stringify(user));
         return user.getIdToken();
       })
       .then(function (accessToken) {
@@ -357,6 +428,8 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
                 user.phoneNumber
               );
               $scope.header.isUserLoggedIn = true;
+              var setUser = UserService.getUser();
+              sessionStorage.setItem("setUser", JSON.stringify(setUser));
               notificationService.displaySuccess("Login success");
               // Go back to previous page
               $window.history.back();
@@ -385,6 +458,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
         $scope.result = response.data;
         if ($scope.result.idToken == null) notificationService.displayWarning("Wrong email or password");
         else {
+          sessionStorage.setItem("token", $scope.result.idToken);
           $http.defaults.headers.common["Authorization"] =
             "Bearer " + $scope.result.idToken;
           authService.setToken($scope.result.idToken);
@@ -405,6 +479,8 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
               );
               $scope.header.isUserLoggedIn = true;
               notificationService.displaySuccess("Login success");
+              var setUser = UserService.getUser();
+              sessionStorage.setItem("setUser", JSON.stringify(setUser));
               // Go back to previous page
               $window.history.back();
             }
@@ -438,7 +514,27 @@ app.controller("HeaderController", function ($scope, UserService, $location, Hea
 }
 );
 
-app.controller("JobDetailController", function ($scope, ApplyService, $http, $routeParams, $location, notificationService) {
+app.controller("JobDetailController", function ($scope, ApplyService, UserService, HeaderService, $http, $routeParams, $location, notificationService) {
+    // get user in sessionStorage
+    if(sessionStorage.getItem("user")) {
+      HeaderService.isUserLoggedIn = true;
+      var userString = sessionStorage.getItem("user")
+      var user = JSON.parse(userString);
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + user.stsTokenManager.accessToken;  
+    }
+    if(sessionStorage.getItem("setUser")) {
+      var user = sessionStorage.getItem("setUser");
+      user = JSON.parse(user);
+      UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+    }
+    if(sessionStorage.getItem("token")) {
+      HeaderService.isUserLoggedIn = true;
+      var token = sessionStorage.getItem("token");
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + token;  
+    }
+  
   $scope.apply = ApplyService;
   $scope.jobId = $routeParams.jobId;
 
@@ -504,7 +600,27 @@ app.controller("JobDetailController", function ($scope, ApplyService, $http, $ro
   }
 });
 
-app.controller("HistoryController", function ($scope, $http, HistoryService, ApplyService, notificationService) {
+app.controller("HistoryController", function ($scope, $http, HistoryService, UserService, HeaderService, ApplyService, notificationService) {
+    // get user in sessionStorage
+    if(sessionStorage.getItem("user")) {
+      HeaderService.isUserLoggedIn = true;
+      var userString = sessionStorage.getItem("user")
+      var user = JSON.parse(userString);
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + user.stsTokenManager.accessToken;  
+    }
+    if(sessionStorage.getItem("setUser")) {
+      var user = sessionStorage.getItem("setUser");
+      user = JSON.parse(user);
+      UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+    }
+    if(sessionStorage.getItem("token")) {
+      HeaderService.isUserLoggedIn = true;
+      var token = sessionStorage.getItem("token");
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + token;  
+    }
+  
   $scope.history = HistoryService;
   $scope.apply = ApplyService;
 
@@ -579,7 +695,27 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, App
 }
 );
 
-app.controller("ProfileEmployerController", function ($scope, $http, $sce, EmployerService, notificationService) {
+app.controller("ProfileEmployerController", function ($scope, $http, $sce, UserService, HeaderService, EmployerService, notificationService) {
+    // get user in sessionStorage
+    if(sessionStorage.getItem("user")) {
+      HeaderService.isUserLoggedIn = true;
+      var userString = sessionStorage.getItem("user")
+      var user = JSON.parse(userString);
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + user.stsTokenManager.accessToken;  
+    }
+    if(sessionStorage.getItem("setUser")) {
+      var user = sessionStorage.getItem("setUser");
+      user = JSON.parse(user);
+      UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+    }
+    if(sessionStorage.getItem("token")) {
+      HeaderService.isUserLoggedIn = true;
+      var token = sessionStorage.getItem("token");
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + token;  
+    }
+  
   $scope.employerService = EmployerService;
   $scope.employer = {
     contact_phone: "",
@@ -728,7 +864,27 @@ app.controller("ProfileEmployerController", function ($scope, $http, $sce, Emplo
 }
 );
 
-app.controller("PostController", function ($scope, $http, notificationService) {
+app.controller("PostController", function ($scope, $http, UserService, HeaderService, notificationService) {
+   // get user in sessionStorage
+   if(sessionStorage.getItem("user")) {
+    HeaderService.isUserLoggedIn = true;
+    var userString = sessionStorage.getItem("user")
+    var user = JSON.parse(userString);
+    $http.defaults.headers.common["Authorization"] =
+    "Bearer " + user.stsTokenManager.accessToken;  
+  }
+  if(sessionStorage.getItem("setUser")) {
+    var user = sessionStorage.getItem("setUser");
+    user = JSON.parse(user);
+    UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+  }
+  if(sessionStorage.getItem("token")) {
+    HeaderService.isUserLoggedIn = true;
+    var token = sessionStorage.getItem("token");
+    $http.defaults.headers.common["Authorization"] =
+    "Bearer " + token;  
+  }
+
   // get location
   getLocation($scope);
 
@@ -776,7 +932,12 @@ app.controller("PostController", function ($scope, $http, notificationService) {
   };
 });
 
-app.controller("DashboardController", function ($scope, $http) {
+app.controller("DashboardController", function ($scope, $http, $rootScope) {
+  if(sessionStorage.getItem("admin")) {
+    var admin = sessionStorage.getItem("admin");
+    admin = JSON.parse(admin);
+    $rootScope.adminInfor = admin;
+  }
 
   // get quantity account
   function getQuantityAccount() {
@@ -890,7 +1051,13 @@ app.controller("DashboardController", function ($scope, $http) {
   }
 });
 
-app.controller("TypeAndIndustryController", function ($scope, $http, notificationService) {
+app.controller("TypeAndIndustryController", function ($scope, $http, $rootScope, notificationService) {
+  if(sessionStorage.getItem("admin")) {
+    var admin = sessionStorage.getItem("admin");
+    admin = JSON.parse(admin);
+    $rootScope.adminInfor = admin;
+  }
+
   // Fill type
   function getType() {
     $http({
@@ -988,7 +1155,27 @@ app.controller("TypeAndIndustryController", function ($scope, $http, notificatio
   };
 });
 
-app.controller("PostManagementController", function ($scope, $http, EmployerService, notificationService) {
+app.controller("PostManagementController", function ($scope, $http, EmployerService, notificationService, UserService, HeaderService) {
+    // get user in sessionStorage
+    if(sessionStorage.getItem("user")) {
+      HeaderService.isUserLoggedIn = true;
+      var userString = sessionStorage.getItem("user")
+      var user = JSON.parse(userString);
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + user.stsTokenManager.accessToken;  
+    }
+    if(sessionStorage.getItem("setUser")) {
+      var user = sessionStorage.getItem("setUser");
+      user = JSON.parse(user);
+      UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+    }
+    if(sessionStorage.getItem("token")) {
+      HeaderService.isUserLoggedIn = true;
+      var token = sessionStorage.getItem("token");
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + token;  
+    }
+  
   $scope.employer = EmployerService;
 
   // get all job
@@ -1051,7 +1238,13 @@ app.controller("PostManagementController", function ($scope, $http, EmployerServ
   }
 });
 
-app.controller("JobTimeoutController", function ($scope, $http, notificationService) {
+app.controller("JobTimeoutController", function ($scope, $http, $rootScope, notificationService) {
+  if(sessionStorage.getItem("admin")) {
+    var admin = sessionStorage.getItem("admin");
+    admin = JSON.parse(admin);
+    $rootScope.adminInfor = admin;
+  }
+
   //get job timeout
   function getJobTimeout() {
     $http({
@@ -1096,7 +1289,27 @@ app.controller("JobTimeoutController", function ($scope, $http, notificationServ
 
 });
 
-app.controller("FindAJobsController", function ($scope, $http) {
+app.controller("FindAJobsController", function ($scope, $http , HeaderService, UserService) {
+    // get user in sessionStorage
+    if(sessionStorage.getItem("user")) {
+      HeaderService.isUserLoggedIn = true;
+      var userString = sessionStorage.getItem("user")
+      var user = JSON.parse(userString);
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + user.stsTokenManager.accessToken;  
+    }
+    if(sessionStorage.getItem("setUser")) {
+      var user = sessionStorage.getItem("setUser");
+      user = JSON.parse(user);
+      UserService.setUser(user.Uid, user.Name, user.Email, user.Photo, user.PhoneNumber);
+    }
+    if(sessionStorage.getItem("token")) {
+      HeaderService.isUserLoggedIn = true;
+      var token = sessionStorage.getItem("token");
+      $http.defaults.headers.common["Authorization"] =
+      "Bearer " + token;  
+    }
+  
   // get location
   getLocation($scope);
 
@@ -1166,7 +1379,13 @@ app.controller("FindAJobsController", function ($scope, $http) {
   };
 });
 
-app.controller('PostAdminController', function ($scope, $http, notificationService) {
+app.controller('PostAdminController', function ($scope, $http, $rootScope, notificationService) {
+  if(sessionStorage.getItem("admin")) {
+    var admin = sessionStorage.getItem("admin");
+    admin = JSON.parse(admin);
+    $rootScope.adminInfor = admin;
+  }
+
   //get post wait
   function getPostWait() {
     $http({
@@ -1227,7 +1446,13 @@ app.controller('PostAdminController', function ($scope, $http, notificationServi
 
 });
 
-app.controller('JobAdminController', function ($scope, $http, notificationService) {
+app.controller('JobAdminController', function ($scope, $http, $rootScope, notificationService) {
+  if(sessionStorage.getItem("admin")) {
+    var admin = sessionStorage.getItem("admin");
+    admin = JSON.parse(admin);
+    $rootScope.adminInfor = admin;
+  }
+
   //get post wait
   function getPostJob() {
     $http({
@@ -1271,7 +1496,13 @@ app.controller('JobAdminController', function ($scope, $http, notificationServic
   }
 });
 
-app.controller('AccountManagementController', function ($scope, $http, notificationService) {
+app.controller('AccountManagementController', function ($scope, $http, $rootScope, notificationService) {
+  if(sessionStorage.getItem("admin")) {
+    var admin = sessionStorage.getItem("admin");
+    admin = JSON.parse(admin);
+    $rootScope.adminInfor = admin;
+  }
+
   // get account
   function getAccount() {
     $http({

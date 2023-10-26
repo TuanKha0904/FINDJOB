@@ -190,6 +190,7 @@ app.service('UserService', function () {
 
   this.logout = function () {
       user = {};
+      sessionStorage.clear();
   }
 });
 
