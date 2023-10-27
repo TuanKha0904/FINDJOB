@@ -3,11 +3,15 @@
     <div class="featured-job-area ">
         <div class="container">
             <!-- Section Tittle -->
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
                         <h2>All Posts</h2>
                     </div>
+                </div>
+                <div class="col-lg-8 bg-success mb-50 custom_nothing" ng-if="allJobs.length === 0">
+                    Sorry, you can create a new job...! 
+                    <a href="#!post">Post a job</a>
                 </div>
             </div>
 

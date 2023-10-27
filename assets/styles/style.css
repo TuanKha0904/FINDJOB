@@ -6249,6 +6249,23 @@ form.search-box .search-form a:hover {
     height: 100%;
 }
 
+.custom_nothing{
+    font-weight: bold;
+    font-size:larger;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    position: relative;
+}
+
+.custom_nothing a{
+    text-decoration: underline;
+    margin-left: 10px;
+    color: #da2461;
+}
+
 .profile_image img{
     width: 100px;
     height: 100px;

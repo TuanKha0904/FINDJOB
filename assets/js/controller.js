@@ -1,5 +1,5 @@
-// const url = 'http://www.findjobapi.somee.com/api/';
-const url = "https://findjob.zeabur.app/api/";
+const url = 'http://www.findjobapi.somee.com/api/';
+// const url = "https://findjob.zeabur.app/api/";
 
 app.controller("HomeController", function ($scope, $http, HeaderService, UserService) {
   // get user in sessionStorage
@@ -334,6 +334,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
       });
   };
   applyList();
+  $scope.showApplyList = applyList();
 
   $scope.showApply = function (uid) {
     $http({
@@ -376,7 +377,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
         .catch(function (error) {
           console.log(error);
         });
-    }
+    };
   };
 
   // show receive list apply
@@ -493,7 +494,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
   };
 });
 
-app.controller("HeaderController", function ($scope, UserService, $location, HeaderService) {
+app.controller("HeaderController", function ($scope, $window, UserService, $location, HeaderService) {
   $scope.header = HeaderService;
   $scope.user = UserService;
 
@@ -510,6 +511,7 @@ app.controller("HeaderController", function ($scope, UserService, $location, Hea
     UserService.logout();
     $scope.header.isUserLoggedIn = false;
     $location.path("/");
+    $window.location.reload();
   };
 }
 );
@@ -625,17 +627,20 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, Use
   $scope.apply = ApplyService;
 
   //get job history apply
-  function historyApply(pageNumber) {
+  function historyApply(pageNumber, pageSize) {
     $http({
       method: 'GET',
-      url: url + 'Recruitment/Seeker?pageSize=5&pageNumber=' + pageNumber
+      url: url + 'Recruitment/Seeker?pageNumber=' + pageNumber + '&pageSize=' + pageSize
     }).then(function (response) {
-      $scope.jobs = response.data;
+      $scope.jobs = response.data.listHistory;
+      $scope.totalJob = response.data.countHistory;
+      $scope.totalPages = $scope.totalJob / pageSize;
+      $scope.pageNumbers = Range($scope.totalPages);
     }).catch(function (error) {
       console.log(error);
     })
-  }
-  historyApply(1);
+  };
+  historyApply(1, 5);
   $scope.delete = function (id) {
     $http({
       method: 'DELETE',
@@ -647,7 +652,7 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, Use
       console.log(error);
     })
 
-  }
+  };
   $scope.jobDetail = function (id) {
     $http({
       method: 'GET',
@@ -657,40 +662,13 @@ app.controller("HistoryController", function ($scope, $http, HistoryService, Use
     }).catch(function (error) {
       console.log(error);
     })
-  }
+  };
 
-  //pagination
-  //pagination
   $scope.currentPage = 1;
-  $scope.totalPage = 100;
-  $scope.pageNumber = [];
+  // pagination
   $scope.changePage = function (newPage) {
-    $scope.currentPage = newPage;
-    historyApply($scope.currentPage);
+    historyApply(newPage, 5);
   };
-  function updatePageNumber(startPage) {
-    var endPage = Math.min(startPage + 2, $scope.totalPage);
-    $scope.pageNumber = [];
-    for (var i = startPage; i <= endPage; i++) {
-      $scope.pageNumber.push(i);
-    }
-    $scope.showPreviousButton = startPage > 1;
-  }
-
-  updatePageNumber(1);
-  $scope.nextPage = function () {
-    var lastPage = $scope.pageNumber[$scope.pageNumber.length - 1];
-    if (lastPage + 3 <= $scope.totalPage) {
-      updatePageNumber(lastPage + 1);
-    }
-  };
-  $scope.previousPage = function () {
-    var firstPage = $scope.pageNumber[0];
-    if (firstPage - 3 > 0) {
-      updatePageNumber(firstPage - 3);
-    }
-  };
-
 
 }
 );
@@ -864,7 +842,7 @@ app.controller("ProfileEmployerController", function ($scope, $http, $sce, UserS
 }
 );
 
-app.controller("PostController", function ($scope, $http, UserService, HeaderService, notificationService) {
+app.controller("PostController", function ($scope, $http, $location, UserService, HeaderService, notificationService) {
    // get user in sessionStorage
    if(sessionStorage.getItem("user")) {
     HeaderService.isUserLoggedIn = true;
@@ -906,6 +884,11 @@ app.controller("PostController", function ($scope, $http, UserService, HeaderSer
   ) {
     var description = CKEDITOR.instances.descriptionEditor.getData();
     var requirement = CKEDITOR.instances.requirementEditor.getData();
+    if(!tittle || !location || !minsalary || !maxsalary || !type || !industry || !deadline || !description || !requirement)
+    {
+      notificationService.displayWarning("Vui lòng điền đầy đủ thông tin");
+      return;
+    }
     var data = {
       jobTitle: tittle,
       location: location["name"],
@@ -917,17 +900,19 @@ app.controller("PostController", function ($scope, $http, UserService, HeaderSer
       deadline: deadline,
       requirement: requirement,
     };
-    console.log(data);
     $http({
       method: "POST",
       url: url + "Job/Post",
       data: data,
     })
-      .then(function (response) {
+      .then(function () {
         notificationService.displaySuccess("Tạo thành công");
       })
       .catch(function (error) {
-        console.log(error);
+        notificationService.displayError(error.data);
+        if (error.data == "Hãy cập nhật thông tin trước khi đăng tuyển công việc!") {
+          $location.path("profile_employer");
+        }
       });
   };
 });
@@ -1048,7 +1033,7 @@ app.controller("DashboardController", function ($scope, $http, $rootScope) {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
 });
 
 app.controller("TypeAndIndustryController", function ($scope, $http, $rootScope, notificationService) {
@@ -1324,6 +1309,7 @@ app.controller("FindAJobsController", function ($scope, $http , HeaderService, U
 
   //search job
   $scope.searchJobs = function (industry, type, location, salary) {
+    $scope.currentPage = 1;
     var industryId = industry != null ? industry.industry_id : 0;
     var typeId = type != null ? type.type_id : 0;
     var locationName = location != null ? location.name : null;
@@ -1339,8 +1325,8 @@ app.controller("FindAJobsController", function ($scope, $http , HeaderService, U
       }
     })
       .then(function (response) {
-        $scope.jobs = response.data;
-        $scope.totalJob = response.data.length;
+        $scope.jobs = response.data.jobList;
+        $scope.totalJob = response.data.jobQuantity;
       })
       .catch(function (error) {
         console.log(error);

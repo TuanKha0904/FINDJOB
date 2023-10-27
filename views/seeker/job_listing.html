@@ -140,7 +140,7 @@
   </div>
   <!-- Job List Area End -->
   <!--Pagination Start  -->
-  <div class="pagination-area pb-115 text-center">
+  <div class="pagination-area pb-115 text-center" ng-if = "totalJob > 5">
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
@@ -150,10 +150,10 @@
                 <li class="page-item">
                   <a class="page-link" href="" ng-click="previousPage()" ng-if="showPreviousButton"><span class="ti-angle-left"></span></a>
                 </li>
-                <li ng-class="{ 'page-item active': page === currentPage }" ng-repeat="page in pageNumbers">
+                <li ng-class="{ 'page-item active': page === currentPage }" ng-repeat="page in pageNumbers | limitTo: 5">
                   <a class="page-link" href="" ng-model = "page" ng-click="changePage(page)">{{page}}</a>
                 </li>
-                <li class="page-item" ng-if="pageNumbers < 3">
+                <li class="page-item" ng-if="pageNumbers.length > 5">
                   <a class="page-link" href="" ng-click="nextPage()"><span class="ti-angle-right"></span></a>
                 </li>
               </ul>
