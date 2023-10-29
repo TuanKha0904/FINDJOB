@@ -352,7 +352,7 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
 
   // Receive apply for seeker
   $scope.ReceiveApply = function (id) {
-    if (parseInt(id, 10)) {
+    if (isNaN(parseInt(id, 10))) {
       $http({
         method: "PUT",
         url: url + "RecruitmentNoAccount/Status?id=" + id + "&job_id=" + $scope.jobId,
@@ -392,6 +392,34 @@ app.controller("EmployerController", function ($scope, $filter, $window, Employe
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  $scope.deleteApply = function (id) {
+    if (isNaN(parseInt(id, 10))) {
+      $http({
+        method: "DELETE",
+        url: url + "RecruitmentNoAccount/Delete?id=" + id,
+      })
+        .then(function () {
+          notificationService.displaySuccess("Hủy nhận tuyển!");
+          applyList();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      $http({
+        method: "DELETE",
+        url: url + "Recruitment/Delete?userId=" + id + "&job_id=" + $scope.jobId,
+      })
+        .then(function () {
+          notificationService.displaySuccess("Hủy nhận tuyển!");
+          applyList();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
   };
 });
 
