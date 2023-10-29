@@ -40,11 +40,13 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="items-link f-right" id="change_button_post">
-                            <a href="#!job_detail/{{job.id}}">{{job.type}}</a>
-                            <span>{{job.deadline}}</span>
+                        <div class="row">
+                            <div class="items-link f-right mr-30" id="change_button_post">
+                                <a href="#!job_detail/{{job.id}}">{{job.type}}</a>
+                                <span>{{job.deadline}}</span>
+                            </div>
+                            <span class="exit_job"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>    
                         </div>
-                        <span class="exit_job"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
                     </div>
                 </div>
             </div>

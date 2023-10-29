@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8 bg-success mb-50 custom_nothing" ng-if="allJobs.length === 0">
-                    Sorry, you can create a new job...! 
+                    Sorry, you can create a new job...!
                     <a href="#!post">Post a job</a>
                 </div>
             </div>
@@ -28,7 +28,6 @@
                                     <h4>{{job.jobTitle}}</h4>
                                 </a>
                                 <ul>
-                                    <li>{{job.industry}}</li>
                                     <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
                                     <li>{{job.minimum_salary}} VNĐ - {{job.maximum_salary}} VNĐ</li>
                                     <li>
@@ -40,11 +39,14 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="items-link f-right" id="change_button_post">
-                            <a href="#!job_detail/{{job.id}}">{{job.type}}</a>
-                            <span>{{job.deadline}}</span>
+                        <div class="row">
+                            <div class="items-link f-right mr-30" id="change_button_post">
+                                <a href="#!job_detail/{{job.id}}">{{job.type}}</a>
+                                <span>{{job.deadline}}</span>
+                            </div>
+                            <span class="exit_job"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
+    
                         </div>
-                        <span class="exit_job"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
                     </div>
                 </div>
             </div>

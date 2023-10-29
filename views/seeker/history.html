@@ -38,7 +38,7 @@
             </div>   
               <!-- Count of Job list End -->
               <!-- single-job-content -->
-              <div class="single-job-items mb-30" ng-repeat="job in jobs">
+              <div class="single-job-items mb-30" ng-repeat="job in jobs" ng-click="history.showInforJob(); jobDetail(job.id)">
                 <div class="job-items" >
                   <div class="company-img">
                     <img ng-src="{{job.logo}}" alt="">
@@ -49,14 +49,15 @@
                       <li>{{job.industry}}</li>
                       <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
                       <li>{{job.minimum_salary | currencyFormat}} VNĐ - {{job.maximum_salary | currencyFormat}} VNĐ</li>
-                      <li><span class="badge bg-info">{{job.type}}</span></li>
-                      <li class="items-link job-link">
-                        <a href="" ng-click="history.showInforJob(); jobDetail(job.id)">View</a>
-                      </li>
                     </ul>
                   </div>
                 </div>
-                <span class="exit_job pr-30"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
+                <div class="row">
+                  <div class="items-link job-link exit_job">
+                    <a href="">View</a>
+                  </div>
+                  <span class="exit_job pr-30"><i class="fas fa-times" ng-click="delete(job.id)"></i></span>
+                </div>
               </div>
             </div>
           </section>
