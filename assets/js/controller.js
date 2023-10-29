@@ -510,8 +510,9 @@ app.controller("HeaderController", function ($scope, $window, UserService, $loca
   $scope.signout = function () {
     UserService.logout();
     $scope.header.isUserLoggedIn = false;
-    $location.path("/");
+    $scope.header.employer = false;
     $window.location.reload();
+    window.location.href = "/";
   };
 }
 );
