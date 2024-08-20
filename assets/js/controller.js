@@ -1,5 +1,6 @@
-const url = 'http://www.findjobapi.somee.com/api/';
+// const url = 'http://www.findjobapi.somee.com/api/';
 // const url = "https://findjob.zeabur.app/api/";
+const url = "http://localhost:8080/api/";
 
 app.controller("HomeController", function ($scope, $http, HeaderService, UserService) {
   // get user in sessionStorage
@@ -437,6 +438,7 @@ app.controller("SigninController", function ($scope, $http, $window, UserService
       })
       .then(function (accessToken) {
         // Send accessToken as Authorization header to API
+        console.log(accessToken);
         $http.defaults.headers.common["Authorization"] =
           "Bearer " + accessToken;
         authService.setToken(accessToken);
